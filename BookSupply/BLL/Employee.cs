@@ -15,11 +15,21 @@ namespace BookSupply.BLL
 
         //setters and getters
         public int EmployeeId { get => employeeId; }
-        public int PhoneNumber { get => phoneNumber; set => employeeId = value; }
+        public int PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public int JobId { get => jobId; set => jobId = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string Email { get => email; set => email = value; }
+
+        //default constructor
+        public Employee()
+        {
+            LastName = string.Empty;
+            FirstName = string.Empty;
+            Email = string.Empty;
+            PhoneNumber = 0;
+            JobId = 0;
+        }
 
         //parameterized constructor
         public Employee(string FirstName, string LastName, string Email, int PhoneNumber, int JobId)
@@ -33,7 +43,5 @@ namespace BookSupply.BLL
 
 
     }
-
-
-    }
+    
 }
