@@ -51,14 +51,16 @@
             this.JobId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonUpdateEmployee = new System.Windows.Forms.Button();
             this.buttonDeleteEmployee = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(366, 57);
+            this.buttonSave.Location = new System.Drawing.Point(488, 70);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(100, 35);
+            this.buttonSave.Size = new System.Drawing.Size(133, 43);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -67,9 +69,10 @@
             // buttonList
             // 
             this.buttonList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonList.Location = new System.Drawing.Point(366, 259);
+            this.buttonList.Location = new System.Drawing.Point(488, 319);
+            this.buttonList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonList.Name = "buttonList";
-            this.buttonList.Size = new System.Drawing.Size(100, 35);
+            this.buttonList.Size = new System.Drawing.Size(133, 43);
             this.buttonList.TabIndex = 1;
             this.buttonList.Text = "List All";
             this.buttonList.UseVisualStyleBackColor = true;
@@ -79,9 +82,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(61, 68);
+            this.label1.Location = new System.Drawing.Point(81, 84);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 18);
+            this.label1.Size = new System.Drawing.Size(118, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Employee ID";
             // 
@@ -89,9 +93,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(72, 104);
+            this.label2.Location = new System.Drawing.Point(96, 128);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 18);
+            this.label2.Size = new System.Drawing.Size(101, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "First Name";
             // 
@@ -99,9 +104,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(73, 134);
+            this.label3.Location = new System.Drawing.Point(97, 165);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.Size = new System.Drawing.Size(99, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "Last Name";
             // 
@@ -109,9 +115,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(45, 172);
+            this.label4.Location = new System.Drawing.Point(60, 212);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 18);
+            this.label4.Size = new System.Drawing.Size(140, 24);
             this.label4.TabIndex = 5;
             this.label4.Text = "Phone Number";
             // 
@@ -119,9 +126,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(108, 209);
+            this.label5.Location = new System.Drawing.Point(144, 257);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 18);
+            this.label5.Size = new System.Drawing.Size(57, 24);
             this.label5.TabIndex = 6;
             this.label5.Text = "Email";
             // 
@@ -129,52 +137,59 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(102, 247);
+            this.label6.Location = new System.Drawing.Point(136, 304);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 18);
+            this.label6.Size = new System.Drawing.Size(63, 24);
             this.label6.TabIndex = 7;
             this.label6.Text = "Job ID";
             // 
             // textBoxEmployeeID
             // 
-            this.textBoxEmployeeID.Location = new System.Drawing.Point(159, 66);
+            this.textBoxEmployeeID.Location = new System.Drawing.Point(212, 81);
+            this.textBoxEmployeeID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxEmployeeID.Name = "textBoxEmployeeID";
-            this.textBoxEmployeeID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEmployeeID.Size = new System.Drawing.Size(132, 22);
             this.textBoxEmployeeID.TabIndex = 8;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(159, 102);
+            this.textBoxFirstName.Location = new System.Drawing.Point(212, 126);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxFirstName.Size = new System.Drawing.Size(132, 22);
             this.textBoxFirstName.TabIndex = 9;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(159, 132);
+            this.textBoxLastName.Location = new System.Drawing.Point(212, 162);
+            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLastName.Size = new System.Drawing.Size(132, 22);
             this.textBoxLastName.TabIndex = 10;
             // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(159, 170);
+            this.textBoxPhone.Location = new System.Drawing.Point(212, 209);
+            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPhone.Size = new System.Drawing.Size(132, 22);
             this.textBoxPhone.TabIndex = 11;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(159, 209);
+            this.textBoxEmail.Location = new System.Drawing.Point(212, 257);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEmail.Size = new System.Drawing.Size(132, 22);
             this.textBoxEmail.TabIndex = 12;
             // 
             // textBoxJobID
             // 
-            this.textBoxJobID.Location = new System.Drawing.Point(159, 245);
+            this.textBoxJobID.Location = new System.Drawing.Point(212, 302);
+            this.textBoxJobID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxJobID.Name = "textBoxJobID";
-            this.textBoxJobID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxJobID.Size = new System.Drawing.Size(132, 22);
             this.textBoxJobID.TabIndex = 13;
             // 
             // listViewEmployee
@@ -187,9 +202,10 @@
             this.Email,
             this.JobId});
             this.listViewEmployee.HideSelection = false;
-            this.listViewEmployee.Location = new System.Drawing.Point(123, 307);
+            this.listViewEmployee.Location = new System.Drawing.Point(164, 378);
+            this.listViewEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewEmployee.Name = "listViewEmployee";
-            this.listViewEmployee.Size = new System.Drawing.Size(610, 97);
+            this.listViewEmployee.Size = new System.Drawing.Size(812, 118);
             this.listViewEmployee.TabIndex = 14;
             this.listViewEmployee.UseCompatibleStateImageBehavior = false;
             this.listViewEmployee.View = System.Windows.Forms.View.Details;
@@ -226,9 +242,10 @@
             // buttonUpdateEmployee
             // 
             this.buttonUpdateEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpdateEmployee.Location = new System.Drawing.Point(522, 57);
+            this.buttonUpdateEmployee.Location = new System.Drawing.Point(696, 70);
+            this.buttonUpdateEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonUpdateEmployee.Name = "buttonUpdateEmployee";
-            this.buttonUpdateEmployee.Size = new System.Drawing.Size(100, 46);
+            this.buttonUpdateEmployee.Size = new System.Drawing.Size(133, 57);
             this.buttonUpdateEmployee.TabIndex = 15;
             this.buttonUpdateEmployee.Text = "Update Employee";
             this.buttonUpdateEmployee.UseVisualStyleBackColor = true;
@@ -237,19 +254,30 @@
             // buttonDeleteEmployee
             // 
             this.buttonDeleteEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeleteEmployee.Location = new System.Drawing.Point(522, 120);
+            this.buttonDeleteEmployee.Location = new System.Drawing.Point(696, 148);
+            this.buttonDeleteEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDeleteEmployee.Name = "buttonDeleteEmployee";
-            this.buttonDeleteEmployee.Size = new System.Drawing.Size(100, 46);
+            this.buttonDeleteEmployee.Size = new System.Drawing.Size(133, 57);
             this.buttonDeleteEmployee.TabIndex = 16;
             this.buttonDeleteEmployee.Text = "Delete Employee";
             this.buttonDeleteEmployee.UseVisualStyleBackColor = true;
             this.buttonDeleteEmployee.Click += new System.EventHandler(this.buttonDeleteEmployee_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(451, 188);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 16);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "AQUI CARALHO";
+            // 
             // EmployeeUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.buttonDeleteEmployee);
             this.Controls.Add(this.buttonUpdateEmployee);
             this.Controls.Add(this.listViewEmployee);
@@ -267,6 +295,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonList);
             this.Controls.Add(this.buttonSave);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EmployeeUserForm";
             this.Text = "EmployeeUserForm";
             this.ResumeLayout(false);
@@ -299,5 +328,6 @@
         private System.Windows.Forms.ColumnHeader JobId;
         private System.Windows.Forms.Button buttonUpdateEmployee;
         private System.Windows.Forms.Button buttonDeleteEmployee;
+        private System.Windows.Forms.Label label7;
     }
 }
