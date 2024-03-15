@@ -23,7 +23,40 @@ namespace BookSupply.GUI
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            //string input ="";
+            string input = "";
+
+            input = textBoxFirstName.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid First Name.", "Invalid");
+                textBoxFirstName.Focus();
+                return;
+            }
+
+            input = textBoxLastName.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid Last Name.", "Invalid");
+                textBoxLastName.Focus();
+                return;
+            }
+
+            input = textBoxEmail.Text.Trim();
+            if (!Validator.isValidEmail(input))
+            {
+                MessageBox.Show("Invalid Email.", "Invalid");
+                textBoxEmail.Focus();
+                return;
+            }
+
+            input = textBoxPhone.Text.Trim();
+            if (!Validator.IsValidPhoneNumber(input))
+            {
+                MessageBox.Show("Invalid Phone Number.", "Invalid");
+                textBoxPhone.Focus();
+                return;
+            }
+            
             Employee employee = new Employee();
             employee.FirstName = textBoxFirstName.Text.Trim();
             employee.LastName = textBoxLastName.Text.Trim();
