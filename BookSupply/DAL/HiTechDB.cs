@@ -1,6 +1,7 @@
 ﻿using BookSupply.BLL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Policy;
@@ -50,13 +51,14 @@ namespace BookSupply.DAL
             //Do a loop to list all records
             while (reader.Read())
             {
-                employee = new Employee(
+                employee = new Employee(                
                 reader["FirstName"].ToString(),
                 reader["LastName"].ToString(),
                 reader["Email"].ToString(),
-                Convert.ToInt32(reader["PhoneNumber"]),
+                Convert.ToInt64(reader["PhoneNumber"]),
                 Convert.ToInt32(reader["JobId"])
                 );
+                employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                 listE.Add(employee);
             }
             //close DB and return records
