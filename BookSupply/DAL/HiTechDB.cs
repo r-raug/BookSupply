@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BookSupply.DAL
 {
@@ -82,7 +83,7 @@ namespace BookSupply.DAL
                 employee.FirstName = reader["FirstName"].ToString();
                 employee.LastName = reader["LastName"].ToString();
                 employee.Email = reader["Email"].ToString();
-                employee.PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                employee.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
                 employee.JobId = Convert.ToInt32(reader["JobId"]);
             }
             else
@@ -93,6 +94,67 @@ namespace BookSupply.DAL
             //close DV and return employee
             conn.Close();
             return employee;
+        }
+
+
+
+        //update an employee in database
+        public static void UpdateEmployee(Employee employeeUpdate)
+        {
+            using (SqlConnection conn = UtilityDB.GetDBConnection())
+            {
+                SqlCommand cmdUpdate = new SqlCommand();
+                cmdUpdate.Connection = conn;
+                cmdUpdate.CommandText = "UPDATE Employees " +
+                                        "SET FirstName = @FirstName, " +
+                                        "LastName = @LastName, " +
+                                        "PhoneNumber = @PhoneNumber, " +
+                                        "Email = @Email, " +
+                                        "JobId = @JobId " +
+                                        "WHERE EmployeeId = @EmployeeId";
+                //cmdUpdate.Parameters.AddWithValue("@EmployeeId", employeeUpdate.EmployeeId);
+                cmdUpdate.Parameters.AddWithValue("@FirstName", employeeUpdate.FirstName);
+                cmdUpdate.Parameters.AddWithValue("@LastName", employeeUpdate.LastName);
+                cmdUpdate.Parameters.AddWithValue("@PhoneNumber", employeeUpdate.PhoneNumber);
+                cmdUpdate.Parameters.AddWithValue("@Email", employeeUpdate.Email);
+                cmdUpdate.Parameters.AddWithValue("@JobId", employeeUpdate.JobId);
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;
+                MessageBox.Show(employeeUpdate.EmployeeId.ToString());
+                cmdUpdate.ExecuteNonQuery();
+            }
+        }
+
+        public static bool IsUniqueId(int eID)
+        {
+            Employee employee = new Employee();
+            employee = SearchEmployee(eID);
+            if(employee != null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static void Delete(int ID)
+        {
+            SqlConnection conn = UtilityDB.GetDBConnection();
+
+            try
+            {
+                SqlCommand cmdDelete = new SqlCommand();
+                cmdDelete.Connection = conn;
+                cmdDelete.CommandText = "DELETE Employees "+
+                                        "WHERE EmployeeId = @EmployeeId";
+                cmdDelete.Parameters.AddWithValue("@EmployeeId", ID);
+                cmdDelete.ExecuteNonQuery();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
 

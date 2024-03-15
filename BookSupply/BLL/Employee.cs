@@ -58,6 +58,21 @@ namespace BookSupply.BLL
             return HiTechDB.SearchEmployee(id);
         }
 
+        public bool IsUniqueEmployeeId(int eId)
+        {
+            return HiTechDB.IsUniqueId(eId);
+        }
+
+        public void UpdateEmployee(Employee updateEmployee)
+        {
+            HiTechDB.UpdateEmployee(updateEmployee);
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            HiTechDB.Delete(id);
+        }
+
 
     }
     

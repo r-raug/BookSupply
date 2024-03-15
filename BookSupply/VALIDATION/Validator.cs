@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BookSupply.VALIDATION
@@ -29,5 +30,29 @@ namespace BookSupply.VALIDATION
             }
             return true;
         }
+
+        public static bool isValidEmail(string id)
+        {
+            if (!Regex.IsMatch(id, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+
+            if (!Regex.IsMatch(phoneNumber, @"^\d{10}$"))
+            {
+                return false;
+            }
+            return true;
+        }
+
+
     }
 }

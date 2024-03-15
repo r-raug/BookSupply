@@ -36,7 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textEmployeeID = new System.Windows.Forms.TextBox();
+            this.textBoxEmployeeID = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
@@ -49,6 +49,8 @@
             this.Phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.JobId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonUpdateEmployee = new System.Windows.Forms.Button();
+            this.buttonDeleteEmployee = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonSave
@@ -133,12 +135,12 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Job ID";
             // 
-            // textEmployeeID
+            // textBoxEmployeeID
             // 
-            this.textEmployeeID.Location = new System.Drawing.Point(159, 66);
-            this.textEmployeeID.Name = "textEmployeeID";
-            this.textEmployeeID.Size = new System.Drawing.Size(100, 20);
-            this.textEmployeeID.TabIndex = 8;
+            this.textBoxEmployeeID.Location = new System.Drawing.Point(159, 66);
+            this.textBoxEmployeeID.Name = "textBoxEmployeeID";
+            this.textBoxEmployeeID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEmployeeID.TabIndex = 8;
             // 
             // textBoxFirstName
             // 
@@ -221,18 +223,42 @@
             // 
             this.JobId.Text = "Job ID";
             // 
+            // buttonUpdateEmployee
+            // 
+            this.buttonUpdateEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateEmployee.Location = new System.Drawing.Point(522, 57);
+            this.buttonUpdateEmployee.Name = "buttonUpdateEmployee";
+            this.buttonUpdateEmployee.Size = new System.Drawing.Size(100, 46);
+            this.buttonUpdateEmployee.TabIndex = 15;
+            this.buttonUpdateEmployee.Text = "Update Employee";
+            this.buttonUpdateEmployee.UseVisualStyleBackColor = true;
+            this.buttonUpdateEmployee.Click += new System.EventHandler(this.buttonUpdateEmployee_Click);
+            // 
+            // buttonDeleteEmployee
+            // 
+            this.buttonDeleteEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteEmployee.Location = new System.Drawing.Point(522, 120);
+            this.buttonDeleteEmployee.Name = "buttonDeleteEmployee";
+            this.buttonDeleteEmployee.Size = new System.Drawing.Size(100, 46);
+            this.buttonDeleteEmployee.TabIndex = 16;
+            this.buttonDeleteEmployee.Text = "Delete Employee";
+            this.buttonDeleteEmployee.UseVisualStyleBackColor = true;
+            this.buttonDeleteEmployee.Click += new System.EventHandler(this.buttonDeleteEmployee_Click);
+            // 
             // EmployeeUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonDeleteEmployee);
+            this.Controls.Add(this.buttonUpdateEmployee);
             this.Controls.Add(this.listViewEmployee);
             this.Controls.Add(this.textBoxJobID);
             this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
-            this.Controls.Add(this.textEmployeeID);
+            this.Controls.Add(this.textBoxEmployeeID);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -258,7 +284,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textEmployeeID;
+        private System.Windows.Forms.TextBox textBoxEmployeeID;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxPhone;
@@ -271,5 +297,7 @@
         private System.Windows.Forms.ColumnHeader Phone;
         private System.Windows.Forms.ColumnHeader Email;
         private System.Windows.Forms.ColumnHeader JobId;
+        private System.Windows.Forms.Button buttonUpdateEmployee;
+        private System.Windows.Forms.Button buttonDeleteEmployee;
     }
 }
