@@ -55,7 +55,7 @@
             this.EmployeeManagement = new System.Windows.Forms.TabPage();
             this.UserManagement = new System.Windows.Forms.TabPage();
             this.buttonListUser = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewUser = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -305,7 +305,7 @@
             // UserManagement
             // 
             this.UserManagement.Controls.Add(this.buttonListUser);
-            this.UserManagement.Controls.Add(this.listView1);
+            this.UserManagement.Controls.Add(this.listViewUser);
             this.UserManagement.Controls.Add(this.buttonSaveUser);
             this.UserManagement.Controls.Add(this.buttonDeleteUser);
             this.UserManagement.Controls.Add(this.buttonUpdateUser);
@@ -332,20 +332,21 @@
             this.buttonListUser.TabIndex = 20;
             this.buttonListUser.Text = "List All Users";
             this.buttonListUser.UseVisualStyleBackColor = true;
+            this.buttonListUser.Click += new System.EventHandler(this.buttonListUser_Click);
             // 
-            // listView1
+            // listViewUser
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader6});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(44, 220);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(301, 97);
-            this.listView1.TabIndex = 21;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewUser.HideSelection = false;
+            this.listViewUser.Location = new System.Drawing.Point(44, 220);
+            this.listViewUser.Name = "listViewUser";
+            this.listViewUser.Size = new System.Drawing.Size(301, 97);
+            this.listViewUser.TabIndex = 21;
+            this.listViewUser.UseCompatibleStateImageBehavior = false;
+            this.listViewUser.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -391,6 +392,7 @@
             this.buttonUpdateUser.TabIndex = 18;
             this.buttonUpdateUser.Text = "Update User";
             this.buttonUpdateUser.UseVisualStyleBackColor = true;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
             // 
             // textBoxUserEmpID
             // 
@@ -493,7 +495,7 @@
         private System.Windows.Forms.TabPage EmployeeManagement;
         private System.Windows.Forms.TabPage UserManagement;
         private System.Windows.Forms.Button buttonListUser;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewUser;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader6;

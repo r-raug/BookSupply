@@ -126,6 +126,31 @@ namespace BookSupply.DAL
             return listE;
         }
 
+        //this method list all records from the table Users
+        public static List<User> GetAllUsers()
+        {
+            List<User> listE = new List<User>();
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSelectAll = new SqlCommand("SELECT * FROM UserAccounts", conn);
+            SqlDataReader reader = cmdSelectAll.ExecuteReader(); //execute command that are in cmdSelectAll
+            User user;
+
+            //Do a loop to list all records
+            while (reader.Read())
+            {
+                user = new User(
+                reader["UserName"].ToString(),
+                Convert.ToInt32(reader["EmployeeId"]),
+                Convert.ToInt32(reader["JobId"])
+                );
+                
+                listE.Add(user);
+            }
+            //close DB and return records
+            conn.Close();
+            return listE;
+        }
+
         //this method search an employee by ID
         public static Employee SearchEmployee(int empID)
         {
@@ -179,6 +204,25 @@ namespace BookSupply.DAL
                 cmdUpdate.Parameters.AddWithValue("@JobId", employeeUpdate.JobId);
                 cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;
                 MessageBox.Show(employeeUpdate.EmployeeId.ToString());
+                cmdUpdate.ExecuteNonQuery();
+            }
+        }
+
+        //update an user in database
+        public static void UpdateUser(User userUpdate)
+        {
+            using (SqlConnection conn = UtilityDB.GetDBConnection())
+            {
+                SqlCommand cmdUpdate = new SqlCommand();
+                cmdUpdate.Connection = conn;
+                cmdUpdate.CommandText = "UPDATE UserAccounts " +
+                                        "SET UserName = @UserName, " +
+                                        "Password = @Password " +                                        
+                                        "WHERE EmployeeId = @EmployeeId";                
+                cmdUpdate.Parameters.AddWithValue("@UserName", userUpdate.UserName);
+                cmdUpdate.Parameters.AddWithValue("@Password", userUpdate.Password);                
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = userUpdate.EmployeeId;
+                MessageBox.Show(userUpdate.EmployeeId.ToString());
                 cmdUpdate.ExecuteNonQuery();
             }
         }

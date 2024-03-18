@@ -193,6 +193,8 @@ namespace BookSupply.GUI
             }
         }
 
+
+
         private void buttonDeleteEmployee_Click(object sender, EventArgs e)
         {
             if (textBoxEmployeeID.Text.Trim() == "")
@@ -248,6 +250,90 @@ namespace BookSupply.GUI
         private void EmployeeUserForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonListUser_Click(object sender, EventArgs e)
+        {
+            listViewUser.Items.Clear();
+            User user = new User();
+            List<User> listUser = user.GetUserList();           
+            DisplayInfos(listUser, listViewUser);
+        }
+
+
+        private void DisplayInfos(List<User> listUser, ListView listV)
+        {
+            listV.Items.Clear();
+            if (listUser != null && listUser.Count > 0)
+            {
+                foreach (User user in listUser)
+                {
+                    ListViewItem item = new ListViewItem(user.EmployeeId.ToString());
+                    item.SubItems.Add(user.UserName);
+                    item.SubItems.Add(user.JobId.ToString());
+                    listV.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No employee in the database.", "Missing data");
+            }
+        }
+
+        private void buttonUpdateUser_Click(object sender, EventArgs e)
+        {
+
+            int inputEmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());
+            Console.WriteLine(inputEmployeeId);
+            //check if EmployeeID texbox has information
+            if (textBoxUserEmpID.Text == "" || textBoxUserName.Text == "" || textBoxUserPassword.Text == "")
+            {
+                MessageBox.Show("Please search by EmployeeID before procede with update or \n" +
+                    "fill in all fields before proceeding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (inputEmployeeId is int)
+                {
+                    User user = new User();
+
+                    //before update, check if ID exist and all fields has a valid input
+                    //input = textBoxEmployeeID.Text.Trim();
+                    //if (employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
+                    //{
+                    //    MessageBox.Show("ID not found", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    textBoxEmployeeID.Focus();
+                    //    return;
+                    //}
+
+
+                    user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());
+                    user.UserName = textBoxUserName.Text.Trim();
+                    user.Password = textBoxUserPassword.Text.Trim();
+                    
+
+
+                    DialogResult result = MessageBox.Show("Are you sure you want to update this user?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        //employee.UpdateEmployee(employee);
+                        try
+                        {
+                            user.UpdateUser(user);
+                            MessageBox.Show("Employee updated sucessfully.", "Confirmation");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error updating employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
     

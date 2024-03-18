@@ -23,10 +23,27 @@ namespace BookSupply.BLL
             EmployeeId = 0;
         }
 
+        public User(string userName, int employeeId, int jobId)
+        {
+            UserName = userName;
+            EmployeeId = employeeId;
+            JobId = jobId;
+        }
+
         public static void SaveUser(User user,int empId)
         {
 
             HiTechDB.SaveRecordUser(user,empId);
+        }
+
+        public List<User> GetUserList()
+        {
+            return HiTechDB.GetAllUsers();
+        }
+
+        public void UpdateUser(User updateUser)
+        {
+            HiTechDB.UpdateUser(updateUser);
         }
 
     }
