@@ -45,7 +45,7 @@ namespace BookSupply.BLL
 
         public static void SaveEmployee(Employee employee)
         {
-            HiTechDB.SaveRecord(employee);
+            HiTechDB.SaveRecordEmployee(employee);
         }
 
         public List<Employee> GetEmployeeList()

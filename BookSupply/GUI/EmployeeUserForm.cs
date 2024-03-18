@@ -233,5 +233,22 @@ namespace BookSupply.GUI
                 }
             }
         }
+
+        private void buttonSaveUser_Click(object sender, EventArgs e)
+        {
+
+            User user = new User();
+            user.UserName = textBoxUserName.Text.Trim();
+            user.Password = textBoxUserPassword.Text.Trim();
+            user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());            
+            User.SaveUser(user, user.EmployeeId);
+            
+        }
+
+        private void EmployeeUserForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
+    
 }

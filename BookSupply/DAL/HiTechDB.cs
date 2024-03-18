@@ -8,14 +8,16 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BookSupply.GUI;
+using System.Threading;
 
 namespace BookSupply.DAL
 {
     public static class HiTechDB
     {
 
-        //this metod save/update an employee record to the database
-        public static void SaveRecord(Employee employee)
+        //this method save/update an employee record to the database
+        public static void SaveRecordEmployee(Employee employee)
         {
             //Open DB
             SqlConnection conn = UtilityDB.GetDBConnection();
@@ -35,6 +37,63 @@ namespace BookSupply.DAL
 
             cmdInsert.ExecuteNonQuery(); //used to insert/update
 
+            //close DB
+            conn.Close();
+        }
+
+        //this method save/update an user record to the database
+        public static void SaveRecordUser(User user, int empID)
+        {
+            //Open DB
+            SqlConnection conn = UtilityDB.GetDBConnection();
+
+            
+            //create and customize an object of type SqlCommand for search an ID            
+            SqlCommand cmdSearchEmployee = new SqlCommand();
+            cmdSearchEmployee.Connection = conn;
+            cmdSearchEmployee.CommandText = "SELECT * FROM Employees " +
+                                                  "WHERE EmployeeId = @EmployeeId";
+            cmdSearchEmployee.Parameters.AddWithValue("@EmployeeId", empID);
+            
+            
+            
+            SqlDataReader employeeReader = cmdSearchEmployee.ExecuteReader();
+            if (employeeReader.Read()) //If ID exist in the database
+            {
+                int jobID = Convert.ToInt32(employeeReader["JobId"]);
+                employeeReader.Close();
+                
+
+                SqlCommand cmdSearchUser = new SqlCommand();
+                cmdSearchUser.Connection = conn;
+                cmdSearchUser.CommandText = "SELECT COUNT(*) FROM UserAccounts " +
+                                          "WHERE EmployeeId = @EmployeeId";
+                cmdSearchUser.Parameters.AddWithValue("@EmployeeId", empID);
+                int count = Convert.ToInt32(cmdSearchUser.ExecuteScalar());
+                //verify if the user already exist
+                if (count > 0)
+                {
+                    MessageBox.Show("User already exist.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                else {
+                    //create and customize an object of type SqlCommand for insert
+                    
+                    SqlCommand cmdInsert = new SqlCommand();
+                    cmdInsert.Connection = conn;
+                    cmdInsert.CommandText = "INSERT INTO UserAccounts (Username, Password, EmployeeId, JobId) " +
+                                        "VALUES (@Username, @Password, @EmployeeId, @JobId)";
+
+                    cmdInsert.Parameters.AddWithValue("@Username", user.UserName);
+                    cmdInsert.Parameters.AddWithValue("@Password", user.Password);
+                    cmdInsert.Parameters.AddWithValue("@EmployeeId", user.EmployeeId);
+                    cmdInsert.Parameters.AddWithValue("@JobId", jobID);
+                    cmdInsert.ExecuteNonQuery(); //used to insert/update
+                }
+            }
+            else
+            {
+                MessageBox.Show("Employee ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //close DB
             conn.Close();
         }
@@ -157,6 +216,25 @@ namespace BookSupply.DAL
             }
         }
 
-
+        public static void LoginUser(Login login)
+        {
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = conn;
+            cmdLogin.CommandText = "SELECT * FROM UserAccounts " +
+                                  "WHERE Username = @Username AND Password = @Password";
+            cmdLogin.Parameters.AddWithValue("@Username", login.UserName);
+            cmdLogin.Parameters.AddWithValue("@Password", login.Password);
+            SqlDataReader reader = cmdLogin.ExecuteReader();
+            if (reader.Read())
+            {
+                login.JobId = reader["JobId"].ToString();
+            }
+            else
+            {
+                login.JobId = "0";
+            }
+            conn.Close();
+        }
     }
 }
