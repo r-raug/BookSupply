@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
@@ -10,7 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BookSupply.BLL;
+using BookSupply.DAL;
 using BookSupply.VALIDATION;
+
+
 
 namespace BookSupply.GUI
 {
@@ -58,11 +62,12 @@ namespace BookSupply.GUI
             }
             
             Employee employee = new Employee();
-            employee.FirstName = textBoxFirstName.Text.Trim();
-            employee.LastName = textBoxLastName.Text.Trim();
+            employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstName.Text.Trim().ToLower());
+            employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastName.Text.Trim().ToLower());
             employee.PhoneNumber = Convert.ToInt64(textBoxPhone.Text.Trim());
             employee.Email = textBoxEmail.Text.Trim();
-            employee.JobId = Convert.ToInt32(textBoxJobID.Text.Trim());
+            employee.JobId = comboBoxJobId.SelectedIndex + 1;
+            employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
             Employee.SaveEmployee(employee);
             MessageBox.Show("Saved");
         }
@@ -88,6 +93,7 @@ namespace BookSupply.GUI
                     item.SubItems.Add(emp.PhoneNumber.ToString());
                     item.SubItems.Add(emp.Email);
                     item.SubItems.Add(emp.JobId.ToString());
+                    item.SubItems.Add(emp.StatusId.ToString());
                     listV.Items.Add(item);
                 }
 
@@ -103,29 +109,29 @@ namespace BookSupply.GUI
             string input = "";
 
             //check if all texbox has information
-            if(textBoxEmployeeID.Text == "" || textBoxFirstName.Text == "" || textBoxLastName.Text == "" || 
-                textBoxEmail.Text == "" || textBoxJobID.Text == "" || textBoxPhone.Text == "" )
+            if(textBoxEmployeeIDU.Text == "" || textBoxFirstNameU.Text == "" || textBoxLastNameU.Text == "" || 
+                textBoxEmailU.Text == "" || comboBoxJobIDU.SelectedIndex == -1 || comboBoxStatusIDU.SelectedIndex == -1 || textBoxPhoneNumberU.Text == "" )
             {
                 MessageBox.Show("Please search by EmployeeID before procede with update or \n" + 
                     "fill in all fields before proceeding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if(int.TryParse(textBoxEmployeeID.Text,out int employeeId))
+                if(int.TryParse(textBoxEmployeeIDD.Text,out int employeeId))
                 {
                     Employee employee = new Employee();
 
                     //before update, check if ID exist and all fields has a valid input
-                    input = textBoxEmployeeID.Text.Trim();
+                    input = textBoxEmployeeIDU.Text.Trim();
                     if(employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
                     {
                         MessageBox.Show("ID not found", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textBoxEmployeeID.Focus();
+                        textBoxEmployeeIDD.Focus();
                         return;
                     }
                     
 
-                    input = textBoxFirstName.Text.Trim();
+                    input = textBoxFirstNameU.Text.Trim();
                     if(!Validator.IsValidName(input))
                     {
                         MessageBox.Show("Invalid First Name.", "Invalid");
@@ -133,7 +139,7 @@ namespace BookSupply.GUI
                         return;
                     }
 
-                    input = textBoxLastName.Text.Trim();
+                    input = textBoxLastNameU.Text.Trim();
                     if (!Validator.IsValidName(input))
                     {
                         MessageBox.Show("Invalid Last Name.", "Invalid");
@@ -141,7 +147,7 @@ namespace BookSupply.GUI
                         return;
                     }
 
-                    input = textBoxEmail.Text.Trim();
+                    input = textBoxEmailU.Text.Trim();
                     if (!Validator.isValidEmail(input))
                     {
                         MessageBox.Show("Invalid Email.", "Invalid");
@@ -149,7 +155,7 @@ namespace BookSupply.GUI
                         return;
                     }
 
-                    input = textBoxPhone.Text.Trim();
+                    input = textBoxPhoneNumberU.Text.Trim();
                     if (!Validator.IsValidPhoneNumber(input))
                     {
                         MessageBox.Show("Invalid Phone Number.", "Invalid");
@@ -158,17 +164,14 @@ namespace BookSupply.GUI
                     }
 
 
-                    ///////////////////////////////////////////////////////
-                    //falta criar a funcao para checar se o JobID existe.//
-                    ///////////////////////////////////////////////////////
+                    employee.EmployeeId = Convert.ToInt32(textBoxEmployeeIDU.Text.Trim());
+                    employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstNameU.Text.Trim().ToLower());
+                    employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastNameU.Text.Trim().ToLower());
+                    employee.Email = textBoxEmailU.Text.Trim();
+                    employee.PhoneNumber = Convert.ToInt64(textBoxPhoneNumberU.Text.Trim());
+                    employee.JobId = comboBoxJobId.SelectedIndex + 1;
+                    employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
 
-                    employee.EmployeeId = Convert.ToInt32(textBoxEmployeeID.Text.Trim());
-                    employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstName.Text.Trim().ToLower());
-                    employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastName.Text.Trim().ToLower());
-                    employee.Email = textBoxEmail.Text.Trim();
-                    employee.PhoneNumber = Convert.ToInt64(textBoxPhone.Text.Trim());
-                    employee.JobId = Convert.ToInt32(textBoxJobID.Text.Trim());
-                    
 
                     DialogResult result = MessageBox.Show("Are you sure you want to update this employee?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
@@ -197,7 +200,7 @@ namespace BookSupply.GUI
 
         private void buttonDeleteEmployee_Click(object sender, EventArgs e)
         {
-            if (textBoxEmployeeID.Text.Trim() == "")
+            if (textBoxEmployeeIDD.Text.Trim() == "")
             {
                 MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -212,16 +215,17 @@ namespace BookSupply.GUI
                         Employee employee = new Employee();
 
                         //before delete, check if ID exists
-                        input = textBoxEmployeeID.Text.Trim();
+                        input = textBoxEmployeeIDD.Text.Trim();
                         if (employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
                         {
-                            MessageBox.Show("ID not found", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            textBoxEmployeeID.Focus();
+                            MessageBox.Show("ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxEmployeeIDD.Focus();
                             return;
 
                         }
-                        employee.EmployeeId = Convert.ToInt32(textBoxEmployeeID.Text.Trim());
-                        employee.DeleteEmployee(employee.EmployeeId);
+                        employee.EmployeeId = Convert.ToInt32(textBoxEmployeeIDD.Text.Trim());
+                        employee.StatusId = 2;
+                        employee.DeleteEmployee(employee.EmployeeId, employee.StatusId);
                         MessageBox.Show("Employee deleted", "Confirmation");
                     }
                     catch (Exception ex)
@@ -297,30 +301,17 @@ namespace BookSupply.GUI
                 {
                     User user = new User();
 
-                    //before update, check if ID exist and all fields has a valid input
-                    //input = textBoxEmployeeID.Text.Trim();
-                    //if (employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
-                    //{
-                    //    MessageBox.Show("ID not found", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    textBoxEmployeeID.Focus();
-                    //    return;
-                    //}
-
-
                     user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());
                     user.UserName = textBoxUserName.Text.Trim();
                     user.Password = textBoxUserPassword.Text.Trim();
-                    
-
-
                     DialogResult result = MessageBox.Show("Are you sure you want to update this user?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        //employee.UpdateEmployee(employee);
+                        
                         try
                         {
                             user.UpdateUser(user);
-                            MessageBox.Show("Employee updated sucessfully.", "Confirmation");
+                            
                         }
                         catch (Exception ex)
                         {
@@ -333,6 +324,180 @@ namespace BookSupply.GUI
                 {
                     MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+
+        private void comboBoxJobId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelJobId.Text = HiTechDB.SearchJob(comboBoxJobId.SelectedIndex + 1 ); 
+            
+        }
+
+        private void comboBoxStatusID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelStatusID.Text = HiTechDB.SearchStatus(comboBoxStatusID.SelectedIndex + 1);
+        }
+
+        private void comboBoxJobIDu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelJobIDu.Text = HiTechDB.SearchJob(comboBoxJobIDU.SelectedIndex + 1);
+        }
+
+        private void comboBoxStatusIDu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelStatusIDu.Text = HiTechDB.SearchStatus(comboBoxStatusIDU.SelectedIndex + 1);
+        }
+
+        private void buttonDeleteEmployee_Click_1(object sender, EventArgs e)
+        {
+            if (textBoxEmployeeIDD.Text.Trim() == "")
+            {
+                MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you aure you want to delete this employee?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string input = "";
+                        Employee employee = new Employee();
+
+                        //before delete, check if ID exists
+                        input = textBoxEmployeeIDD.Text.Trim();
+                        if (employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
+                        {
+                            MessageBox.Show("ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxEmployeeIDD.Focus();
+                            return;
+
+                        }
+                        employee.EmployeeId = Convert.ToInt32(textBoxEmployeeIDD.Text.Trim());
+                        employee.StatusId = 2;
+                        employee.DeleteEmployee(employee.EmployeeId, employee.StatusId);
+                        MessageBox.Show("Employee deleted", "Confirmation");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting employee : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Operation canceled.", "Confirmation");
+                }
+            }
+        }
+
+        private void comboBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxSearch.SelectedIndex)
+            {
+                case 0:
+                    labelSearch1.Text = "Employee ID";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 1:
+                    labelSearch1.Text = "First Name";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 2:
+                    labelSearch1.Text = "Last Name";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 3:
+                    labelSearch1.Text = "First Name";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    labelSearch2.Text = "Last Name";
+                    textBoxSearch2.Visible = true;
+                    labelSearch2.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 4:
+                    labelSearch1.Text = "Email";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    textBoxSearch2.Visible = false;
+                    labelSearch2.Visible = false;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 5:
+                    labelSearch1.Text = "Phone";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    textBoxSearch2.Visible = false;
+                    labelSearch2.Visible = false;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                case 6:
+                    //labelSearch1.Text = "Job ID";
+                    comboBoxSearchJobID.Visible = true;
+                    labelSearchJobID.Visible = true;
+                    textBoxSearch1.Visible = false;
+                    labelSearch1.Visible = false;
+                    comboBoxSearchStatusID.Visible = false;
+                    labelSearchStatusID.Visible = false;
+
+                    break;
+                case 7:
+                    //labelSearch1.Text = "Status ID";
+                    comboBoxSearchStatusID.Visible = true;
+                    labelSearchStatusID.Visible = true;
+                    textBoxSearch1.Visible = false;
+                    labelSearch1.Visible = false;
+                    textBoxSearch2.Visible = false;
+                    labelSearch2.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    labelSearchJobID.Visible = false;
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+
+        private void buttonSearchEmployee_Click(object sender, EventArgs e)
+        {
+            string search, column;
+            switch (comboBoxSearch.SelectedIndex)
+            {
+                case 0:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "EmployeeID";
+                    Employee employeeInstance = new Employee();
+                    Employee employee = employeeInstance.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    //Employee employee = new Employee();
+                    List<Employee> listEmp = employee.GetEmployeeList();
+                    DisplayInfo(listEmp, listViewEmployee);
+                    break;
             }
         }
     }

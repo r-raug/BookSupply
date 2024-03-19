@@ -11,7 +11,7 @@ namespace BookSupply.BLL
     {
         //privates flieds
         private string lastName, firstName, email;
-        private int employeeId, jobId;
+        private int employeeId, jobId, statusId;
         private long phoneNumber;
 
         //setters and getters
@@ -21,6 +21,8 @@ namespace BookSupply.BLL
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string Email { get => email; set => email = value; }
+        public int StatusId { get => statusId; set => statusId = value; }
+
 
         //default constructor
         public Employee()
@@ -31,16 +33,18 @@ namespace BookSupply.BLL
             Email = string.Empty;
             PhoneNumber = 0;
             JobId = 0;
+            //StatusId = 0;
         }
 
         //parameterized constructor
-        public Employee(string FirstName, string LastName, string Email, long PhoneNumber, int JobId)
+        public Employee(string FirstName, string LastName, string Email, long PhoneNumber, int JobId, int StatusId)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.Email = Email;
             this.PhoneNumber = PhoneNumber;
             this.JobId = JobId;
+            this.StatusId = StatusId;
         }
 
         public static void SaveEmployee(Employee employee)
@@ -53,9 +57,10 @@ namespace BookSupply.BLL
             return HiTechDB.GetAllEmployees();
         }
 
-        public Employee SearchEmployee(int id)
+        public Employee SearchEmployees(string search, string column)
         {
-            return HiTechDB.SearchEmployee(id);
+
+            return HiTechDB.SearchEmployees(search, column);
         }
 
         public bool IsUniqueEmployeeId(int eId)
@@ -68,9 +73,11 @@ namespace BookSupply.BLL
             HiTechDB.UpdateEmployee(updateEmployee);
         }
 
-        public void DeleteEmployee(int id)
+        public void DeleteEmployee(int id, int status)
         {
-            HiTechDB.Delete(id);
+            id = EmployeeId;
+            status = StatusId;
+            HiTechDB.Delete(id, status);
         }
 
 
