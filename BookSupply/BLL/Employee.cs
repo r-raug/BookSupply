@@ -57,10 +57,17 @@ namespace BookSupply.BLL
             return HiTechDB.GetAllEmployees();
         }
 
-        public Employee SearchEmployees(string search, string column)
+        public List<Employee> SearchEmployees(string search, string column)
         {
 
-            return HiTechDB.SearchEmployees(search, column);
+            return HiTechDB.SearchEmployee(search, column);
+        }
+
+        
+        public List<Employee> SearchEmployees(string search, string search1, string column, string column1)
+        {
+
+            return HiTechDB.SearchEmployee(search, search1, column, column1);
         }
 
         public bool IsUniqueEmployeeId(int eId)

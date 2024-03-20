@@ -12,6 +12,7 @@ using BookSupply.GUI;
 using System.Threading;
 using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq.Expressions;
 
 namespace BookSupply.DAL
 {
@@ -83,12 +84,13 @@ namespace BookSupply.DAL
                     
                     SqlCommand cmdInsert = new SqlCommand();
                     cmdInsert.Connection = conn;
-                    cmdInsert.CommandText = "INSERT INTO UserAccounts (Username, Password, EmployeeId, JobId) " +
-                                        "VALUES (@Username, @Password, @EmployeeId, @JobId)";
+                    cmdInsert.CommandText = "INSERT INTO UserAccounts (Username, Password, EmployeeId, JobId, StatusId) " +
+                                        "VALUES (@Username, @Password, @EmployeeId, @JobId, @StatusId)";
                     cmdInsert.Parameters.AddWithValue("@Username", user.UserName);
                     cmdInsert.Parameters.AddWithValue("@Password", user.Password);
                     cmdInsert.Parameters.AddWithValue("@EmployeeId", user.EmployeeId);
                     cmdInsert.Parameters.AddWithValue("@JobId", jobID);
+                    cmdInsert.Parameters.AddWithValue("@StatusId", user.StatusId);
                     cmdInsert.ExecuteNonQuery(); //used to insert/update
                 }
             }
@@ -144,7 +146,8 @@ namespace BookSupply.DAL
                 user = new User(
                 reader["UserName"].ToString(),
                 Convert.ToInt32(reader["EmployeeId"]),
-                Convert.ToInt32(reader["JobId"])
+                Convert.ToInt32(reader["JobId"]),
+                Convert.ToInt32(reader["StatusId"])
                 );
                 
                 listE.Add(user);
@@ -155,9 +158,9 @@ namespace BookSupply.DAL
         }
 
         //this method search an employee by ID
-        public static Employee SearchEmployees(string search, string column)
+        public static List<Employee> SearchEmployee(string search, string column)
         {
-            Employee employee = new Employee();
+            List<Employee> employees = new List<Employee>();
             SqlConnection conn = UtilityDB.GetDBConnection();
             SqlCommand cmdSearchID = new SqlCommand();
             cmdSearchID.Connection = conn;
@@ -165,57 +168,67 @@ namespace BookSupply.DAL
                                   "WHERE " + column + " LIKE @Search";
             cmdSearchID.Parameters.AddWithValue("@Search", "%" + search + "%");
 
-            SqlDataReader reader = cmdSearchID.ExecuteReader();
-            if(reader.Read()) //found
+            using (SqlDataReader reader = cmdSearchID.ExecuteReader())
             {
-                employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
-                employee.FirstName = reader["FirstName"].ToString();
-                employee.LastName = reader["LastName"].ToString();
-                employee.Email = reader["Email"].ToString();
-                employee.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
-                employee.JobId = Convert.ToInt16(reader["JobId"]);
-                employee.StatusId = Convert.ToInt16(reader["StatusId"]);
-            }
-            else
-            {
-                employee = null;
-            }
+                while (reader.Read()) 
+                {
+                    Employee employee = new Employee(); 
+                    employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
+                    employee.FirstName = reader["FirstName"].ToString();
+                    employee.LastName = reader["LastName"].ToString();
+                    employee.Email = reader["Email"].ToString();
+                    employee.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
+                    employee.JobId = Convert.ToInt16(reader["JobId"]);
+                    employee.StatusId = Convert.ToInt16(reader["StatusId"]);
 
-            //close DV and return employee
-            conn.Close();
-            return employee;
+                    employees.Add(employee); 
+                }
+            }
+            return employees;
         }
 
-        public static Employee SearchEmployees(string fname, string lname, string column)
+        public static List<Employee> SearchEmployee(string fname, string lname, string column1, string column2)
         {
-            Employee employee = new Employee();
-            SqlConnection conn = UtilityDB.GetDBConnection();
-            SqlCommand cmdSearchID = new SqlCommand();
-            cmdSearchID.Connection = conn;
-            cmdSearchID.CommandText = "SELECT * FROM Employees " +
-                                      "WHERE " + column + " LIKE @Fname AND " + column + " LIKE @Lname";
-            cmdSearchID.Parameters.AddWithValue("@Fname", "%" + fname + "%");
-            cmdSearchID.Parameters.AddWithValue("@Lname", "%" + lname + "%");
+            List<Employee> employees = new List<Employee>();
 
-            SqlDataReader reader = cmdSearchID.ExecuteReader();
-            if (reader.Read()) //found
+            try
             {
-                employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
-                employee.FirstName = reader["FirstName"].ToString();
-                employee.LastName = reader["LastName"].ToString();
-                employee.Email = reader["Email"].ToString();
-                employee.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
-                employee.JobId = Convert.ToInt16(reader["JobId"]);
-                employee.StatusId = Convert.ToInt16(reader["StatusId"]);
+                using (SqlConnection conn = UtilityDB.GetDBConnection())
+                {
+                    conn.Open();
+
+                    SqlCommand cmdSearchID = new SqlCommand();
+                    cmdSearchID.Connection = conn;
+                    cmdSearchID.CommandText = "SELECT * FROM Employees " +
+                                              "WHERE " + column1 + " LIKE @Fname AND " + column2 + " LIKE @Lname";
+                    cmdSearchID.Parameters.AddWithValue("@Fname", "%" + fname + "%");
+                    cmdSearchID.Parameters.AddWithValue("@Lname", "%" + lname + "%");
+
+                    using (SqlDataReader reader = cmdSearchID.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Employee employee = new Employee();
+                            employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
+                            employee.FirstName = reader["FirstName"].ToString();
+                            employee.LastName = reader["LastName"].ToString();
+                            employee.Email = reader["Email"].ToString();
+                            employee.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
+                            employee.JobId = Convert.ToInt16(reader["JobId"]);
+                            employee.StatusId = Convert.ToInt16(reader["StatusId"]);
+
+                            employees.Add(employee);
+                        }
+                    }
+                    conn.Close();
+                } // A conexão será fechada automaticamente aqui, quando sair do bloco using
             }
-            else
+            catch (Exception ex)
             {
-                employee = null;
+                Console.WriteLine("Erro ao buscar funcionários: " + ex.Message);
             }
 
-            //close DV and return employee
-            conn.Close();
-            return employee;
+            return employees;
         }
 
         public static String SearchJob(int jobID)

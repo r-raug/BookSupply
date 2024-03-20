@@ -196,8 +196,6 @@ namespace BookSupply.GUI
             }
         }
 
-
-
         private void buttonDeleteEmployee_Click(object sender, EventArgs e)
         {
             if (textBoxEmployeeIDD.Text.Trim() == "")
@@ -246,7 +244,8 @@ namespace BookSupply.GUI
             User user = new User();
             user.UserName = textBoxUserName.Text.Trim();
             user.Password = textBoxUserPassword.Text.Trim();
-            user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());            
+            user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());
+            user.StatusId = Convert.ToInt16(comboBoxUserStatusId.SelectedIndex+1);
             User.SaveUser(user, user.EmployeeId);
             
         }
@@ -264,7 +263,6 @@ namespace BookSupply.GUI
             DisplayInfos(listUser, listViewUser);
         }
 
-
         private void DisplayInfos(List<User> listUser, ListView listV)
         {
             listV.Items.Clear();
@@ -275,12 +273,13 @@ namespace BookSupply.GUI
                     ListViewItem item = new ListViewItem(user.EmployeeId.ToString());
                     item.SubItems.Add(user.UserName);
                     item.SubItems.Add(user.JobId.ToString());
+                    item.SubItems.Add(user.StatusId.ToString());
                     listV.Items.Add(item);
                 }
             }
             else
             {
-                MessageBox.Show("No employee in the database.", "Missing data");
+                MessageBox.Show("No data in the database.", "Missing data");
             }
         }
 
@@ -326,7 +325,6 @@ namespace BookSupply.GUI
                 }
             }
         }
-
 
         private void comboBoxJobId_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -485,19 +483,78 @@ namespace BookSupply.GUI
 
         private void buttonSearchEmployee_Click(object sender, EventArgs e)
         {
-            string search, column;
+            string search, column, search1, column1; ;
             switch (comboBoxSearch.SelectedIndex)
             {
                 case 0:
                     search = textBoxSearch1.Text.Trim();
                     column = "EmployeeID";
                     Employee employeeInstance = new Employee();
-                    Employee employee = employeeInstance.SearchEmployees(search, column);
+                    List<Employee> listEmp = employeeInstance.SearchEmployees(search, column); 
                     listViewEmployee.Items.Clear();
-                    //Employee employee = new Employee();
-                    List<Employee> listEmp = employee.GetEmployeeList();
                     DisplayInfo(listEmp, listViewEmployee);
                     break;
+                case 1:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "FirstName";
+                    Employee employeeInstance1 = new Employee();
+                    List<Employee> listEmp1 = employeeInstance1.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp1, listViewEmployee);
+                    break;
+                case 2:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "LastName";
+                    Employee employeeInstance2 = new Employee();
+                    List<Employee> listEmp2 = employeeInstance2.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp2, listViewEmployee);
+                    break;
+                case 3:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "FirstName";
+                    search1 = textBoxSearch2.Text.Trim();
+                    column1 = "LastName";
+                    Employee employeeInstance3 = new Employee();
+                    List<Employee> listEmp3 = employeeInstance3.SearchEmployees(search, search1, column,  column1);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp3, listViewEmployee);
+                    break;
+                case 4:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "Email";
+                    Employee employeeInstance4 = new Employee();
+                    List<Employee> listEmp4 = employeeInstance4.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp4, listViewEmployee);
+                    break;
+                case 5:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "PhoneNumber";
+                    Employee employeeInstance5 = new Employee();
+                    List<Employee> listEmp5 = employeeInstance5.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp5, listViewEmployee);
+                    break;
+                case 6:
+                    int temp = comboBoxSearchJobID.SelectedIndex + 1;
+                    search = temp.ToString();
+                    column = "JobID";
+                    Employee employeeInstance6 = new Employee();
+                    List<Employee> listEmp6 = employeeInstance6.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp6, listViewEmployee);
+                    break;
+                case 7:
+                    int temp1 = comboBoxSearchStatusID.SelectedIndex + 1;
+                    search = temp1.ToString() ;
+                    column = "StatusID";
+                    Employee employeeInstance7 = new Employee();
+                    List<Employee> listEmp7 = employeeInstance7.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp7, listViewEmployee);
+                    break;
+
             }
         }
     }
