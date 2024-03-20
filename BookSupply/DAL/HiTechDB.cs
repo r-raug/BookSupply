@@ -316,15 +316,14 @@ namespace BookSupply.DAL
                                         "JobId = @JobId, " +
                                         "StatusId = @StatusId " +
                                         "WHERE EmployeeId = @EmployeeId";
-                //cmdUpdate.Parameters.AddWithValue("@EmployeeId", employeeUpdate.EmployeeId);
+                
                 cmdUpdate.Parameters.AddWithValue("@FirstName", employeeUpdate.FirstName);
                 cmdUpdate.Parameters.AddWithValue("@LastName", employeeUpdate.LastName);
                 cmdUpdate.Parameters.AddWithValue("@PhoneNumber", employeeUpdate.PhoneNumber);
                 cmdUpdate.Parameters.AddWithValue("@Email", employeeUpdate.Email);
                 cmdUpdate.Parameters.AddWithValue("@JobId", employeeUpdate.JobId);
                 cmdUpdate.Parameters.Add("@StatusId", SqlDbType.Int).Value = employeeUpdate.StatusId;
-                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;
-                MessageBox.Show(employeeUpdate.EmployeeId.ToString());
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;                
                 cmdUpdate.ExecuteNonQuery();
             }
         }

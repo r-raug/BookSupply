@@ -1,9 +1,11 @@
 ﻿using BookSupply.DAL;
+using BookSupply.VALIDATION;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BookSupply.BLL
 {
@@ -75,9 +77,39 @@ namespace BookSupply.BLL
             return HiTechDB.IsUniqueId(table, column, eId);
         }
 
-        public void UpdateEmployee(Employee updateEmployee)
+        public void UpdateEmployee()
         {
-            HiTechDB.UpdateEmployee(updateEmployee);
+            if (!Validator.IsValidName(FirstName))
+            {
+                MessageBox.Show("Invalid First Name.", "Invalid");
+                return;
+            }
+
+            if (!Validator.IsValidName(LastName))
+            {
+                MessageBox.Show("Invalid Last Name.", "Invalid");
+                return;
+            }
+
+            if (!Validator.isValidEmail(Email))
+            {
+                MessageBox.Show("Invalid Email.", "Invalid");
+                return;
+            }
+
+            if (!Validator.IsValidPhoneNumber(PhoneNumber.ToString()))
+            {
+                MessageBox.Show("Invalid Phone Number.", "Invalid");
+                return;
+            }
+
+            
+            if (!IsUniqueEmployeeId("Employees", "EmployeeId", EmployeeId))
+            {
+                MessageBox.Show("Employee ID not found.", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            HiTechDB.UpdateEmployee(this);
         }
 
         public void DeleteEmployee(int id, int status)

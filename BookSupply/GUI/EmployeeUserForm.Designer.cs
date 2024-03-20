@@ -141,7 +141,7 @@
             this.buttonSave.Location = new System.Drawing.Point(529, 18);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(100, 35);
-            this.buttonSave.TabIndex = 0;
+            this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -152,7 +152,7 @@
             this.buttonList.Location = new System.Drawing.Point(20, 225);
             this.buttonList.Name = "buttonList";
             this.buttonList.Size = new System.Drawing.Size(100, 51);
-            this.buttonList.TabIndex = 1;
+            this.buttonList.TabIndex = 99;
             this.buttonList.Text = "List All Employees";
             this.buttonList.UseVisualStyleBackColor = true;
             this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
@@ -212,28 +212,28 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(131, 54);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
-            this.textBoxFirstName.TabIndex = 9;
+            this.textBoxFirstName.TabIndex = 2;
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Location = new System.Drawing.Point(338, 54);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(153, 20);
-            this.textBoxLastName.TabIndex = 10;
+            this.textBoxLastName.TabIndex = 3;
             // 
             // textBoxPhone
             // 
             this.textBoxPhone.Location = new System.Drawing.Point(131, 94);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPhone.TabIndex = 11;
+            this.textBoxPhone.TabIndex = 4;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(338, 97);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(188, 20);
-            this.textBoxEmail.TabIndex = 12;
+            this.textBoxEmail.TabIndex = 5;
             // 
             // listViewEmployee
             // 
@@ -292,7 +292,7 @@
             this.buttonUpdateEmployee.Location = new System.Drawing.Point(518, 20);
             this.buttonUpdateEmployee.Name = "buttonUpdateEmployee";
             this.buttonUpdateEmployee.Size = new System.Drawing.Size(100, 46);
-            this.buttonUpdateEmployee.TabIndex = 15;
+            this.buttonUpdateEmployee.TabIndex = 7;
             this.buttonUpdateEmployee.Text = "Update Employee";
             this.buttonUpdateEmployee.UseVisualStyleBackColor = true;
             this.buttonUpdateEmployee.Click += new System.EventHandler(this.buttonUpdateEmployee_Click);
@@ -375,7 +375,7 @@
             this.comboBoxStatusID.Location = new System.Drawing.Point(338, 18);
             this.comboBoxStatusID.Name = "comboBoxStatusID";
             this.comboBoxStatusID.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxStatusID.TabIndex = 21;
+            this.comboBoxStatusID.TabIndex = 1;
             this.comboBoxStatusID.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusID_SelectedIndexChanged);
             // 
             // labelJobId
@@ -396,7 +396,7 @@
             this.comboBoxJobId.Location = new System.Drawing.Point(131, 17);
             this.comboBoxJobId.Name = "comboBoxJobId";
             this.comboBoxJobId.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxJobId.TabIndex = 19;
+            this.comboBoxJobId.TabIndex = 0;
             this.comboBoxJobId.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobId_SelectedIndexChanged);
             // 
             // label10
@@ -431,7 +431,7 @@
             this.tabPageUpdateEmp.Location = new System.Drawing.Point(4, 22);
             this.tabPageUpdateEmp.Name = "tabPageUpdateEmp";
             this.tabPageUpdateEmp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUpdateEmp.Size = new System.Drawing.Size(647, 157);
+            this.tabPageUpdateEmp.Size = new System.Drawing.Size(652, 164);
             this.tabPageUpdateEmp.TabIndex = 1;
             this.tabPageUpdateEmp.Text = "Update";
             this.tabPageUpdateEmp.UseVisualStyleBackColor = true;
@@ -454,7 +454,7 @@
             this.comboBoxStatusIDU.Location = new System.Drawing.Point(329, 36);
             this.comboBoxStatusIDU.Name = "comboBoxStatusIDU";
             this.comboBoxStatusIDU.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxStatusIDU.TabIndex = 37;
+            this.comboBoxStatusIDU.TabIndex = 1;
             this.comboBoxStatusIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusIDu_SelectedIndexChanged);
             // 
             // labelJobIDu
@@ -475,7 +475,7 @@
             this.comboBoxJobIDU.Location = new System.Drawing.Point(329, 13);
             this.comboBoxJobIDU.Name = "comboBoxJobIDU";
             this.comboBoxJobIDU.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxJobIDU.TabIndex = 35;
+            this.comboBoxJobIDU.TabIndex = 0;
             this.comboBoxJobIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobIDu_SelectedIndexChanged);
             // 
             // label20
@@ -513,21 +513,21 @@
             this.textBoxEmployeeIDU.Location = new System.Drawing.Point(132, 29);
             this.textBoxEmployeeIDU.Name = "textBoxEmployeeIDU";
             this.textBoxEmployeeIDU.Size = new System.Drawing.Size(100, 20);
-            this.textBoxEmployeeIDU.TabIndex = 25;
+            this.textBoxEmployeeIDU.TabIndex = 2;
             // 
             // textBoxFirstNameU
             // 
             this.textBoxFirstNameU.Location = new System.Drawing.Point(132, 65);
             this.textBoxFirstNameU.Name = "textBoxFirstNameU";
             this.textBoxFirstNameU.Size = new System.Drawing.Size(100, 20);
-            this.textBoxFirstNameU.TabIndex = 26;
+            this.textBoxFirstNameU.TabIndex = 3;
             // 
             // textBoxLastNameU
             // 
             this.textBoxLastNameU.Location = new System.Drawing.Point(358, 65);
             this.textBoxLastNameU.Name = "textBoxLastNameU";
             this.textBoxLastNameU.Size = new System.Drawing.Size(100, 20);
-            this.textBoxLastNameU.TabIndex = 27;
+            this.textBoxLastNameU.TabIndex = 4;
             // 
             // label14
             // 
@@ -544,7 +544,7 @@
             this.textBoxPhoneNumberU.Location = new System.Drawing.Point(132, 105);
             this.textBoxPhoneNumberU.Name = "textBoxPhoneNumberU";
             this.textBoxPhoneNumberU.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPhoneNumberU.TabIndex = 28;
+            this.textBoxPhoneNumberU.TabIndex = 5;
             // 
             // label15
             // 
@@ -561,7 +561,7 @@
             this.textBoxEmailU.Location = new System.Drawing.Point(304, 107);
             this.textBoxEmailU.Name = "textBoxEmailU";
             this.textBoxEmailU.Size = new System.Drawing.Size(188, 20);
-            this.textBoxEmailU.TabIndex = 29;
+            this.textBoxEmailU.TabIndex = 6;
             // 
             // label16
             // 
@@ -597,7 +597,7 @@
             this.tabPageSearchEmp.Location = new System.Drawing.Point(4, 22);
             this.tabPageSearchEmp.Name = "tabPageSearchEmp";
             this.tabPageSearchEmp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSearchEmp.Size = new System.Drawing.Size(647, 157);
+            this.tabPageSearchEmp.Size = new System.Drawing.Size(652, 164);
             this.tabPageSearchEmp.TabIndex = 2;
             this.tabPageSearchEmp.Text = "Search";
             this.tabPageSearchEmp.UseVisualStyleBackColor = true;
@@ -626,7 +626,7 @@
             this.comboBoxSearch.Location = new System.Drawing.Point(131, 26);
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxSearch.TabIndex = 50;
+            this.comboBoxSearch.TabIndex = 0;
             this.comboBoxSearch.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearch_SelectedIndexChanged);
             // 
             // buttonSearchEmployee
@@ -635,7 +635,7 @@
             this.buttonSearchEmployee.Location = new System.Drawing.Point(306, 31);
             this.buttonSearchEmployee.Name = "buttonSearchEmployee";
             this.buttonSearchEmployee.Size = new System.Drawing.Size(100, 46);
-            this.buttonSearchEmployee.TabIndex = 49;
+            this.buttonSearchEmployee.TabIndex = 4;
             this.buttonSearchEmployee.Text = "Search Employee";
             this.buttonSearchEmployee.UseVisualStyleBackColor = true;
             this.buttonSearchEmployee.Click += new System.EventHandler(this.buttonSearchEmployee_Click);
@@ -645,7 +645,7 @@
             this.textBoxSearch1.Location = new System.Drawing.Point(55, 91);
             this.textBoxSearch1.Name = "textBoxSearch1";
             this.textBoxSearch1.Size = new System.Drawing.Size(100, 20);
-            this.textBoxSearch1.TabIndex = 47;
+            this.textBoxSearch1.TabIndex = 3;
             this.textBoxSearch1.Visible = false;
             // 
             // labelSearch1
@@ -678,7 +678,7 @@
             this.comboBoxSearchStatusID.Location = new System.Drawing.Point(192, 64);
             this.comboBoxSearchStatusID.Name = "comboBoxSearchStatusID";
             this.comboBoxSearchStatusID.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxSearchStatusID.TabIndex = 43;
+            this.comboBoxSearchStatusID.TabIndex = 2;
             this.comboBoxSearchStatusID.Visible = false;
             // 
             // label13
@@ -700,7 +700,7 @@
             this.comboBoxSearchJobID.Location = new System.Drawing.Point(152, 64);
             this.comboBoxSearchJobID.Name = "comboBoxSearchJobID";
             this.comboBoxSearchJobID.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxSearchJobID.TabIndex = 41;
+            this.comboBoxSearchJobID.TabIndex = 1;
             this.comboBoxSearchJobID.Visible = false;
             // 
             // tabPageDeleteEmp
@@ -711,7 +711,7 @@
             this.tabPageDeleteEmp.Location = new System.Drawing.Point(4, 22);
             this.tabPageDeleteEmp.Name = "tabPageDeleteEmp";
             this.tabPageDeleteEmp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDeleteEmp.Size = new System.Drawing.Size(647, 157);
+            this.tabPageDeleteEmp.Size = new System.Drawing.Size(652, 164);
             this.tabPageDeleteEmp.TabIndex = 3;
             this.tabPageDeleteEmp.Text = "Delete";
             this.tabPageDeleteEmp.UseVisualStyleBackColor = true;
@@ -721,7 +721,7 @@
             this.textBoxEmployeeIDD.Location = new System.Drawing.Point(287, 40);
             this.textBoxEmployeeIDD.Name = "textBoxEmployeeIDD";
             this.textBoxEmployeeIDD.Size = new System.Drawing.Size(100, 20);
-            this.textBoxEmployeeIDD.TabIndex = 19;
+            this.textBoxEmployeeIDD.TabIndex = 0;
             // 
             // label1
             // 
@@ -739,7 +739,7 @@
             this.buttonDeleteEmployee.Location = new System.Drawing.Point(236, 81);
             this.buttonDeleteEmployee.Name = "buttonDeleteEmployee";
             this.buttonDeleteEmployee.Size = new System.Drawing.Size(100, 46);
-            this.buttonDeleteEmployee.TabIndex = 17;
+            this.buttonDeleteEmployee.TabIndex = 1;
             this.buttonDeleteEmployee.Text = "Delete Employee";
             this.buttonDeleteEmployee.UseVisualStyleBackColor = true;
             this.buttonDeleteEmployee.Click += new System.EventHandler(this.buttonDeleteEmployee_Click_1);
@@ -797,7 +797,7 @@
             this.comboBoxUserStatusId.Location = new System.Drawing.Point(145, 107);
             this.comboBoxUserStatusId.Name = "comboBoxUserStatusId";
             this.comboBoxUserStatusId.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxUserStatusId.TabIndex = 20;
+            this.comboBoxUserStatusId.TabIndex = 3;
             // 
             // label18
             // 
@@ -835,7 +835,7 @@
             this.buttonSaveUser.Location = new System.Drawing.Point(333, 25);
             this.buttonSaveUser.Name = "buttonSaveUser";
             this.buttonSaveUser.Size = new System.Drawing.Size(100, 35);
-            this.buttonSaveUser.TabIndex = 17;
+            this.buttonSaveUser.TabIndex = 4;
             this.buttonSaveUser.Text = "Save";
             this.buttonSaveUser.UseVisualStyleBackColor = true;
             this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
@@ -856,7 +856,7 @@
             this.textBoxUserName.Location = new System.Drawing.Point(145, 45);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserName.TabIndex = 3;
+            this.textBoxUserName.TabIndex = 1;
             // 
             // buttonUpdateUser
             // 
@@ -864,7 +864,7 @@
             this.buttonUpdateUser.Location = new System.Drawing.Point(439, 25);
             this.buttonUpdateUser.Name = "buttonUpdateUser";
             this.buttonUpdateUser.Size = new System.Drawing.Size(100, 46);
-            this.buttonUpdateUser.TabIndex = 18;
+            this.buttonUpdateUser.TabIndex = 5;
             this.buttonUpdateUser.Text = "Update User";
             this.buttonUpdateUser.UseVisualStyleBackColor = true;
             this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
@@ -875,7 +875,7 @@
             this.textBoxUserPassword.Location = new System.Drawing.Point(145, 71);
             this.textBoxUserPassword.Name = "textBoxUserPassword";
             this.textBoxUserPassword.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserPassword.TabIndex = 4;
+            this.textBoxUserPassword.TabIndex = 2;
             // 
             // textBoxUserEmpID
             // 
@@ -883,7 +883,7 @@
             this.textBoxUserEmpID.Location = new System.Drawing.Point(145, 19);
             this.textBoxUserEmpID.Name = "textBoxUserEmpID";
             this.textBoxUserEmpID.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserEmpID.TabIndex = 5;
+            this.textBoxUserEmpID.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -897,7 +897,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(647, 157);
+            this.tabPage3.Size = new System.Drawing.Size(652, 164);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Search";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -923,7 +923,7 @@
             this.comboBoxSearchUser.Location = new System.Drawing.Point(131, 26);
             this.comboBoxSearchUser.Name = "comboBoxSearchUser";
             this.comboBoxSearchUser.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxSearchUser.TabIndex = 50;
+            this.comboBoxSearchUser.TabIndex = 0;
             this.comboBoxSearchUser.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchUser_SelectedIndexChanged);
             // 
             // buttonSearchUser
@@ -932,7 +932,7 @@
             this.buttonSearchUser.Location = new System.Drawing.Point(488, 29);
             this.buttonSearchUser.Name = "buttonSearchUser";
             this.buttonSearchUser.Size = new System.Drawing.Size(100, 46);
-            this.buttonSearchUser.TabIndex = 49;
+            this.buttonSearchUser.TabIndex = 4;
             this.buttonSearchUser.Text = "Search User";
             this.buttonSearchUser.UseVisualStyleBackColor = true;
             this.buttonSearchUser.Click += new System.EventHandler(this.buttonSearchUser_Click);
@@ -942,7 +942,7 @@
             this.textBoxUserSearch.Location = new System.Drawing.Point(44, 91);
             this.textBoxUserSearch.Name = "textBoxUserSearch";
             this.textBoxUserSearch.Size = new System.Drawing.Size(114, 20);
-            this.textBoxUserSearch.TabIndex = 47;
+            this.textBoxUserSearch.TabIndex = 3;
             this.textBoxUserSearch.Visible = false;
             // 
             // labelSearchUser
@@ -965,7 +965,7 @@
             this.comboBoxSearchUserStatusID.Location = new System.Drawing.Point(179, 64);
             this.comboBoxSearchUserStatusID.Name = "comboBoxSearchUserStatusID";
             this.comboBoxSearchUserStatusID.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxSearchUserStatusID.TabIndex = 43;
+            this.comboBoxSearchUserStatusID.TabIndex = 2;
             this.comboBoxSearchUserStatusID.Visible = false;
             // 
             // comboBoxSearchUserJobID
@@ -977,7 +977,7 @@
             this.comboBoxSearchUserJobID.Location = new System.Drawing.Point(139, 64);
             this.comboBoxSearchUserJobID.Name = "comboBoxSearchUserJobID";
             this.comboBoxSearchUserJobID.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxSearchUserJobID.TabIndex = 41;
+            this.comboBoxSearchUserJobID.TabIndex = 1;
             this.comboBoxSearchUserJobID.Visible = false;
             // 
             // tabPage4
@@ -988,7 +988,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(647, 157);
+            this.tabPage4.Size = new System.Drawing.Size(652, 164);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Delete";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -999,7 +999,7 @@
             this.buttonDeleteUser.Location = new System.Drawing.Point(248, 83);
             this.buttonDeleteUser.Name = "buttonDeleteUser";
             this.buttonDeleteUser.Size = new System.Drawing.Size(100, 46);
-            this.buttonDeleteUser.TabIndex = 20;
+            this.buttonDeleteUser.TabIndex = 1;
             this.buttonDeleteUser.Text = "Delete User";
             this.buttonDeleteUser.UseVisualStyleBackColor = true;
             this.buttonDeleteUser.Click += new System.EventHandler(this.buttonDeleteUser_Click);
@@ -1009,7 +1009,7 @@
             this.textBoxUserID.Location = new System.Drawing.Point(253, 40);
             this.textBoxUserID.Name = "textBoxUserID";
             this.textBoxUserID.Size = new System.Drawing.Size(100, 20);
-            this.textBoxUserID.TabIndex = 19;
+            this.textBoxUserID.TabIndex = 0;
             // 
             // label45
             // 

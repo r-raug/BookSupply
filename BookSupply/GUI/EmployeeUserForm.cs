@@ -106,92 +106,49 @@ namespace BookSupply.GUI
 
         private void buttonUpdateEmployee_Click(object sender, EventArgs e)
         {
-            string input = "";
 
-            //check if all texbox has information
-            if(textBoxEmployeeIDU.Text == "" || textBoxFirstNameU.Text == "" || textBoxLastNameU.Text == "" || 
-                textBoxEmailU.Text == "" || comboBoxJobIDU.SelectedIndex == -1 || comboBoxStatusIDU.SelectedIndex == -1 || textBoxPhoneNumberU.Text == "" )
+            if (!int.TryParse(textBoxEmployeeIDU.Text, out int employeeId))
             {
-                MessageBox.Show("Please search by EmployeeID before procede with update or \n" + 
-                    "fill in all fields before proceeding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            
+            if (string.IsNullOrWhiteSpace(textBoxFirstNameU.Text) ||
+                string.IsNullOrWhiteSpace(textBoxLastNameU.Text) ||
+                string.IsNullOrWhiteSpace(textBoxEmailU.Text) ||
+                comboBoxJobIDU.SelectedIndex == -1 ||
+                comboBoxStatusIDU.SelectedIndex == -1 ||
+                string.IsNullOrWhiteSpace(textBoxPhoneNumberU.Text))
             {
-                if(int.TryParse(textBoxEmployeeIDD.Text,out int employeeId))
-                {
-                    Employee employee = new Employee();
+                MessageBox.Show("Please fill in all fields before proceeding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                    //before update, check if ID exist and all fields has a valid input
-                    input = textBoxEmployeeIDU.Text.Trim();
-                    if(employee.IsUniqueEmployeeId("Employees","EmployeeId",Convert.ToInt32(input)))
-                    {
-                        MessageBox.Show("ID not found", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textBoxEmployeeIDD.Focus();
-                        return;
-                    }
+            
+            Employee employee = new Employee
+            {
+                EmployeeId = employeeId,
+                FirstName = textBoxFirstNameU.Text.Trim(),
+                LastName = textBoxLastNameU.Text.Trim(),
+                Email = textBoxEmailU.Text.Trim(),
+                PhoneNumber = Convert.ToInt64(textBoxPhoneNumberU.Text.Trim()),
+                JobId = comboBoxJobIDU.SelectedIndex + 1,
+                StatusId = comboBoxStatusIDU.SelectedIndex + 1
+            };
+
+            DialogResult result = MessageBox.Show("Are you sure you want to update this employee?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
                     
-
-                    input = textBoxFirstNameU.Text.Trim();
-                    if(!Validator.IsValidName(input))
-                    {
-                        MessageBox.Show("Invalid First Name.", "Invalid");
-                        textBoxFirstName.Focus();
-                        return;
-                    }
-
-                    input = textBoxLastNameU.Text.Trim();
-                    if (!Validator.IsValidName(input))
-                    {
-                        MessageBox.Show("Invalid Last Name.", "Invalid");
-                        textBoxLastName.Focus();
-                        return;
-                    }
-
-                    input = textBoxEmailU.Text.Trim();
-                    if (!Validator.isValidEmail(input))
-                    {
-                        MessageBox.Show("Invalid Email.", "Invalid");
-                        textBoxEmail.Focus();
-                        return;
-                    }
-
-                    input = textBoxPhoneNumberU.Text.Trim();
-                    if (!Validator.IsValidPhoneNumber(input))
-                    {
-                        MessageBox.Show("Invalid Phone Number.", "Invalid");
-                        textBoxPhone.Focus();
-                        return;
-                    }
-
-
-                    employee.EmployeeId = Convert.ToInt32(textBoxEmployeeIDU.Text.Trim());
-                    employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstNameU.Text.Trim().ToLower());
-                    employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastNameU.Text.Trim().ToLower());
-                    employee.Email = textBoxEmailU.Text.Trim();
-                    employee.PhoneNumber = Convert.ToInt64(textBoxPhoneNumberU.Text.Trim());
-                    employee.JobId = comboBoxJobId.SelectedIndex + 1;
-                    employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
-
-
-                    DialogResult result = MessageBox.Show("Are you sure you want to update this employee?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-                        //employee.UpdateEmployee(employee);
-                        try
-                        {
-                            employee.UpdateEmployee(employee);
-                            MessageBox.Show("Employee updated sucessfully.", "Confirmation");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error updating employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-
+                    employee.UpdateEmployee();
+                    MessageBox.Show("Employee updated successfully.", "Confirmation");
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error updating employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

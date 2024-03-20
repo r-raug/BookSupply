@@ -64,7 +64,7 @@
             this.textBoxLoginUser.Location = new System.Drawing.Point(123, 74);
             this.textBoxLoginUser.Name = "textBoxLoginUser";
             this.textBoxLoginUser.Size = new System.Drawing.Size(100, 23);
-            this.textBoxLoginUser.TabIndex = 2;
+            this.textBoxLoginUser.TabIndex = 0;
             // 
             // textBoxLoginPassword
             // 
@@ -72,7 +72,7 @@
             this.textBoxLoginPassword.Location = new System.Drawing.Point(123, 107);
             this.textBoxLoginPassword.Name = "textBoxLoginPassword";
             this.textBoxLoginPassword.Size = new System.Drawing.Size(100, 23);
-            this.textBoxLoginPassword.TabIndex = 3;
+            this.textBoxLoginPassword.TabIndex = 1;
             // 
             // buttonLogin
             // 
@@ -80,7 +80,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(38, 157);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(80, 25);
-            this.buttonLogin.TabIndex = 4;
+            this.buttonLogin.TabIndex = 2;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -91,7 +91,7 @@
             this.buttonExit.Location = new System.Drawing.Point(143, 157);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(80, 25);
-            this.buttonExit.TabIndex = 5;
+            this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -133,10 +133,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Suply  - System Management";
+            this.Enter += new System.EventHandler(this.buttonLogin_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
