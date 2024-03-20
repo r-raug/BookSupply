@@ -79,55 +79,48 @@
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.buttonSearchEmployee = new System.Windows.Forms.Button();
             this.textBoxSearch1 = new System.Windows.Forms.TextBox();
-            this.textBoxSearch2 = new System.Windows.Forms.TextBox();
-            this.labelSearch2 = new System.Windows.Forms.Label();
             this.labelSearch1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.comboBoxSearchStatusID = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxSearchJobID = new System.Windows.Forms.ComboBox();
-            this.labelSearchStatusID = new System.Windows.Forms.Label();
-            this.labelSearchJobID = new System.Windows.Forms.Label();
             this.tabPageDeleteEmp = new System.Windows.Forms.TabPage();
             this.textBoxEmployeeIDD = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonDeleteEmployee = new System.Windows.Forms.Button();
             this.UserManagement = new System.Windows.Forms.TabPage();
-            this.buttonListUser = new System.Windows.Forms.Button();
-            this.listViewUser = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonSaveUser = new System.Windows.Forms.Button();
-            this.buttonUpdateUser = new System.Windows.Forms.Button();
-            this.textBoxUserEmpID = new System.Windows.Forms.TextBox();
-            this.textBoxUserPassword = new System.Windows.Forms.TextBox();
-            this.textBoxUserName = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBoxUserStatusId = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonSaveUser = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxUserName = new System.Windows.Forms.TextBox();
+            this.buttonUpdateUser = new System.Windows.Forms.Button();
+            this.textBoxUserPassword = new System.Windows.Forms.TextBox();
+            this.textBoxUserEmpID = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label38 = new System.Windows.Forms.Label();
             this.comboBoxSearchUser = new System.Windows.Forms.ComboBox();
             this.buttonSearchUser = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBoxUserSearch = new System.Windows.Forms.TextBox();
             this.labelSearchUser = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
             this.comboBoxSearchUserStatusID = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
             this.comboBoxSearchUserJobID = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBoxSearchUserEmployeeID = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
             this.buttonDeleteUser = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.comboBoxUserStatusId = new System.Windows.Forms.ComboBox();
+            this.textBoxUserID = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.buttonListUser = new System.Windows.Forms.Button();
+            this.listViewUser = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.EmployeeManagement.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -156,7 +149,7 @@
             // buttonList
             // 
             this.buttonList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonList.Location = new System.Drawing.Point(19, 223);
+            this.buttonList.Location = new System.Drawing.Point(20, 225);
             this.buttonList.Name = "buttonList";
             this.buttonList.Size = new System.Drawing.Size(100, 51);
             this.buttonList.TabIndex = 1;
@@ -253,7 +246,7 @@
             this.JobId,
             this.StatusId});
             this.listViewEmployee.HideSelection = false;
-            this.listViewEmployee.Location = new System.Drawing.Point(19, 280);
+            this.listViewEmployee.Location = new System.Drawing.Point(20, 280);
             this.listViewEmployee.Name = "listViewEmployee";
             this.listViewEmployee.Size = new System.Drawing.Size(655, 175);
             this.listViewEmployee.TabIndex = 14;
@@ -333,10 +326,10 @@
             this.tabControl2.Controls.Add(this.tabPageUpdateEmp);
             this.tabControl2.Controls.Add(this.tabPageSearchEmp);
             this.tabControl2.Controls.Add(this.tabPageDeleteEmp);
-            this.tabControl2.Location = new System.Drawing.Point(19, 34);
+            this.tabControl2.Location = new System.Drawing.Point(20, 30);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(655, 183);
+            this.tabControl2.Size = new System.Drawing.Size(660, 190);
             this.tabControl2.TabIndex = 19;
             // 
             // tabPageSaveEmp
@@ -359,7 +352,7 @@
             this.tabPageSaveEmp.Location = new System.Drawing.Point(4, 22);
             this.tabPageSaveEmp.Name = "tabPageSaveEmp";
             this.tabPageSaveEmp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSaveEmp.Size = new System.Drawing.Size(647, 157);
+            this.tabPageSaveEmp.Size = new System.Drawing.Size(652, 164);
             this.tabPageSaveEmp.TabIndex = 0;
             this.tabPageSaveEmp.Text = "Save";
             this.tabPageSaveEmp.UseVisualStyleBackColor = true;
@@ -596,15 +589,11 @@
             this.tabPageSearchEmp.Controls.Add(this.comboBoxSearch);
             this.tabPageSearchEmp.Controls.Add(this.buttonSearchEmployee);
             this.tabPageSearchEmp.Controls.Add(this.textBoxSearch1);
-            this.tabPageSearchEmp.Controls.Add(this.textBoxSearch2);
-            this.tabPageSearchEmp.Controls.Add(this.labelSearch2);
             this.tabPageSearchEmp.Controls.Add(this.labelSearch1);
             this.tabPageSearchEmp.Controls.Add(this.label12);
             this.tabPageSearchEmp.Controls.Add(this.comboBoxSearchStatusID);
             this.tabPageSearchEmp.Controls.Add(this.label13);
             this.tabPageSearchEmp.Controls.Add(this.comboBoxSearchJobID);
-            this.tabPageSearchEmp.Controls.Add(this.labelSearchStatusID);
-            this.tabPageSearchEmp.Controls.Add(this.labelSearchJobID);
             this.tabPageSearchEmp.Location = new System.Drawing.Point(4, 22);
             this.tabPageSearchEmp.Name = "tabPageSearchEmp";
             this.tabPageSearchEmp.Padding = new System.Windows.Forms.Padding(3);
@@ -630,7 +619,6 @@
             "Employee ID",
             "First Name",
             "Last Name",
-            "First and Last Name",
             "Email",
             "Phone Number",
             "Job ID",
@@ -644,7 +632,7 @@
             // buttonSearchEmployee
             // 
             this.buttonSearchEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearchEmployee.Location = new System.Drawing.Point(488, 29);
+            this.buttonSearchEmployee.Location = new System.Drawing.Point(306, 31);
             this.buttonSearchEmployee.Name = "buttonSearchEmployee";
             this.buttonSearchEmployee.Size = new System.Drawing.Size(100, 46);
             this.buttonSearchEmployee.TabIndex = 49;
@@ -654,30 +642,11 @@
             // 
             // textBoxSearch1
             // 
-            this.textBoxSearch1.Location = new System.Drawing.Point(139, 65);
+            this.textBoxSearch1.Location = new System.Drawing.Point(55, 91);
             this.textBoxSearch1.Name = "textBoxSearch1";
             this.textBoxSearch1.Size = new System.Drawing.Size(100, 20);
             this.textBoxSearch1.TabIndex = 47;
             this.textBoxSearch1.Visible = false;
-            // 
-            // textBoxSearch2
-            // 
-            this.textBoxSearch2.Location = new System.Drawing.Point(139, 98);
-            this.textBoxSearch2.Name = "textBoxSearch2";
-            this.textBoxSearch2.Size = new System.Drawing.Size(100, 20);
-            this.textBoxSearch2.TabIndex = 48;
-            this.textBoxSearch2.Visible = false;
-            // 
-            // labelSearch2
-            // 
-            this.labelSearch2.AutoSize = true;
-            this.labelSearch2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSearch2.Location = new System.Drawing.Point(53, 100);
-            this.labelSearch2.Name = "labelSearch2";
-            this.labelSearch2.Size = new System.Drawing.Size(80, 18);
-            this.labelSearch2.TabIndex = 46;
-            this.labelSearch2.Text = "Last Name";
-            this.labelSearch2.Visible = false;
             // 
             // labelSearch1
             // 
@@ -706,7 +675,7 @@
             this.comboBoxSearchStatusID.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.comboBoxSearchStatusID.Location = new System.Drawing.Point(339, 62);
+            this.comboBoxSearchStatusID.Location = new System.Drawing.Point(192, 64);
             this.comboBoxSearchStatusID.Name = "comboBoxSearchStatusID";
             this.comboBoxSearchStatusID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchStatusID.TabIndex = 43;
@@ -728,33 +697,11 @@
             this.comboBoxSearchJobID.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.comboBoxSearchJobID.Location = new System.Drawing.Point(339, 26);
+            this.comboBoxSearchJobID.Location = new System.Drawing.Point(152, 64);
             this.comboBoxSearchJobID.Name = "comboBoxSearchJobID";
             this.comboBoxSearchJobID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchJobID.TabIndex = 41;
             this.comboBoxSearchJobID.Visible = false;
-            // 
-            // labelSearchStatusID
-            // 
-            this.labelSearchStatusID.AutoSize = true;
-            this.labelSearchStatusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSearchStatusID.Location = new System.Drawing.Point(265, 65);
-            this.labelSearchStatusID.Name = "labelSearchStatusID";
-            this.labelSearchStatusID.Size = new System.Drawing.Size(68, 18);
-            this.labelSearchStatusID.TabIndex = 40;
-            this.labelSearchStatusID.Text = "Status ID";
-            this.labelSearchStatusID.Visible = false;
-            // 
-            // labelSearchJobID
-            // 
-            this.labelSearchJobID.AutoSize = true;
-            this.labelSearchJobID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSearchJobID.Location = new System.Drawing.Point(282, 29);
-            this.labelSearchJobID.Name = "labelSearchJobID";
-            this.labelSearchJobID.Size = new System.Drawing.Size(51, 18);
-            this.labelSearchJobID.TabIndex = 39;
-            this.labelSearchJobID.Text = "Job ID";
-            this.labelSearchJobID.Visible = false;
             // 
             // tabPageDeleteEmp
             // 
@@ -799,7 +746,7 @@
             // 
             // UserManagement
             // 
-            this.UserManagement.BackColor = System.Drawing.Color.Transparent;
+            this.UserManagement.BackColor = System.Drawing.SystemColors.ControlLight;
             this.UserManagement.Controls.Add(this.tabControl3);
             this.UserManagement.Controls.Add(this.buttonListUser);
             this.UserManagement.Controls.Add(this.listViewUser);
@@ -810,135 +757,15 @@
             this.UserManagement.TabIndex = 1;
             this.UserManagement.Text = "User Management";
             // 
-            // buttonListUser
-            // 
-            this.buttonListUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonListUser.Location = new System.Drawing.Point(44, 212);
-            this.buttonListUser.Name = "buttonListUser";
-            this.buttonListUser.Size = new System.Drawing.Size(100, 51);
-            this.buttonListUser.TabIndex = 20;
-            this.buttonListUser.Text = "List All Users";
-            this.buttonListUser.UseVisualStyleBackColor = true;
-            this.buttonListUser.Click += new System.EventHandler(this.buttonListUser_Click);
-            // 
-            // listViewUser
-            // 
-            this.listViewUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader6,
-            this.columnHeader3});
-            this.listViewUser.HideSelection = false;
-            this.listViewUser.Location = new System.Drawing.Point(44, 269);
-            this.listViewUser.Name = "listViewUser";
-            this.listViewUser.Size = new System.Drawing.Size(363, 142);
-            this.listViewUser.TabIndex = 21;
-            this.listViewUser.UseCompatibleStateImageBehavior = false;
-            this.listViewUser.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Employee ID";
-            this.columnHeader1.Width = 107;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "User Name";
-            this.columnHeader2.Width = 124;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Job ID";
-            // 
-            // buttonSaveUser
-            // 
-            this.buttonSaveUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveUser.Location = new System.Drawing.Point(333, 25);
-            this.buttonSaveUser.Name = "buttonSaveUser";
-            this.buttonSaveUser.Size = new System.Drawing.Size(100, 35);
-            this.buttonSaveUser.TabIndex = 17;
-            this.buttonSaveUser.Text = "Save";
-            this.buttonSaveUser.UseVisualStyleBackColor = true;
-            this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
-            // 
-            // buttonUpdateUser
-            // 
-            this.buttonUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpdateUser.Location = new System.Drawing.Point(439, 25);
-            this.buttonUpdateUser.Name = "buttonUpdateUser";
-            this.buttonUpdateUser.Size = new System.Drawing.Size(100, 46);
-            this.buttonUpdateUser.TabIndex = 18;
-            this.buttonUpdateUser.Text = "Update User";
-            this.buttonUpdateUser.UseVisualStyleBackColor = true;
-            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
-            // 
-            // textBoxUserEmpID
-            // 
-            this.textBoxUserEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUserEmpID.Location = new System.Drawing.Point(145, 19);
-            this.textBoxUserEmpID.Name = "textBoxUserEmpID";
-            this.textBoxUserEmpID.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserEmpID.TabIndex = 5;
-            // 
-            // textBoxUserPassword
-            // 
-            this.textBoxUserPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUserPassword.Location = new System.Drawing.Point(145, 71);
-            this.textBoxUserPassword.Name = "textBoxUserPassword";
-            this.textBoxUserPassword.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserPassword.TabIndex = 4;
-            // 
-            // textBoxUserName
-            // 
-            this.textBoxUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUserName.Location = new System.Drawing.Point(145, 45);
-            this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(147, 23);
-            this.textBoxUserName.TabIndex = 3;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(52, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 17);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Employee ID";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(66, 77);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 17);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Password";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(59, 51);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 17);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "User Name";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Status ID";
-            // 
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage1);
             this.tabControl3.Controls.Add(this.tabPage3);
             this.tabControl3.Controls.Add(this.tabPage4);
-            this.tabControl3.Location = new System.Drawing.Point(17, 23);
+            this.tabControl3.Location = new System.Drawing.Point(20, 30);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(655, 183);
+            this.tabControl3.Size = new System.Drawing.Size(660, 190);
             this.tabControl3.TabIndex = 22;
             // 
             // tabPage1
@@ -956,24 +783,117 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(647, 157);
+            this.tabPage1.Size = new System.Drawing.Size(652, 164);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Save / Update";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxUserStatusId
+            // 
+            this.comboBoxUserStatusId.FormattingEnabled = true;
+            this.comboBoxUserStatusId.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBoxUserStatusId.Location = new System.Drawing.Point(145, 107);
+            this.comboBoxUserStatusId.Name = "comboBoxUserStatusId";
+            this.comboBoxUserStatusId.Size = new System.Drawing.Size(34, 21);
+            this.comboBoxUserStatusId.TabIndex = 20;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(70, 111);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 17);
+            this.label18.TabIndex = 19;
+            this.label18.Text = "Status ID";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(59, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 17);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "User Name";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(66, 77);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 17);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Password";
+            // 
+            // buttonSaveUser
+            // 
+            this.buttonSaveUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveUser.Location = new System.Drawing.Point(333, 25);
+            this.buttonSaveUser.Name = "buttonSaveUser";
+            this.buttonSaveUser.Size = new System.Drawing.Size(100, 35);
+            this.buttonSaveUser.TabIndex = 17;
+            this.buttonSaveUser.Text = "Save";
+            this.buttonSaveUser.UseVisualStyleBackColor = true;
+            this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(52, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 17);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Employee ID";
+            // 
+            // textBoxUserName
+            // 
+            this.textBoxUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserName.Location = new System.Drawing.Point(145, 45);
+            this.textBoxUserName.Name = "textBoxUserName";
+            this.textBoxUserName.Size = new System.Drawing.Size(147, 23);
+            this.textBoxUserName.TabIndex = 3;
+            // 
+            // buttonUpdateUser
+            // 
+            this.buttonUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateUser.Location = new System.Drawing.Point(439, 25);
+            this.buttonUpdateUser.Name = "buttonUpdateUser";
+            this.buttonUpdateUser.Size = new System.Drawing.Size(100, 46);
+            this.buttonUpdateUser.TabIndex = 18;
+            this.buttonUpdateUser.Text = "Update User";
+            this.buttonUpdateUser.UseVisualStyleBackColor = true;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
+            // 
+            // textBoxUserPassword
+            // 
+            this.textBoxUserPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserPassword.Location = new System.Drawing.Point(145, 71);
+            this.textBoxUserPassword.Name = "textBoxUserPassword";
+            this.textBoxUserPassword.Size = new System.Drawing.Size(147, 23);
+            this.textBoxUserPassword.TabIndex = 4;
+            // 
+            // textBoxUserEmpID
+            // 
+            this.textBoxUserEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserEmpID.Location = new System.Drawing.Point(145, 19);
+            this.textBoxUserEmpID.Name = "textBoxUserEmpID";
+            this.textBoxUserEmpID.Size = new System.Drawing.Size(147, 23);
+            this.textBoxUserEmpID.TabIndex = 5;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label38);
             this.tabPage3.Controls.Add(this.comboBoxSearchUser);
             this.tabPage3.Controls.Add(this.buttonSearchUser);
-            this.tabPage3.Controls.Add(this.textBox10);
+            this.tabPage3.Controls.Add(this.textBoxUserSearch);
             this.tabPage3.Controls.Add(this.labelSearchUser);
-            this.tabPage3.Controls.Add(this.label41);
             this.tabPage3.Controls.Add(this.comboBoxSearchUserStatusID);
-            this.tabPage3.Controls.Add(this.label42);
             this.tabPage3.Controls.Add(this.comboBoxSearchUserJobID);
-            this.tabPage3.Controls.Add(this.label43);
-            this.tabPage3.Controls.Add(this.label44);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -1004,6 +924,7 @@
             this.comboBoxSearchUser.Name = "comboBoxSearchUser";
             this.comboBoxSearchUser.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSearchUser.TabIndex = 50;
+            this.comboBoxSearchUser.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchUser_SelectedIndexChanged);
             // 
             // buttonSearchUser
             // 
@@ -1014,35 +935,26 @@
             this.buttonSearchUser.TabIndex = 49;
             this.buttonSearchUser.Text = "Search User";
             this.buttonSearchUser.UseVisualStyleBackColor = true;
+            this.buttonSearchUser.Click += new System.EventHandler(this.buttonSearchUser_Click);
             // 
-            // textBox10
+            // textBoxUserSearch
             // 
-            this.textBox10.Location = new System.Drawing.Point(139, 65);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 20);
-            this.textBox10.TabIndex = 47;
-            this.textBox10.Visible = false;
+            this.textBoxUserSearch.Location = new System.Drawing.Point(44, 91);
+            this.textBoxUserSearch.Name = "textBoxUserSearch";
+            this.textBoxUserSearch.Size = new System.Drawing.Size(114, 20);
+            this.textBoxUserSearch.TabIndex = 47;
+            this.textBoxUserSearch.Visible = false;
             // 
             // labelSearchUser
             // 
             this.labelSearchUser.AutoSize = true;
             this.labelSearchUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSearchUser.Location = new System.Drawing.Point(52, 67);
+            this.labelSearchUser.Location = new System.Drawing.Point(41, 67);
             this.labelSearchUser.Name = "labelSearchUser";
             this.labelSearchUser.Size = new System.Drawing.Size(84, 18);
             this.labelSearchUser.TabIndex = 45;
             this.labelSearchUser.Text = "User Name";
             this.labelSearchUser.Visible = false;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(379, 67);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(0, 15);
-            this.label41.TabIndex = 44;
-            this.label41.Visible = false;
             // 
             // comboBoxSearchUserStatusID
             // 
@@ -1050,21 +962,11 @@
             this.comboBoxSearchUserStatusID.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.comboBoxSearchUserStatusID.Location = new System.Drawing.Point(339, 62);
+            this.comboBoxSearchUserStatusID.Location = new System.Drawing.Point(179, 64);
             this.comboBoxSearchUserStatusID.Name = "comboBoxSearchUserStatusID";
             this.comboBoxSearchUserStatusID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchUserStatusID.TabIndex = 43;
             this.comboBoxSearchUserStatusID.Visible = false;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(379, 31);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(0, 15);
-            this.label42.TabIndex = 42;
-            this.label42.Visible = false;
             // 
             // comboBoxSearchUserJobID
             // 
@@ -1072,38 +974,16 @@
             this.comboBoxSearchUserJobID.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.comboBoxSearchUserJobID.Location = new System.Drawing.Point(339, 26);
+            this.comboBoxSearchUserJobID.Location = new System.Drawing.Point(139, 64);
             this.comboBoxSearchUserJobID.Name = "comboBoxSearchUserJobID";
             this.comboBoxSearchUserJobID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchUserJobID.TabIndex = 41;
             this.comboBoxSearchUserJobID.Visible = false;
             // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(265, 65);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(68, 18);
-            this.label43.TabIndex = 40;
-            this.label43.Text = "Status ID";
-            this.label43.Visible = false;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(282, 29);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(51, 18);
-            this.label44.TabIndex = 39;
-            this.label44.Text = "Job ID";
-            this.label44.Visible = false;
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.buttonDeleteUser);
-            this.tabPage4.Controls.Add(this.textBoxSearchUserEmployeeID);
+            this.tabPage4.Controls.Add(this.textBoxUserID);
             this.tabPage4.Controls.Add(this.label45);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -1112,23 +992,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Delete";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // textBoxSearchUserEmployeeID
-            // 
-            this.textBoxSearchUserEmployeeID.Location = new System.Drawing.Point(287, 40);
-            this.textBoxSearchUserEmployeeID.Name = "textBoxSearchUserEmployeeID";
-            this.textBoxSearchUserEmployeeID.Size = new System.Drawing.Size(100, 20);
-            this.textBoxSearchUserEmployeeID.TabIndex = 19;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(189, 42);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(92, 18);
-            this.label45.TabIndex = 18;
-            this.label45.Text = "Employee ID";
             // 
             // buttonDeleteUser
             // 
@@ -1139,37 +1002,84 @@
             this.buttonDeleteUser.TabIndex = 20;
             this.buttonDeleteUser.Text = "Delete User";
             this.buttonDeleteUser.UseVisualStyleBackColor = true;
+            this.buttonDeleteUser.Click += new System.EventHandler(this.buttonDeleteUser_Click);
             // 
-            // button1
+            // textBoxUserID
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(633, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "LogOut";
-            this.button1.UseVisualStyleBackColor = true;
+            this.textBoxUserID.Location = new System.Drawing.Point(253, 40);
+            this.textBoxUserID.Name = "textBoxUserID";
+            this.textBoxUserID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUserID.TabIndex = 19;
             // 
-            // label18
+            // label45
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(70, 111);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 17);
-            this.label18.TabIndex = 19;
-            this.label18.Text = "Status ID";
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(189, 42);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(58, 18);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "User ID";
             // 
-            // comboBoxUserStatusId
+            // buttonListUser
             // 
-            this.comboBoxUserStatusId.FormattingEnabled = true;
-            this.comboBoxUserStatusId.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.comboBoxUserStatusId.Location = new System.Drawing.Point(145, 107);
-            this.comboBoxUserStatusId.Name = "comboBoxUserStatusId";
-            this.comboBoxUserStatusId.Size = new System.Drawing.Size(34, 21);
-            this.comboBoxUserStatusId.TabIndex = 20;
+            this.buttonListUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonListUser.Location = new System.Drawing.Point(20, 225);
+            this.buttonListUser.Name = "buttonListUser";
+            this.buttonListUser.Size = new System.Drawing.Size(100, 51);
+            this.buttonListUser.TabIndex = 20;
+            this.buttonListUser.Text = "List All Users";
+            this.buttonListUser.UseVisualStyleBackColor = true;
+            this.buttonListUser.Click += new System.EventHandler(this.buttonListUser_Click);
+            // 
+            // listViewUser
+            // 
+            this.listViewUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader6,
+            this.columnHeader3});
+            this.listViewUser.HideSelection = false;
+            this.listViewUser.Location = new System.Drawing.Point(20, 280);
+            this.listViewUser.Name = "listViewUser";
+            this.listViewUser.Size = new System.Drawing.Size(422, 142);
+            this.listViewUser.TabIndex = 21;
+            this.listViewUser.UseCompatibleStateImageBehavior = false;
+            this.listViewUser.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "User ID";
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Employee ID";
+            this.columnHeader1.Width = 107;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "User Name";
+            this.columnHeader2.Width = 124;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Job ID";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Status ID";
+            // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLogout.Location = new System.Drawing.Point(633, 12);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(75, 32);
+            this.buttonLogout.TabIndex = 20;
+            this.buttonLogout.Text = "LogOut";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // EmployeeUserForm
             // 
@@ -1177,9 +1087,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(727, 537);
-            this.Controls.Add(this.button1);
+            this.ControlBox = false;
+            this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "EmployeeUserForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee and User Management";
             this.Load += new System.EventHandler(this.EmployeeUserForm_Load);
             this.tabControl1.ResumeLayout(false);
@@ -1276,15 +1189,11 @@
         private System.Windows.Forms.ComboBox comboBoxSearch;
         private System.Windows.Forms.Button buttonSearchEmployee;
         private System.Windows.Forms.TextBox textBoxSearch1;
-        private System.Windows.Forms.TextBox textBoxSearch2;
-        private System.Windows.Forms.Label labelSearch2;
         private System.Windows.Forms.Label labelSearch1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboBoxSearchStatusID;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBoxSearchJobID;
-        private System.Windows.Forms.Label labelSearchStatusID;
-        private System.Windows.Forms.Label labelSearchJobID;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1292,20 +1201,17 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox comboBoxSearchUser;
         private System.Windows.Forms.Button buttonSearchUser;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBoxUserSearch;
         private System.Windows.Forms.Label labelSearchUser;
-        private System.Windows.Forms.Label label41;
         private System.Windows.Forms.ComboBox comboBoxSearchUserStatusID;
-        private System.Windows.Forms.Label label42;
         private System.Windows.Forms.ComboBox comboBoxSearchUserJobID;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonDeleteUser;
-        private System.Windows.Forms.TextBox textBoxSearchUserEmployeeID;
+        private System.Windows.Forms.TextBox textBoxUserID;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox comboBoxUserStatusId;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

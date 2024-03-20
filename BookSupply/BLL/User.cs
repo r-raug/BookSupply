@@ -10,12 +10,14 @@ namespace BookSupply.BLL
     public class User
     {
         private string userName, password;
-        private int employeeId, jobId, statusId;
+        private int userId, employeeId, jobId, statusId;
+
         public int EmployeeId { get => employeeId; set => employeeId = value; }
         public string UserName { get => userName; set => userName = value; }    
         public string Password { get => password; set => password = value; }
         public int JobId { get => jobId; set => jobId = value; }
         public int StatusId { get => statusId; set => statusId = value; }
+        public int UserId { get => userId; set => userId = value; }
 
         public User()
         {
@@ -24,8 +26,9 @@ namespace BookSupply.BLL
             EmployeeId = 0;
         }
 
-        public User(string userName, int employeeId, int jobId, int statusId)
+        public User(int userId, string userName, int employeeId, int jobId, int statusId)
         {
+            UserId = userId;
             UserName = userName;
             EmployeeId = employeeId;
             JobId = jobId;
@@ -48,5 +51,22 @@ namespace BookSupply.BLL
             HiTechDB.UpdateUser(updateUser);
         }
 
+        public List<User> SearchUsers(string search, string column)
+        {
+
+            return HiTechDB.SearchUser(search, column);
+        }
+
+        public bool IsUniqueUserId(string table, string column,int eId)
+        {
+            return HiTechDB.IsUniqueId(table, column, eId);
+        }
+
+        public void DeleteUser(int id, int status)
+        {
+            id = EmployeeId;
+            status = StatusId;
+            HiTechDB.Delete("UserAccounts", "StatusId", id, status);
+        }
     }
 }

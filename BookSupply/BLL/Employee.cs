@@ -70,9 +70,9 @@ namespace BookSupply.BLL
             return HiTechDB.SearchEmployee(search, search1, column, column1);
         }
 
-        public bool IsUniqueEmployeeId(int eId)
+        public bool IsUniqueEmployeeId(string table, string column,int eId)
         {
-            return HiTechDB.IsUniqueId(eId);
+            return HiTechDB.IsUniqueId(table, column, eId);
         }
 
         public void UpdateEmployee(Employee updateEmployee)
@@ -84,7 +84,7 @@ namespace BookSupply.BLL
         {
             id = EmployeeId;
             status = StatusId;
-            HiTechDB.Delete(id, status);
+            HiTechDB.Delete("Employees", "EmployeeId", id, status);
         }
 
 

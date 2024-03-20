@@ -29,17 +29,26 @@ namespace BookSupply.BLL
         {
             
             HiTechDB.LoginUser(this);
-            if(JobId == "1")
-            {                
-                EmployeeUserForm employeeUserForm = new EmployeeUserForm();
-                employeeUserForm.ShowDialog();
+            switch (JobId)
+            {
+                case "1":
+                    EmployeeUserForm employeeUserForm = new EmployeeUserForm();
+                    employeeUserForm.ShowDialog();
+                    break;
+                
+                default:
+                    MessageBox.Show("Invalid User / Password");
+                    break;
             }
            
-            else
-            {
-                MessageBox.Show("Invalid User");
-            }
         }
+
+        //public void Logout()
+        //{
+        //    UserName = string.Empty;
+        //    Password = string.Empty;
+        //    JobId = string.Empty;
+        //}
 
     }
 }

@@ -16,15 +16,27 @@ namespace BookSupply.GUI
         public LoginForm()
         {
             InitializeComponent();
+            textBoxLoginPassword.UseSystemPasswordChar = true;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            login.UserName = textBoxLoginUser.Text.Trim();
-            login.Password = textBoxLoginPassword.Text.Trim();
-            login.CheckUser();
+            
+            string username = textBoxLoginUser.Text.Trim();
+            string password = textBoxLoginPassword.Text.Trim();
+            login.UserName = username;
+            login.Password = password;
+            textBoxLoginUser.Clear();
+            textBoxLoginPassword.Clear();
+            login.CheckUser();            
+  
+            
+        }
 
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
