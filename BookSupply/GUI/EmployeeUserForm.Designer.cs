@@ -245,6 +245,7 @@
             this.Email,
             this.JobId,
             this.StatusId});
+            this.listViewEmployee.GridLines = true;
             this.listViewEmployee.HideSelection = false;
             this.listViewEmployee.Location = new System.Drawing.Point(20, 280);
             this.listViewEmployee.Name = "listViewEmployee";
@@ -487,6 +488,7 @@
             this.label20.Size = new System.Drawing.Size(68, 18);
             this.label20.TabIndex = 34;
             this.label20.Text = "Status ID";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label21
             // 
@@ -1040,10 +1042,11 @@
             this.columnHeader2,
             this.columnHeader6,
             this.columnHeader3});
+            this.listViewUser.GridLines = true;
             this.listViewUser.HideSelection = false;
             this.listViewUser.Location = new System.Drawing.Point(20, 280);
             this.listViewUser.Name = "listViewUser";
-            this.listViewUser.Size = new System.Drawing.Size(422, 142);
+            this.listViewUser.Size = new System.Drawing.Size(415, 142);
             this.listViewUser.TabIndex = 21;
             this.listViewUser.UseCompatibleStateImageBehavior = false;
             this.listViewUser.View = System.Windows.Forms.View.Details;

@@ -602,6 +602,11 @@ namespace BookSupply.GUI
         {
             Close();
         }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
