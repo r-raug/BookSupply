@@ -50,22 +50,22 @@ namespace BookSupply.DAL
             //Open DB
             SqlConnection conn = UtilityDB.GetDBConnection();
 
-            
+
             //create and customize an object of type SqlCommand for search an ID            
             SqlCommand cmdSearchEmployee = new SqlCommand();
             cmdSearchEmployee.Connection = conn;
             cmdSearchEmployee.CommandText = "SELECT * FROM Employees " +
                                                   "WHERE EmployeeId = @EmployeeId";
             cmdSearchEmployee.Parameters.AddWithValue("@EmployeeId", empID);
-            
-            
-            
+
+
+
             SqlDataReader employeeReader = cmdSearchEmployee.ExecuteReader();
             if (employeeReader.Read()) //If ID exist in the database
             {
                 int jobID = Convert.ToInt32(employeeReader["JobId"]);
                 employeeReader.Close();
-                
+
 
                 SqlCommand cmdSearchUser = new SqlCommand();
                 cmdSearchUser.Connection = conn;
@@ -76,11 +76,12 @@ namespace BookSupply.DAL
                 //verify if the user already exist
                 if (count > 0)
                 {
-                    MessageBox.Show("User already exist.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("User already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else {
+                else
+                {
                     //create and customize an object of type SqlCommand for insert
-                    
+
                     SqlCommand cmdInsert = new SqlCommand();
                     cmdInsert.Connection = conn;
                     cmdInsert.CommandText = "INSERT INTO UserAccounts (Username, Password, EmployeeId, JobId) " +
@@ -113,7 +114,7 @@ namespace BookSupply.DAL
             //Do a loop to list all records
             while (reader.Read())
             {
-                employee = new Employee(                
+                employee = new Employee(
                 reader["FirstName"].ToString(),
                 reader["LastName"].ToString(),
                 reader["Email"].ToString(),
@@ -146,7 +147,7 @@ namespace BookSupply.DAL
                 Convert.ToInt32(reader["EmployeeId"]),
                 Convert.ToInt32(reader["JobId"])
                 );
-                
+
                 listE.Add(user);
             }
             //close DB and return records
@@ -166,7 +167,7 @@ namespace BookSupply.DAL
             cmdSearchID.Parameters.AddWithValue("@Search", "%" + search + "%");
 
             SqlDataReader reader = cmdSearchID.ExecuteReader();
-            if(reader.Read()) //found
+            if (reader.Read()) //found
             {
                 employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                 employee.FirstName = reader["FirstName"].ToString();
@@ -234,8 +235,8 @@ namespace BookSupply.DAL
             }
             conn.Close();
 
-            return "Not found";          
-            
+            return "Not found";
+
         }
 
         public static String SearchStatus(int statusID)
@@ -293,7 +294,7 @@ namespace BookSupply.DAL
         {
             using (SqlConnection conn = UtilityDB.GetDBConnection())
             {
-                if(IsUniqueId(userUpdate.EmployeeId) == true)
+                if (IsUniqueId(userUpdate.EmployeeId) == true)
                 {
                     MessageBox.Show("Employee ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -302,11 +303,11 @@ namespace BookSupply.DAL
                 cmdUpdate.Connection = conn;
                 cmdUpdate.CommandText = "UPDATE UserAccounts " +
                                         "SET UserName = @UserName, " +
-                                        "Password = @Password " +                                        
-                                        "WHERE EmployeeId = @EmployeeId";                
+                                        "Password = @Password " +
+                                        "WHERE EmployeeId = @EmployeeId";
                 cmdUpdate.Parameters.AddWithValue("@UserName", userUpdate.UserName);
-                cmdUpdate.Parameters.AddWithValue("@Password", userUpdate.Password);                
-                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = userUpdate.EmployeeId;                
+                cmdUpdate.Parameters.AddWithValue("@Password", userUpdate.Password);
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = userUpdate.EmployeeId;
                 cmdUpdate.ExecuteNonQuery();
                 MessageBox.Show("User updated sucessfully.", "Confirmation");
             }
@@ -333,7 +334,7 @@ namespace BookSupply.DAL
             return false;
         }
 
-        
+
 
         public static void Delete(int id, int status)
         {
@@ -343,10 +344,10 @@ namespace BookSupply.DAL
                 SqlCommand cmdUpdate = new SqlCommand();
                 cmdUpdate.Connection = conn;
                 cmdUpdate.CommandText = "UPDATE Employees " +
-                                        "SET StatusId = @StatusId " +                                        
+                                        "SET StatusId = @StatusId " +
                                         "WHERE EmployeeId = @EmployeeId";
                 //cmdUpdate.Parameters.AddWithValue("@EmployeeId", employeeUpdate.EmployeeId);
-                cmdUpdate.Parameters.AddWithValue("@StatusId", status);                
+                cmdUpdate.Parameters.AddWithValue("@StatusId", status);
                 cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = id;
                 //MessageBox.Show(id.EmployeeId.ToString());
                 cmdUpdate.ExecuteNonQuery();
@@ -390,6 +391,250 @@ namespace BookSupply.DAL
                 login.JobId = "0";
             }
             conn.Close();
+        }
+        public static void DeleteCustomer(int id, int status)
+        {
+            using (SqlConnection conn = UtilityDB.GetDBConnection())
+            {
+                SqlCommand cmdUpdate = new SqlCommand();
+                cmdUpdate.Connection = conn;
+                cmdUpdate.CommandText = "DELETE Customers " +
+                                        "WHERE CustomerId = @CustomerId";
+
+                cmdUpdate.Parameters.AddWithValue("@CustomerId", id);
+
+                cmdUpdate.ExecuteNonQuery();
+            }
+        }
+        public static void UpdateCustomer(Customer customer)
+        {
+            // Abrir conexão com o banco de dados
+            SqlConnection conn = UtilityDB.GetDBConnection();
+
+            // Operação de atualização
+            // Criar e personalizar um objeto do tipo SqlCommand
+            SqlCommand cmdUpdate = new SqlCommand();
+            cmdUpdate.Connection = conn;
+            cmdUpdate.CommandText = "UPDATE Customers SET Street = @Street, Province = @Province, PostalCode = @PostalCode, " +
+                                    "PhoneNumber = @PhoneNumber, FirstName = @FirstName, Email = @Email, " +
+                                    "LastName = @LastName WHERE CustomerID = @CustomerID";
+
+            // Certifique-se de que todos os parâmetros estão sendo adicionados corretamente
+            cmdUpdate.Parameters.AddWithValue("@Street", customer.Street);
+            cmdUpdate.Parameters.AddWithValue("@Province", customer.Province);
+            cmdUpdate.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+            cmdUpdate.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber);
+            cmdUpdate.Parameters.AddWithValue("@FirstName", customer.FirstName);
+            cmdUpdate.Parameters.AddWithValue("@Email", customer.Email);
+            cmdUpdate.Parameters.AddWithValue("@CreditLimit", customer.CreditLimit);
+            cmdUpdate.Parameters.AddWithValue("@Status", customer.Status);
+            cmdUpdate.Parameters.AddWithValue("@LastName", customer.LastName);
+            cmdUpdate.Parameters.AddWithValue("@CustomerID", customer.CustomerId); // Adicione o parâmetro CustomerID
+
+            try
+            {
+                // Execute a consulta SQL para atualizar o registro
+                cmdUpdate.ExecuteNonQuery();
+                MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Fechar conexão com o banco de dados
+                conn.Close();
+            }
+        }
+
+
+
+        public static List<Customer> GetAllCustomers()
+        {
+            List<Customer> customers = new List<Customer>();
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSelectAll = new SqlCommand("SELECT * FROM Customers", conn);
+            SqlDataReader reader = cmdSelectAll.ExecuteReader(); // Executar comando contido em cmdSelectAll
+
+            // Loop para listar todos os registros
+            while (reader.Read())
+            {
+                Customer customer = new Customer(
+                    reader["FirstName"].ToString(),
+                    reader["LastName"].ToString(),
+                    reader["Email"].ToString(),
+                    Convert.ToInt64(reader["PhoneNumber"]),
+                    reader["Street"].ToString(),
+                    reader["Province"].ToString(),
+                    reader["PostalCode"].ToString(),
+                    reader["Status"].ToString(),
+                    Convert.ToInt32(reader["CreditLimit"])
+                );
+                customer.CustomerId = Convert.ToInt32(reader["CustomerId"]);
+                customers.Add(customer);
+            }
+
+            // Fechar conexão com o banco de dados e retornar registros
+            conn.Close();
+            return customers;
+        }
+
+        public static void SaveRecordCustomer(Customer customer)
+        {
+            // Abrir conexão com o banco de dados
+            SqlConnection conn = UtilityDB.GetDBConnection();
+
+            // Operação de inserção
+            // Criar e personalizar um objeto do tipo SqlCommand
+            SqlCommand cmdInsert = new SqlCommand();
+            cmdInsert.Connection = conn;
+            cmdInsert.CommandText = "INSERT INTO Customers (Street, Province, PostalCode, PhoneNumber, FirstName, Email, CreditLimit, Status,LastName) " +
+                                    "VALUES (@Street, @Province, @PostalCode, @PhoneNumber, @FirstName, @Email, @CreditLimit, @Status, @LastName)";
+
+            // Certifique-se de que todos os parâmetros estão sendo adicionados corretamente
+            cmdInsert.Parameters.AddWithValue("@Street", customer.Street);
+            cmdInsert.Parameters.AddWithValue("@Province", customer.Province);
+            cmdInsert.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+            cmdInsert.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber);
+            cmdInsert.Parameters.AddWithValue("@FirstName", customer.FirstName);
+            cmdInsert.Parameters.AddWithValue("@Email", customer.Email);
+            cmdInsert.Parameters.AddWithValue("@CreditLimit", customer.CreditLimit);
+            cmdInsert.Parameters.AddWithValue("@Status", customer.Status);
+            cmdInsert.Parameters.AddWithValue("LastName", customer.LastName);
+
+            try
+            {
+                // Execute a consulta SQL para inserir o registro
+                cmdInsert.ExecuteNonQuery();
+                MessageBox.Show("Customer saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Fechar conexão com o banco de dados
+                conn.Close();
+            }
+        }
+
+
+
+
+        public static Customer SearchCustomer(string search, string column)
+        {
+            Customer customer = null;
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSearch = new SqlCommand();
+            cmdSearch.Connection = conn;
+            cmdSearch.CommandText = "SELECT * FROM Customers " +
+                                    "WHERE " + column + " LIKE @Search";
+            cmdSearch.Parameters.AddWithValue("@Search", "%" + search + "%");
+
+            SqlDataReader reader = cmdSearch.ExecuteReader();
+            if (reader.Read()) // Encontrado
+            {
+                customer = new Customer
+                {
+                    CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                    FirstName = reader["FirstName"].ToString(),
+                    LastName = reader["LastName"].ToString(),
+                    Email = reader["Email"].ToString(),
+                    PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]),
+                    Street = reader["Street"].ToString(),
+                    Province = reader["Province"].ToString(),
+                    PostalCode = reader["PostalCode"].ToString(),
+                    Status = reader["Status"].ToString(),
+                    CreditLimit = Convert.ToInt32(reader["CreditLimit"])
+                };
+            }
+
+            // Fechar conexão com o banco de dados e retornar cliente
+            conn.Close();
+            return customer;
+        }
+
+        public static Customer SearchCustomer(string firstName, string lastName, string column)
+        {
+            Customer customer = null;
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSearch = new SqlCommand();
+            cmdSearch.Connection = conn;
+            cmdSearch.CommandText = "SELECT * FROM Customers " +
+                                    "WHERE " + column + " LIKE @FirstName AND " + column + " LIKE @LastName";
+            cmdSearch.Parameters.AddWithValue("@FirstName", "%" + firstName + "%");
+            cmdSearch.Parameters.AddWithValue("@LastName", "%" + lastName + "%");
+
+            SqlDataReader reader = cmdSearch.ExecuteReader();
+            if (reader.Read()) // Encontrado
+            {
+                customer = new Customer
+                {
+                    CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                    FirstName = reader["FirstName"].ToString(),
+                    LastName = reader["LastName"].ToString(),
+                    Email = reader["Email"].ToString(),
+                    PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]),
+                    Street = reader["Street"].ToString(),
+                    Province = reader["Province"].ToString(),
+                    PostalCode = reader["PostalCode"].ToString(),
+                    Status = reader["Status"].ToString(),
+                    CreditLimit = Convert.ToInt32(reader["CreditLimit"])
+                };
+            }
+
+            // Fechar conexão com o banco de dados e retornar cliente
+            conn.Close();
+            return customer;
+        }
+
+        public static void DeleteCustomerById(int customerId)
+        {
+            // String de conexão com o banco de dados
+            string connectionString = "your_connection_string_here";
+
+            // Query SQL para excluir o cliente pelo ID
+            string query = "DELETE FROM Customers WHERE CustomerId = @CustomerId";
+
+            // Criar uma conexão com o banco de dados usando a string de conexão
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Criar um comando SQL com a query e a conexão
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Adicionar o parâmetro para o ID do cliente
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    try
+                    {
+                        // Abrir a conexão com o banco de dados
+                        connection.Open();
+
+                        // Executar o comando SQL para excluir o cliente
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Lidar com qualquer exceção que possa ocorrer durante a execução da consulta SQL
+                        throw new Exception("Error deleting customer: " + ex.Message);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

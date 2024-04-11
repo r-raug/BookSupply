@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using BookSupply.BLL;
 using BookSupply.DAL;
 using BookSupply.VALIDATION;
@@ -60,7 +62,7 @@ namespace BookSupply.GUI
                 textBoxPhone.Focus();
                 return;
             }
-            
+
             Employee employee = new Employee();
             employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstName.Text.Trim().ToLower());
             employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastName.Text.Trim().ToLower());
@@ -68,7 +70,7 @@ namespace BookSupply.GUI
             employee.Email = textBoxEmail.Text.Trim();
             employee.JobId = comboBoxJobId.SelectedIndex + 1;
             employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
-            Employee.SaveEmployee(employee);
+            BLL.Employee.SaveEmployee(employee);
             MessageBox.Show("Saved");
         }
 
@@ -83,9 +85,9 @@ namespace BookSupply.GUI
         private void DisplayInfo(List<Employee> listEmp, ListView listV)
         {
             listV.Items.Clear();
-            if(listEmp != null)
+            if (listEmp != null)
             {
-                foreach(Employee emp in listEmp)
+                foreach (Employee emp in listEmp)
                 {
                     ListViewItem item = new ListViewItem(emp.EmployeeId.ToString());
                     item.SubItems.Add(emp.FirstName);
@@ -109,30 +111,30 @@ namespace BookSupply.GUI
             string input = "";
 
             //check if all texbox has information
-            if(textBoxEmployeeIDU.Text == "" || textBoxFirstNameU.Text == "" || textBoxLastNameU.Text == "" || 
-                textBoxEmailU.Text == "" || comboBoxJobIDU.SelectedIndex == -1 || comboBoxStatusIDU.SelectedIndex == -1 || textBoxPhoneNumberU.Text == "" )
+            if (textBoxEmployeeIDU.Text == "" || textBoxFirstNameU.Text == "" || textBoxLastNameU.Text == "" ||
+                textBoxEmailU.Text == "" || comboBoxJobIDU.SelectedIndex == -1 || comboBoxStatusIDU.SelectedIndex == -1 || textBoxPhoneNumberU.Text == "")
             {
-                MessageBox.Show("Please search by EmployeeID before procede with update or \n" + 
+                MessageBox.Show("Please search by EmployeeID before procede with update or \n" +
                     "fill in all fields before proceeding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if(int.TryParse(textBoxEmployeeIDD.Text,out int employeeId))
+                if (int.TryParse(textBoxEmployeeIDD.Text, out int employeeId))
                 {
                     Employee employee = new Employee();
 
                     //before update, check if ID exist and all fields has a valid input
                     input = textBoxEmployeeIDU.Text.Trim();
-                    if(employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
+                    if (employee.IsUniqueEmployeeId(Convert.ToInt32(input)))
                     {
                         MessageBox.Show("ID not found", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         textBoxEmployeeIDD.Focus();
                         return;
                     }
-                    
+
 
                     input = textBoxFirstNameU.Text.Trim();
-                    if(!Validator.IsValidName(input))
+                    if (!Validator.IsValidName(input))
                     {
                         MessageBox.Show("Invalid First Name.", "Invalid");
                         textBoxFirstName.Focus();
@@ -243,24 +245,21 @@ namespace BookSupply.GUI
         private void buttonSaveUser_Click(object sender, EventArgs e)
         {
 
+
             User user = new User();
             user.UserName = textBoxUserName.Text.Trim();
             user.Password = textBoxUserPassword.Text.Trim();
-            user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());            
+            user.EmployeeId = Convert.ToInt32(textBoxUserEmpID.Text.Trim());
             User.SaveUser(user, user.EmployeeId);
-            
-        }
-
-        private void EmployeeUserForm_Load(object sender, EventArgs e)
-        {
 
         }
+
 
         private void buttonListUser_Click(object sender, EventArgs e)
         {
             listViewUser.Items.Clear();
             User user = new User();
-            List<User> listUser = user.GetUserList();           
+            List<User> listUser = user.GetUserList();
             DisplayInfos(listUser, listViewUser);
         }
 
@@ -307,11 +306,11 @@ namespace BookSupply.GUI
                     DialogResult result = MessageBox.Show("Are you sure you want to update this user?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        
+
                         try
                         {
                             user.UpdateUser(user);
-                            
+
                         }
                         catch (Exception ex)
                         {
@@ -330,8 +329,8 @@ namespace BookSupply.GUI
 
         private void comboBoxJobId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelJobId.Text = HiTechDB.SearchJob(comboBoxJobId.SelectedIndex + 1 ); 
-            
+            labelJobId.Text = HiTechDB.SearchJob(comboBoxJobId.SelectedIndex + 1);
+
         }
 
         private void comboBoxStatusID_SelectedIndexChanged(object sender, EventArgs e)
@@ -478,7 +477,7 @@ namespace BookSupply.GUI
                     labelSearchJobID.Visible = false;
                     break;
                 default:
-                    
+
                     break;
             }
         }
@@ -500,6 +499,259 @@ namespace BookSupply.GUI
                     break;
             }
         }
+
+        private void buttonSaveC_Click(object sender, EventArgs e)
+        {
+            string input = "";
+            input = textBoxFirstNameC.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid First Name.", "Invalid");
+                textBoxFirstNameC.Focus();
+                return;
+            }
+
+            input = textBoxLastNameC.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid Last Name.", "Invalid");
+                textBoxLastNameC.Focus();
+                return;
+            }
+
+            input = textBoxEmailC.Text.Trim();
+            if (!Validator.isValidEmail(input))
+            {
+                MessageBox.Show("Invalid Email.", "Invalid");
+                textBoxEmailC.Focus();
+                return;
+            }
+
+            input = textBoxPhoneC.Text.Trim();
+            if (!Validator.IsValidPhoneNumber(input))
+            {
+                MessageBox.Show("Invalid Phone Number.", "Invalid");
+                textBoxPhoneC.Focus();
+                return;
+            }
+            
+                Customer customer = new Customer(
+                textBoxFirstNameC.Text,
+                textBoxLastNameC.Text,
+                textBoxEmailC.Text,
+                Convert.ToInt64(textBoxPhoneC.Text),
+                textBoxStreet.Text,
+                comboBoxProvince.Text,
+                textBoxPostalCode.Text,
+                comboBoxStatus.Text,
+                Convert.ToInt32(textBoxCredit.Text)
+
+            );
+
+            // Salvar o cliente no banco de dados
+            Customer.SaveCustomer(customer);
+
+            // Limpar os campos do formulário após salvar
+            ClearCustomerFields();
+        }
+
+
+        private void ClearCustomerFields()
+        {
+            textBoxFirstNameC.Text = string.Empty;
+            textBoxLastNameC.Text = string.Empty;
+            textBoxEmailC.Text = string.Empty;
+            textBoxPhoneC.Text = string.Empty;
+            textBoxStreet.Text = string.Empty;
+            comboBoxProvince.Text = string.Empty;
+            textBoxPostalCode.Text = string.Empty;
+            comboBoxStatus.Text = string.Empty;
+            textBoxCredit.Text = string.Empty;
+
+        }
+
+        
+
+
+        private void buttonListAllC_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            Customer customer = new Customer(); 
+            List<Customer> customerList = customer.GetCustomerList(); 
+            DisplayCustomerInfo(customerList, listView1);
+        }
+
+        private void DisplayCustomerInfo(List<Customer> customerList, ListView listView)
+        {
+            listView.Items.Clear();
+            if (customerList != null)
+            {
+                foreach (Customer customer in customerList)
+                {
+                    ListViewItem item = new ListViewItem(customer.CustomerId.ToString());
+                    //item.SubItems.Add(customer.CustomerId.ToString());
+                    item.SubItems.Add(customer.FirstName);
+                    item.SubItems.Add(customer.LastName);                    
+                    item.SubItems.Add(customer.PhoneNumber.ToString());
+                    item.SubItems.Add(customer.Email);
+                    item.SubItems.Add(customer.Street);
+                    item.SubItems.Add(customer.Province);
+                    item.SubItems.Add(customer.PostalCode);
+                    item.SubItems.Add(customer.Status);
+                    // Adicione outros subitens conforme necessário
+                    listView.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não há clientes no banco de dados.", "Dados ausentes");
+            }
+        }
+
+        private void buttonUpdateCust_Click(object sender, EventArgs e)
+        {
+            string input = "";
+
+            // Verifica se todos os campos obrigatórios estão preenchidos
+            if (textBoxFirstNameCustU.Text == "" || textBoxLastNameCustU.Text == "" ||
+                textBoxEmailCustU.Text == "" || textBoxPhoneCustU.Text == "" ||
+                textBoxStreetU.Text == "" || comboBoxProvinceU.Text == "" ||
+                textBoxPostalCodeU.Text == "")
+            {
+                MessageBox.Show("All fields must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validação dos campos
+            input = textBoxFirstNameCustU.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid First Name.", "Invalid");
+                textBoxFirstNameCustU.Focus();
+                return;
+            }
+
+            input = textBoxLastNameCustU.Text.Trim();
+            if (!Validator.IsValidName(input))
+            {
+                MessageBox.Show("Invalid Last Name.", "Invalid");
+                textBoxLastNameCustU.Focus();
+                return;
+            }
+
+            input = textBoxEmailCustU.Text.Trim();
+            if (!Validator.isValidEmail(input))
+            {
+                MessageBox.Show("Invalid Email.", "Invalid");
+                textBoxEmailCustU.Focus();
+                return;
+            }
+
+            input = textBoxPhoneCustU.Text.Trim();
+            if (!Validator.IsValidPhoneNumber(input))
+            {
+                MessageBox.Show("Invalid Phone Number.", "Invalid");
+                textBoxPhoneCustU.Focus();
+                return;
+            }
+
+            // Criação de uma instância de Customer com os dados do formulário
+            Customer customer = new Customer(
+                textBoxFirstNameCustU.Text.Trim(),
+                textBoxLastNameCustU.Text.Trim(),
+                textBoxEmailCustU.Text.Trim(),
+                Convert.ToInt64(textBoxPhoneCustU.Text.Trim()),
+                textBoxStreetU.Text.Trim(),
+                comboBoxProvinceU.Text.Trim(),
+                textBoxPostalCodeU.Text.Trim(),
+                "Active", // Aqui você deve fornecer o valor do Status, substitua "Active" pelo valor correto               
+                0 // Aqui você deve fornecer o valor do CreditLimit, substitua 0 pelo valor correto
+            );
+
+            // Chama o método UpdateCustomer passando a instância de Customer
+            customer.UpdateCustomer(customer);
+        }
+
+
+        private void comboBoxSearchC_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            textBoxSearch1.Visible = false;
+            textBoxSearch2.Visible = false;
+            labelSearch1C.Visible = false;
+            labelSearch2C.Visible = false;
+
+            switch (comboBoxSearchC.SelectedIndex)
+            {
+                case 0:
+                    labelSearch1C.Text = "Customer ID";
+                    textBoxSearchC.Visible = true;
+                    labelSearch1C.Visible = true;
+                    break;
+                case 1:
+                    labelSearch1C.Text = "First Name";
+                    textBoxSearchC.Visible = true;
+                    labelSearch1C.Visible = true;
+                    break;
+                case 2:
+                    labelSearch1C.Text = "Last Name";
+                    textBoxSearchC.Visible = true;
+                    labelSearch1C.Visible = true;
+                    break;
+                case 3:
+                    labelSearch1C.Text = "First Name";
+                    textBoxSearchC.Visible = true;
+                    labelSearch1C.Visible = true;
+                    labelSearch2C.Text = "Last Name";
+                    textBoxSearchC2.Visible = true;
+                    labelSearch2C.Visible = true;
+                    break;
+            }
+        }
+
+        private void buttonCustDelete_Click(object sender, EventArgs e)
+        {
+            if (textBoxCustomerIdToDelete.Text.Trim() == "")
+            {
+                MessageBox.Show("Customer ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string input = "";
+                        Customer customer = new Customer();
+
+                        //before delete, check if ID exists
+                        input = textBoxCustomerIdToDelete.Text.Trim();
+                        if (customer.IsUniqueCustomerId(Convert.ToInt32(input)))
+                        {
+                            MessageBox.Show("ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxCustomerIdToDelete.Focus();
+                            return;
+                        }
+
+                        // Define o ID e o status para excluir o cliente
+                        int customerId = Convert.ToInt32(textBoxCustomerIdToDelete.Text.Trim());
+                        int status = 2; // Defina o status como necessário
+
+                        // Chama o método para excluir o cliente
+                        customer.DeleteCustomer(customerId, status);
+
+                        MessageBox.Show("Customer deleted", "Confirmation");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Operation canceled.", "Confirmation");
+                }
+            }
+        }
     }
-    
 }

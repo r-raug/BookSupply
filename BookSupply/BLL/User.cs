@@ -11,6 +11,7 @@ namespace BookSupply.BLL
     {
         private string userName, password;
         private int employeeId, jobId;
+
         public int EmployeeId { get => employeeId; set => employeeId = value; }
         public string UserName { get => userName; set => userName = value; }    
         public string Password { get => password; set => password = value; }
