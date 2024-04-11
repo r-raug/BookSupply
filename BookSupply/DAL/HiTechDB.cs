@@ -21,7 +21,7 @@ namespace BookSupply.DAL
     {
 
         //this method save/update an employee record to the database
-        public static void SaveRecordEmployee(Employee employee)
+        public static void SaveRecordEmployee(Emp employee)
         {
             //Open DB
             SqlConnection conn = UtilityDB.GetDBConnection();
@@ -105,18 +105,18 @@ namespace BookSupply.DAL
 
 
         //this method list all records from the table Employees
-        public static List<Employee> GetAllEmployees()
+        public static List<Emp> GetAllEmployees()
         {
-            List<Employee> listE = new List<Employee>();
+            List<Emp> listE = new List<Emp>();
             SqlConnection conn = UtilityDB.GetDBConnection();
             SqlCommand cmdSelectAll = new SqlCommand("SELECT * FROM Employees", conn);
             SqlDataReader reader = cmdSelectAll.ExecuteReader(); //execute command that are in cmdSelectAll
-            Employee employee;
+            Emp employee;
 
             //Do a loop to list all records
             while (reader.Read())
             {
-                employee = new Employee(                
+                employee = new Emp(                
                 reader["FirstName"].ToString(),
                 reader["LastName"].ToString(),
                 reader["Email"].ToString(),
@@ -160,9 +160,9 @@ namespace BookSupply.DAL
         }
 
         //this method search an employee
-        public static List<Employee> SearchEmployee(string search, string column)
+        public static List<Emp> SearchEmployee(string search, string column)
         {
-            List<Employee> employees = new List<Employee>();
+            List<Emp> employees = new List<Emp>();
             SqlConnection conn = UtilityDB.GetDBConnection();
             SqlCommand cmdSearchID = new SqlCommand();
             cmdSearchID.Connection = conn;
@@ -174,7 +174,7 @@ namespace BookSupply.DAL
             {
                 while (reader.Read()) 
                 {
-                    Employee employee = new Employee(); 
+                    Emp employee = new Emp(); 
                     employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                     employee.FirstName = reader["FirstName"].ToString();
                     employee.LastName = reader["LastName"].ToString();
@@ -215,9 +215,9 @@ namespace BookSupply.DAL
             return users;
         }
 
-        public static List<Employee> SearchEmployee(string fname, string lname, string column1, string column2)
+        public static List<Emp> SearchEmployee(string fname, string lname, string column1, string column2)
         {
-            List<Employee> employees = new List<Employee>();
+            List<Emp> employees = new List<Emp>();
 
             try
             {
@@ -236,7 +236,7 @@ namespace BookSupply.DAL
                     {
                         while (reader.Read())
                         {
-                            Employee employee = new Employee();
+                            Emp employee = new Emp();
                             employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                             employee.FirstName = reader["FirstName"].ToString();
                             employee.LastName = reader["LastName"].ToString();
@@ -302,7 +302,7 @@ namespace BookSupply.DAL
 
 
         //update an employee in database
-        public static void UpdateEmployee(Employee employeeUpdate)
+        public static void UpdateEmployee(Emp employeeUpdate)
         {
             using (SqlConnection conn = UtilityDB.GetDBConnection())
             {

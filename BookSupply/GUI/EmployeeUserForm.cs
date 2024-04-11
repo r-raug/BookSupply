@@ -61,31 +61,31 @@ namespace BookSupply.GUI
                 return;
             }
             
-            Employee employee = new Employee();
+            Emp employee = new Emp();
             employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxFirstName.Text.Trim().ToLower());
             employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastName.Text.Trim().ToLower());
             employee.PhoneNumber = Convert.ToInt64(textBoxPhone.Text.Trim());
             employee.Email = textBoxEmail.Text.Trim();
             employee.JobId = comboBoxJobId.SelectedIndex + 1;
             employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
-            Employee.SaveEmployee(employee);
+            Emp.SaveEmployee(employee);
             MessageBox.Show("Saved");
         }
 
         private void buttonList_Click(object sender, EventArgs e)
         {
             listViewEmployee.Items.Clear();
-            Employee employee = new Employee();
-            List<Employee> listEmp = employee.GetEmployeeList();
+            Emp employee = new Emp();
+            List<Emp> listEmp = employee.GetEmployeeList();
             DisplayInfo(listEmp, listViewEmployee);
         }
 
-        private void DisplayInfo(List<Employee> listEmp, ListView listV)
+        private void DisplayInfo(List<Emp> listEmp, ListView listV)
         {
             listV.Items.Clear();
             if(listEmp != null)
             {
-                foreach(Employee emp in listEmp)
+                foreach(Emp emp in listEmp)
                 {
                     ListViewItem item = new ListViewItem(emp.EmployeeId.ToString());
                     item.SubItems.Add(emp.FirstName);
@@ -126,7 +126,7 @@ namespace BookSupply.GUI
             }
 
             
-            Employee employee = new Employee
+            Emp employee = new Emp
             {
                 EmployeeId = employeeId,
                 FirstName = textBoxFirstNameU.Text.Trim(),
@@ -167,7 +167,7 @@ namespace BookSupply.GUI
                     try
                     {
                         string input = "";
-                        Employee employee = new Employee();
+                        Emp employee = new Emp();
 
                         //before delete, check if ID exists
                         input = textBoxEmployeeIDD.Text.Trim();
@@ -321,7 +321,7 @@ namespace BookSupply.GUI
                     try
                     {
                         string input = "";
-                        Employee employee = new Employee();
+                        Emp employee = new Emp();
 
                         //before delete, check if ID exists
                         input = textBoxEmployeeIDD.Text.Trim();
@@ -416,40 +416,40 @@ namespace BookSupply.GUI
                 case 0:
                     search = textBoxSearch1.Text.Trim();
                     column = "EmployeeID";
-                    Employee employeeInstance = new Employee();
-                    List<Employee> listEmp = employeeInstance.SearchEmployees(search, column); 
+                    Emp employeeInstance = new Emp();
+                    List<Emp> listEmp = employeeInstance.SearchEmployees(search, column); 
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp, listViewEmployee);
                     break;
                 case 1:
                     search = textBoxSearch1.Text.Trim();
                     column = "FirstName";
-                    Employee employeeInstance1 = new Employee();
-                    List<Employee> listEmp1 = employeeInstance1.SearchEmployees(search, column);
+                    Emp employeeInstance1 = new Emp();
+                    List<Emp> listEmp1 = employeeInstance1.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp1, listViewEmployee);
                     break;
                 case 2:
                     search = textBoxSearch1.Text.Trim();
                     column = "LastName";
-                    Employee employeeInstance2 = new Employee();
-                    List<Employee> listEmp2 = employeeInstance2.SearchEmployees(search, column);
+                    Emp employeeInstance2 = new Emp();
+                    List<Emp> listEmp2 = employeeInstance2.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp2, listViewEmployee);
                     break;            
                 case 3:
                     search = textBoxSearch1.Text.Trim();
                     column = "Email";
-                    Employee employeeInstance4 = new Employee();
-                    List<Employee> listEmp4 = employeeInstance4.SearchEmployees(search, column);
+                    Emp employeeInstance4 = new Emp();
+                    List<Emp> listEmp4 = employeeInstance4.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp4, listViewEmployee);
                     break;
                 case 4:
                     search = textBoxSearch1.Text.Trim();
                     column = "PhoneNumber";
-                    Employee employeeInstance5 = new Employee();
-                    List<Employee> listEmp5 = employeeInstance5.SearchEmployees(search, column);
+                    Emp employeeInstance5 = new Emp();
+                    List<Emp> listEmp5 = employeeInstance5.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp5, listViewEmployee);
                     break;
@@ -457,8 +457,8 @@ namespace BookSupply.GUI
                     int temp = comboBoxSearchJobID.SelectedIndex + 1;
                     search = temp.ToString();
                     column = "JobID";
-                    Employee employeeInstance6 = new Employee();
-                    List<Employee> listEmp6 = employeeInstance6.SearchEmployees(search, column);
+                    Emp employeeInstance6 = new Emp();
+                    List<Emp> listEmp6 = employeeInstance6.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp6, listViewEmployee);
                     break;
@@ -466,8 +466,8 @@ namespace BookSupply.GUI
                     int temp1 = comboBoxSearchStatusID.SelectedIndex + 1;
                     search = temp1.ToString() ;
                     column = "StatusID";
-                    Employee employeeInstance7 = new Employee();
-                    List<Employee> listEmp7 = employeeInstance7.SearchEmployees(search, column);
+                    Emp employeeInstance7 = new Emp();
+                    List<Emp> listEmp7 = employeeInstance7.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
                     DisplayInfo(listEmp7, listViewEmployee);
                     break;

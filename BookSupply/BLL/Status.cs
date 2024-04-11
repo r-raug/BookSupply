@@ -12,25 +12,21 @@ namespace BookSupply.BLL
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Status()
         {
-            this.UserAccounts = new HashSet<UserAccount>();
+            this.Books = new HashSet<Book>();
+            this.Employees = new HashSet<Employee>();
         }
     
-        public decimal EmployeeId { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public decimal PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public decimal JobId { get; set; }
         public decimal StatusId { get; set; }
+        public string Description { get; set; }
     
-        public virtual Job Job { get; set; }
-        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserAccount> UserAccounts { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
