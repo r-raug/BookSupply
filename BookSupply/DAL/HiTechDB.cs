@@ -52,22 +52,22 @@ namespace BookSupply.DAL
             //Open DB
             SqlConnection conn = UtilityDB.GetDBConnection();
 
-            
+
             //create and customize an object of type SqlCommand for search an ID            
             SqlCommand cmdSearchEmployee = new SqlCommand();
             cmdSearchEmployee.Connection = conn;
             cmdSearchEmployee.CommandText = "SELECT * FROM Employees " +
                                                   "WHERE EmployeeId = @EmployeeId";
             cmdSearchEmployee.Parameters.AddWithValue("@EmployeeId", empID);
-            
-            
-            
+
+
+
             SqlDataReader employeeReader = cmdSearchEmployee.ExecuteReader();
             if (employeeReader.Read()) //If ID exist in the database
             {
                 int jobID = Convert.ToInt32(employeeReader["JobId"]);
                 employeeReader.Close();
-                
+
 
                 SqlCommand cmdSearchUser = new SqlCommand();
                 cmdSearchUser.Connection = conn;
@@ -78,11 +78,12 @@ namespace BookSupply.DAL
                 //verify if the user already exist
                 if (count > 0)
                 {
-                    MessageBox.Show("User already exist.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("User already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else {
+                else
+                {
                     //create and customize an object of type SqlCommand for insert
-                    
+
                     SqlCommand cmdInsert = new SqlCommand();
                     cmdInsert.Connection = conn;
                     cmdInsert.CommandText = "INSERT INTO UserAccounts (Username, Password, EmployeeId, JobId, StatusId) " +
@@ -116,7 +117,7 @@ namespace BookSupply.DAL
             //Do a loop to list all records
             while (reader.Read())
             {
-                employee = new Emp(                
+                employee = new Emp(
                 reader["FirstName"].ToString(),
                 reader["LastName"].ToString(),
                 reader["Email"].ToString(),
@@ -151,7 +152,7 @@ namespace BookSupply.DAL
                 Convert.ToInt16(reader["JobId"]),
                 Convert.ToInt16(reader["StatusId"])
                 );
-                
+
                 listE.Add(user);
             }
             //close DB and return records
@@ -172,9 +173,9 @@ namespace BookSupply.DAL
 
             using (SqlDataReader reader = cmdSearchID.ExecuteReader())
             {
-                while (reader.Read()) 
+                while (reader.Read())
                 {
-                    Emp employee = new Emp(); 
+                    Emp employee = new Emp();
                     employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
                     employee.FirstName = reader["FirstName"].ToString();
                     employee.LastName = reader["LastName"].ToString();
@@ -183,7 +184,7 @@ namespace BookSupply.DAL
                     employee.JobId = Convert.ToInt16(reader["JobId"]);
                     employee.StatusId = Convert.ToInt16(reader["StatusId"]);
 
-                    employees.Add(employee); 
+                    employees.Add(employee);
                 }
             }
             return employees;
@@ -275,8 +276,8 @@ namespace BookSupply.DAL
             }
             conn.Close();
 
-            return "Not found";          
-            
+            return "Not found";
+
         }
 
         public static String SearchStatus(int statusID)
@@ -316,14 +317,14 @@ namespace BookSupply.DAL
                                         "JobId = @JobId, " +
                                         "StatusId = @StatusId " +
                                         "WHERE EmployeeId = @EmployeeId";
-                
+
                 cmdUpdate.Parameters.AddWithValue("@FirstName", employeeUpdate.FirstName);
                 cmdUpdate.Parameters.AddWithValue("@LastName", employeeUpdate.LastName);
                 cmdUpdate.Parameters.AddWithValue("@PhoneNumber", employeeUpdate.PhoneNumber);
                 cmdUpdate.Parameters.AddWithValue("@Email", employeeUpdate.Email);
                 cmdUpdate.Parameters.AddWithValue("@JobId", employeeUpdate.JobId);
                 cmdUpdate.Parameters.Add("@StatusId", SqlDbType.Int).Value = employeeUpdate.StatusId;
-                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;                
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdate.EmployeeId;
                 cmdUpdate.ExecuteNonQuery();
             }
         }
@@ -333,7 +334,7 @@ namespace BookSupply.DAL
         {
             using (SqlConnection conn = UtilityDB.GetDBConnection())
             {
-                if(IsUniqueId("UserAccounts", "UserId", userUpdate.EmployeeId) == true)
+                if (IsUniqueId("UserAccounts", "UserId", userUpdate.EmployeeId) == true)
                 {
                     MessageBox.Show("Employee ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -344,19 +345,19 @@ namespace BookSupply.DAL
                                         "SET UserName = @UserName, " +
                                         "Password = @Password, " +
                                         "StatusId = @StatusId " +
-                                        "WHERE EmployeeId = @EmployeeId";                
+                                        "WHERE EmployeeId = @EmployeeId";
                 cmdUpdate.Parameters.AddWithValue("@UserName", userUpdate.UserName);
                 cmdUpdate.Parameters.AddWithValue("@Password", userUpdate.Password);
                 cmdUpdate.Parameters.Add("@StatusId", SqlDbType.Int).Value = userUpdate.StatusId;
-                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = userUpdate.EmployeeId;                
+                cmdUpdate.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = userUpdate.EmployeeId;
                 cmdUpdate.ExecuteNonQuery();
                 MessageBox.Show("User updated sucessfully.", "Confirmation");
             }
         }
 
-        public static bool IsUniqueId(string table,string column, int eID)
+        public static bool IsUniqueId(string table, string column, int eID)
         {
-            
+
 
             SqlConnection conn = UtilityDB.GetDBConnection();
             SqlCommand cmdSearchID = new SqlCommand();
@@ -374,7 +375,7 @@ namespace BookSupply.DAL
             return false;
         }
 
-        
+
 
         public static void Delete(string table, string column, int id, int status)
         {
@@ -384,14 +385,14 @@ namespace BookSupply.DAL
                 SqlCommand cmdUpdate = new SqlCommand();
                 cmdUpdate.Connection = conn;
                 cmdUpdate.CommandText = "UPDATE " + table + " " +
-                                        "SET StatusId = @StatusId " +                                        
+                                        "SET StatusId = @StatusId " +
                                         "WHERE " + column + " = @ID";
                 //cmdUpdate.Parameters.AddWithValue("@EmployeeId", employeeUpdate.EmployeeId);
-                cmdUpdate.Parameters.AddWithValue("@StatusId", status);                
+                cmdUpdate.Parameters.AddWithValue("@StatusId", status);
                 cmdUpdate.Parameters.Add("@ID", SqlDbType.Int).Value = id;
                 //MessageBox.Show(id.EmployeeId.ToString());
                 cmdUpdate.ExecuteNonQuery();
-            }            
+            }
         }
 
         public static void LoginUser(Login login)
@@ -414,5 +415,7 @@ namespace BookSupply.DAL
             }
             conn.Close();
         }
+
+
     }
 }

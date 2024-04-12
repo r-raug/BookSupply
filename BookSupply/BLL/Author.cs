@@ -24,7 +24,9 @@ namespace BookSupply.BLL
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public decimal StatusID { get; set; }
     
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AuthorsBook> AuthorsBooks { get; set; }
     }

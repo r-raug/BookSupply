@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Authors">
           <Key>
             <PropertyRef Name="AuthorId" />
@@ -13,6 +13,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="StatusID" Type="numeric" Precision="3" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="AuthorsBooks">
           <Key>
@@ -124,6 +125,18 @@
           <Property Name="JobId" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="StatusId" Type="numeric" Precision="3" Scale="0" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Authors_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Authors" Type="Self.Authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Authors">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AuthorsBooks_Authors">
           <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
           <End Role="AuthorsBooks" Type="Self.AuthorsBooks" Multiplicity="*" />
@@ -281,6 +294,10 @@
           <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Authors_Statuses" Association="Self.FK_Authors_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Authors" EntitySet="Authors" />
+          </AssociationSet>
           <AssociationSet Name="FK_AuthorsBooks_Authors" Association="Self.FK_AuthorsBooks_Authors">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="AuthorsBooks" EntitySet="AuthorsBooks" />
@@ -330,21 +347,10 @@
             <End Role="UserAccounts" EntitySet="UserAccounts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Author">
-          <Key>
-            <PropertyRef Name="AuthorId" />
-          </Key>
-          <Property Name="AuthorId" Type="Decimal" Precision="7" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AuthorsBooks" Relationship="Self.FK_AuthorsBooks_Authors" FromRole="Authors" ToRole="AuthorsBooks" />
-        </EntityType>
         <EntityType Name="AuthorsBook">
           <Key>
             <PropertyRef Name="AuthorId" />
@@ -354,8 +360,8 @@
           <Property Name="ISBN" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="YearPublished" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="Edition" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
-          <NavigationProperty Name="Author" Relationship="Self.FK_AuthorsBooks_Authors" FromRole="AuthorsBooks" ToRole="Authors" />
           <NavigationProperty Name="Book" Relationship="Self.FK_AuthorsBooks_Books" FromRole="AuthorsBooks" ToRole="Books" />
+          <NavigationProperty Name="Author" Relationship="db.FK_AuthorsBooks_Authors" FromRole="AuthorsBook" ToRole="Author" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -464,6 +470,7 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Books_Statuses" FromRole="Statuses" ToRole="Books" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Statuses" FromRole="Statuses" ToRole="Employees" />
+          <NavigationProperty Name="Authors" Relationship="db.FK_Authors_Statuses" FromRole="Status" ToRole="Author" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -478,18 +485,6 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_UserAccounts_Employees" FromRole="UserAccounts" ToRole="Employees" />
           <NavigationProperty Name="Job" Relationship="Self.FK_UserAccounts_Jobs" FromRole="UserAccounts" ToRole="Jobs" />
         </EntityType>
-        <Association Name="FK_AuthorsBooks_Authors">
-          <End Role="Authors" Type="Self.Author" Multiplicity="1" />
-          <End Role="AuthorsBooks" Type="Self.AuthorsBook" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Authors">
-              <PropertyRef Name="AuthorId" />
-            </Principal>
-            <Dependent Role="AuthorsBooks">
-              <PropertyRef Name="AuthorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AuthorsBooks_Books">
           <End Role="Books" Type="Self.Book" Multiplicity="1" />
           <End Role="AuthorsBooks" Type="Self.AuthorsBook" Multiplicity="*" />
@@ -623,7 +618,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HiTechDBEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Authors" EntityType="Self.Author" />
           <EntitySet Name="AuthorsBooks" EntityType="Self.AuthorsBook" />
           <EntitySet Name="Books" EntityType="Self.Book" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -635,10 +629,6 @@
           <EntitySet Name="Publishers" EntityType="Self.Publisher" />
           <EntitySet Name="Statuses" EntityType="Self.Status" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
-          <AssociationSet Name="FK_AuthorsBooks_Authors" Association="Self.FK_AuthorsBooks_Authors">
-            <End Role="Authors" EntitySet="Authors" />
-            <End Role="AuthorsBooks" EntitySet="AuthorsBooks" />
-          </AssociationSet>
           <AssociationSet Name="FK_AuthorsBooks_Books" Association="Self.FK_AuthorsBooks_Books">
             <End Role="Books" EntitySet="Books" />
             <End Role="AuthorsBooks" EntitySet="AuthorsBooks" />
@@ -683,23 +673,58 @@
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
+          <EntitySet Name="Authors" EntityType="db.Author" />
+          <AssociationSet Name="FK_Authors_Statuses" Association="db.FK_Authors_Statuses">
+            <End Role="Status" EntitySet="Statuses" />
+            <End Role="Author" EntitySet="Authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorsBooks_Authors" Association="db.FK_AuthorsBooks_Authors">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="AuthorsBook" EntitySet="AuthorsBooks" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="Decimal" Nullable="false" Precision="7" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <NavigationProperty Name="Status" Relationship="db.FK_Authors_Statuses" FromRole="Author" ToRole="Status" />
+          <NavigationProperty Name="AuthorsBooks" Relationship="db.FK_AuthorsBooks_Authors" FromRole="Author" ToRole="AuthorsBook" />
+        </EntityType>
+        <Association Name="FK_Authors_Statuses">
+          <End Type="db.Status" Role="Status" Multiplicity="1" />
+          <End Type="db.Author" Role="Author" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorsBooks_Authors">
+          <End Type="db.Author" Role="Author" Multiplicity="1" />
+          <End Type="db.AuthorsBook" Role="AuthorsBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="AuthorsBook">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbStoreContainer" CdmEntityContainer="HiTechDBEntities1">
-          <EntitySetMapping Name="Authors">
-            <EntityTypeMapping TypeName="db.Author">
-              <MappingFragment StoreEntitySet="Authors">
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AuthorsBooks">
             <EntityTypeMapping TypeName="db.AuthorsBook">
               <MappingFragment StoreEntitySet="AuthorsBooks">
@@ -816,6 +841,17 @@
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="db.Author">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

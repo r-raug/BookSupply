@@ -53,6 +53,15 @@ namespace BookSupply.VALIDATION
             return true;
         }
 
+        public static bool isValidISBN(string isbn)
+        {
+            if (!Regex.IsMatch(isbn, @"^\d{10}$"))
+            {
+                return false;
+            }
+            return true;
+        }
+
 
     }
 }

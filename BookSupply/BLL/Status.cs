@@ -19,6 +19,7 @@ namespace BookSupply.BLL
         {
             this.Books = new HashSet<Book>();
             this.Employees = new HashSet<Employee>();
+            this.Authors = new HashSet<Author>();
         }
     
         public decimal StatusId { get; set; }
@@ -28,5 +29,7 @@ namespace BookSupply.BLL
         public virtual ICollection<Book> Books { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Author> Authors { get; set; }
     }
 }

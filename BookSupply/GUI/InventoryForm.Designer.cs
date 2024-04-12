@@ -95,7 +95,7 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.textBoxDISBN = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonDeleteBook = new System.Windows.Forms.Button();
             this.buttonListBooks = new System.Windows.Forms.Button();
             this.listViewBooks = new System.Windows.Forms.ListView();
             this.ISBN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -109,6 +109,32 @@
             this.Category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.textBoxSAuthorLName = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.textBoxSAuthorEmail = new System.Windows.Forms.TextBox();
+            this.comboBoxSAuthorStatus = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.buttonSaveAuthor = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
+            this.textBoxSAuthorFName = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.textBoxAuthorIDUpdate = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.buttonUpdateAuthor = new System.Windows.Forms.Button();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.label75 = new System.Windows.Forms.Label();
+            this.comboBoxSearchAuthor = new System.Windows.Forms.ComboBox();
+            this.buttonSearchAuthor = new System.Windows.Forms.Button();
+            this.textBoxSearchAuthor = new System.Windows.Forms.TextBox();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.textBoxDAuthorID = new System.Windows.Forms.TextBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.buttonDeleteAuthor = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.buttonListAllPublishers = new System.Windows.Forms.Button();
             this.listViewPublishers = new System.Windows.Forms.ListView();
@@ -147,6 +173,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonDeletePublisher = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
+            this.textBoxUAuthorLName = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.textBoxUAuthorEmail = new System.Windows.Forms.TextBox();
+            this.comboBoxUAuthorStatus = new System.Windows.Forms.ComboBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.textBoxUAuthorFName = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.buttonListAuthors = new System.Windows.Forms.Button();
+            this.listViewAuthors = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -154,6 +195,12 @@
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabControl4.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.tabPage11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPageSaveEmp.SuspendLayout();
@@ -167,7 +214,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(39, 39);
+            this.tabControl1.Location = new System.Drawing.Point(12, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(727, 522);
@@ -773,13 +820,10 @@
             this.comboBoxSearchBook.FormattingEnabled = true;
             this.comboBoxSearchBook.Items.AddRange(new object[] {
             "ISBN",
-            "Author ID",
-            "First Name",
-            "Last Name",
-            "Publisher",
-            "Year",
-            "Category",
-            "Status ID"});
+            "Book Title",
+            "Author First Name",
+            "Author Last Name",
+            "Publisher"});
             this.comboBoxSearchBook.Location = new System.Drawing.Point(131, 26);
             this.comboBoxSearchBook.Name = "comboBoxSearchBook";
             this.comboBoxSearchBook.Size = new System.Drawing.Size(121, 21);
@@ -827,7 +871,7 @@
             // 
             this.tabPage7.Controls.Add(this.textBoxDISBN);
             this.tabPage7.Controls.Add(this.label28);
-            this.tabPage7.Controls.Add(this.button2);
+            this.tabPage7.Controls.Add(this.buttonDeleteBook);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
@@ -853,16 +897,16 @@
             this.label28.TabIndex = 18;
             this.label28.Text = "ISBN";
             // 
-            // button2
+            // buttonDeleteBook
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(236, 81);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 46);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Delete Book";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonDeleteBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteBook.Location = new System.Drawing.Point(236, 81);
+            this.buttonDeleteBook.Name = "buttonDeleteBook";
+            this.buttonDeleteBook.Size = new System.Drawing.Size(100, 46);
+            this.buttonDeleteBook.TabIndex = 1;
+            this.buttonDeleteBook.Text = "Delete Book";
+            this.buttonDeleteBook.UseVisualStyleBackColor = true;
+            this.buttonDeleteBook.Click += new System.EventHandler(this.buttonDeleteBook_Click);
             // 
             // buttonListBooks
             // 
@@ -892,7 +936,7 @@
             this.listViewBooks.HideSelection = false;
             this.listViewBooks.Location = new System.Drawing.Point(6, 315);
             this.listViewBooks.Name = "listViewBooks";
-            this.listViewBooks.Size = new System.Drawing.Size(707, 175);
+            this.listViewBooks.Size = new System.Drawing.Size(707, 165);
             this.listViewBooks.TabIndex = 100;
             this.listViewBooks.UseCompatibleStateImageBehavior = false;
             this.listViewBooks.View = System.Windows.Forms.View.Details;
@@ -946,6 +990,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonListAuthors);
+            this.tabPage2.Controls.Add(this.listViewAuthors);
+            this.tabPage2.Controls.Add(this.tabControl4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -953,6 +1000,288 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Author";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl4
+            // 
+            this.tabControl4.Controls.Add(this.tabPage8);
+            this.tabControl4.Controls.Add(this.tabPage9);
+            this.tabControl4.Controls.Add(this.tabPage10);
+            this.tabControl4.Controls.Add(this.tabPage11);
+            this.tabControl4.Location = new System.Drawing.Point(28, 22);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(660, 155);
+            this.tabControl4.TabIndex = 7;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.textBoxSAuthorLName);
+            this.tabPage8.Controls.Add(this.label49);
+            this.tabPage8.Controls.Add(this.textBoxSAuthorEmail);
+            this.tabPage8.Controls.Add(this.comboBoxSAuthorStatus);
+            this.tabPage8.Controls.Add(this.label51);
+            this.tabPage8.Controls.Add(this.buttonSaveAuthor);
+            this.tabPage8.Controls.Add(this.label57);
+            this.tabPage8.Controls.Add(this.textBoxSAuthorFName);
+            this.tabPage8.Controls.Add(this.label59);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(652, 129);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "Save";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSAuthorLName
+            // 
+            this.textBoxSAuthorLName.Location = new System.Drawing.Point(367, 33);
+            this.textBoxSAuthorLName.Name = "textBoxSAuthorLName";
+            this.textBoxSAuthorLName.Size = new System.Drawing.Size(155, 20);
+            this.textBoxSAuthorLName.TabIndex = 11;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(280, 33);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(80, 18);
+            this.label49.TabIndex = 34;
+            this.label49.Text = "Last Name";
+            // 
+            // textBoxSAuthorEmail
+            // 
+            this.textBoxSAuthorEmail.Location = new System.Drawing.Point(103, 75);
+            this.textBoxSAuthorEmail.Name = "textBoxSAuthorEmail";
+            this.textBoxSAuthorEmail.Size = new System.Drawing.Size(155, 20);
+            this.textBoxSAuthorEmail.TabIndex = 13;
+            // 
+            // comboBoxSAuthorStatus
+            // 
+            this.comboBoxSAuthorStatus.FormattingEnabled = true;
+            this.comboBoxSAuthorStatus.ItemHeight = 13;
+            this.comboBoxSAuthorStatus.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBoxSAuthorStatus.Location = new System.Drawing.Point(367, 75);
+            this.comboBoxSAuthorStatus.Name = "comboBoxSAuthorStatus";
+            this.comboBoxSAuthorStatus.Size = new System.Drawing.Size(112, 21);
+            this.comboBoxSAuthorStatus.TabIndex = 30;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(311, 77);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(50, 18);
+            this.label51.TabIndex = 31;
+            this.label51.Text = "Status";
+            // 
+            // buttonSaveAuthor
+            // 
+            this.buttonSaveAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveAuthor.Location = new System.Drawing.Point(535, 69);
+            this.buttonSaveAuthor.Name = "buttonSaveAuthor";
+            this.buttonSaveAuthor.Size = new System.Drawing.Size(100, 35);
+            this.buttonSaveAuthor.TabIndex = 17;
+            this.buttonSaveAuthor.Text = "Save";
+            this.buttonSaveAuthor.UseVisualStyleBackColor = true;
+            this.buttonSaveAuthor.Click += new System.EventHandler(this.buttonSaveAuthor_Click);
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(51, 74);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(45, 18);
+            this.label57.TabIndex = 17;
+            this.label57.Text = "Email";
+            // 
+            // textBoxSAuthorFName
+            // 
+            this.textBoxSAuthorFName.Location = new System.Drawing.Point(103, 33);
+            this.textBoxSAuthorFName.Name = "textBoxSAuthorFName";
+            this.textBoxSAuthorFName.Size = new System.Drawing.Size(155, 20);
+            this.textBoxSAuthorFName.TabIndex = 9;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(16, 33);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(81, 18);
+            this.label59.TabIndex = 3;
+            this.label59.Text = "First Name";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.textBoxUAuthorLName);
+            this.tabPage9.Controls.Add(this.label45);
+            this.tabPage9.Controls.Add(this.textBoxUAuthorEmail);
+            this.tabPage9.Controls.Add(this.comboBoxUAuthorStatus);
+            this.tabPage9.Controls.Add(this.label46);
+            this.tabPage9.Controls.Add(this.label47);
+            this.tabPage9.Controls.Add(this.textBoxUAuthorFName);
+            this.tabPage9.Controls.Add(this.label48);
+            this.tabPage9.Controls.Add(this.textBoxAuthorIDUpdate);
+            this.tabPage9.Controls.Add(this.label70);
+            this.tabPage9.Controls.Add(this.buttonUpdateAuthor);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(652, 129);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "Update";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // textBoxAuthorIDUpdate
+            // 
+            this.textBoxAuthorIDUpdate.Location = new System.Drawing.Point(113, 16);
+            this.textBoxAuthorIDUpdate.Name = "textBoxAuthorIDUpdate";
+            this.textBoxAuthorIDUpdate.Size = new System.Drawing.Size(88, 20);
+            this.textBoxAuthorIDUpdate.TabIndex = 43;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(35, 18);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(69, 18);
+            this.label70.TabIndex = 54;
+            this.label70.Text = "Author ID";
+            // 
+            // buttonUpdateAuthor
+            // 
+            this.buttonUpdateAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateAuthor.Location = new System.Drawing.Point(533, 16);
+            this.buttonUpdateAuthor.Name = "buttonUpdateAuthor";
+            this.buttonUpdateAuthor.Size = new System.Drawing.Size(100, 35);
+            this.buttonUpdateAuthor.TabIndex = 51;
+            this.buttonUpdateAuthor.Text = "Update";
+            this.buttonUpdateAuthor.UseVisualStyleBackColor = true;
+            this.buttonUpdateAuthor.Click += new System.EventHandler(this.buttonUpdateAuthor_Click);
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.label75);
+            this.tabPage10.Controls.Add(this.comboBoxSearchAuthor);
+            this.tabPage10.Controls.Add(this.buttonSearchAuthor);
+            this.tabPage10.Controls.Add(this.textBoxSearchAuthor);
+            this.tabPage10.Controls.Add(this.label76);
+            this.tabPage10.Controls.Add(this.label77);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(652, 129);
+            this.tabPage10.TabIndex = 2;
+            this.tabPage10.Text = "Search";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(47, 29);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(78, 18);
+            this.label75.TabIndex = 51;
+            this.label75.Text = "Search by:";
+            // 
+            // comboBoxSearchAuthor
+            // 
+            this.comboBoxSearchAuthor.FormattingEnabled = true;
+            this.comboBoxSearchAuthor.Items.AddRange(new object[] {
+            "Author ID",
+            "First Name",
+            "Last Name",
+            "Email"});
+            this.comboBoxSearchAuthor.Location = new System.Drawing.Point(131, 26);
+            this.comboBoxSearchAuthor.Name = "comboBoxSearchAuthor";
+            this.comboBoxSearchAuthor.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSearchAuthor.TabIndex = 0;
+            // 
+            // buttonSearchAuthor
+            // 
+            this.buttonSearchAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearchAuthor.Location = new System.Drawing.Point(306, 31);
+            this.buttonSearchAuthor.Name = "buttonSearchAuthor";
+            this.buttonSearchAuthor.Size = new System.Drawing.Size(100, 46);
+            this.buttonSearchAuthor.TabIndex = 4;
+            this.buttonSearchAuthor.Text = "Search Author";
+            this.buttonSearchAuthor.UseVisualStyleBackColor = true;
+            this.buttonSearchAuthor.Click += new System.EventHandler(this.buttonSearchAuthor_Click);
+            // 
+            // textBoxSearchAuthor
+            // 
+            this.textBoxSearchAuthor.Location = new System.Drawing.Point(50, 67);
+            this.textBoxSearchAuthor.Name = "textBoxSearchAuthor";
+            this.textBoxSearchAuthor.Size = new System.Drawing.Size(202, 20);
+            this.textBoxSearchAuthor.TabIndex = 3;
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label76.Location = new System.Drawing.Point(379, 67);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(0, 15);
+            this.label76.TabIndex = 44;
+            this.label76.Visible = false;
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label77.Location = new System.Drawing.Point(379, 31);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(0, 15);
+            this.label77.TabIndex = 42;
+            this.label77.Visible = false;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.textBoxDAuthorID);
+            this.tabPage11.Controls.Add(this.label78);
+            this.tabPage11.Controls.Add(this.buttonDeleteAuthor);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(652, 129);
+            this.tabPage11.TabIndex = 3;
+            this.tabPage11.Text = "Delete";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // textBoxDAuthorID
+            // 
+            this.textBoxDAuthorID.Location = new System.Drawing.Point(237, 42);
+            this.textBoxDAuthorID.Name = "textBoxDAuthorID";
+            this.textBoxDAuthorID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDAuthorID.TabIndex = 0;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label78.Location = new System.Drawing.Point(162, 44);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(69, 18);
+            this.label78.TabIndex = 18;
+            this.label78.Text = "Author ID";
+            // 
+            // buttonDeleteAuthor
+            // 
+            this.buttonDeleteAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteAuthor.Location = new System.Drawing.Point(236, 81);
+            this.buttonDeleteAuthor.Name = "buttonDeleteAuthor";
+            this.buttonDeleteAuthor.Size = new System.Drawing.Size(100, 46);
+            this.buttonDeleteAuthor.TabIndex = 1;
+            this.buttonDeleteAuthor.Text = "Delete Author";
+            this.buttonDeleteAuthor.UseVisualStyleBackColor = true;
+            this.buttonDeleteAuthor.Click += new System.EventHandler(this.buttonDeleteAuthor_Click);
             // 
             // tabPage3
             // 
@@ -988,7 +1317,7 @@
             this.listViewPublishers.HideSelection = false;
             this.listViewPublishers.Location = new System.Drawing.Point(24, 296);
             this.listViewPublishers.Name = "listViewPublishers";
-            this.listViewPublishers.Size = new System.Drawing.Size(655, 175);
+            this.listViewPublishers.Size = new System.Drawing.Size(655, 182);
             this.listViewPublishers.TabIndex = 103;
             this.listViewPublishers.UseCompatibleStateImageBehavior = false;
             this.listViewPublishers.View = System.Windows.Forms.View.Details;
@@ -1006,7 +1335,7 @@
             // webAddress
             // 
             this.webAddress.Text = "Web Address";
-            this.webAddress.Width = 58;
+            this.webAddress.Width = 92;
             // 
             // StatusID
             // 
@@ -1019,7 +1348,7 @@
             this.tabControl2.Controls.Add(this.tabPageUpdateEmp);
             this.tabControl2.Controls.Add(this.tabPageSearchEmp);
             this.tabControl2.Controls.Add(this.tabPageDeleteEmp);
-            this.tabControl2.Location = new System.Drawing.Point(24, 23);
+            this.tabControl2.Location = new System.Drawing.Point(28, 22);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(660, 190);
@@ -1330,7 +1659,7 @@
             // buttonLogout
             // 
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogout.Location = new System.Drawing.Point(687, 12);
+            this.buttonLogout.Location = new System.Drawing.Point(660, 12);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 32);
             this.buttonLogout.TabIndex = 99;
@@ -1338,11 +1667,137 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
+            // textBoxUAuthorLName
+            // 
+            this.textBoxUAuthorLName.Location = new System.Drawing.Point(375, 50);
+            this.textBoxUAuthorLName.Name = "textBoxUAuthorLName";
+            this.textBoxUAuthorLName.Size = new System.Drawing.Size(155, 20);
+            this.textBoxUAuthorLName.TabIndex = 58;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(288, 50);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(80, 18);
+            this.label45.TabIndex = 63;
+            this.label45.Text = "Last Name";
+            // 
+            // textBoxUAuthorEmail
+            // 
+            this.textBoxUAuthorEmail.Location = new System.Drawing.Point(111, 92);
+            this.textBoxUAuthorEmail.Name = "textBoxUAuthorEmail";
+            this.textBoxUAuthorEmail.Size = new System.Drawing.Size(155, 20);
+            this.textBoxUAuthorEmail.TabIndex = 59;
+            // 
+            // comboBoxUAuthorStatus
+            // 
+            this.comboBoxUAuthorStatus.FormattingEnabled = true;
+            this.comboBoxUAuthorStatus.ItemHeight = 13;
+            this.comboBoxUAuthorStatus.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBoxUAuthorStatus.Location = new System.Drawing.Point(375, 92);
+            this.comboBoxUAuthorStatus.Name = "comboBoxUAuthorStatus";
+            this.comboBoxUAuthorStatus.Size = new System.Drawing.Size(112, 21);
+            this.comboBoxUAuthorStatus.TabIndex = 61;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(319, 94);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(50, 18);
+            this.label46.TabIndex = 62;
+            this.label46.Text = "Status";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(59, 91);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(45, 18);
+            this.label47.TabIndex = 60;
+            this.label47.Text = "Email";
+            // 
+            // textBoxUAuthorFName
+            // 
+            this.textBoxUAuthorFName.Location = new System.Drawing.Point(111, 50);
+            this.textBoxUAuthorFName.Name = "textBoxUAuthorFName";
+            this.textBoxUAuthorFName.Size = new System.Drawing.Size(155, 20);
+            this.textBoxUAuthorFName.TabIndex = 57;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(24, 50);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(81, 18);
+            this.label48.TabIndex = 56;
+            this.label48.Text = "First Name";
+            // 
+            // buttonListAuthors
+            // 
+            this.buttonListAuthors.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonListAuthors.Location = new System.Drawing.Point(32, 183);
+            this.buttonListAuthors.Name = "buttonListAuthors";
+            this.buttonListAuthors.Size = new System.Drawing.Size(100, 51);
+            this.buttonListAuthors.TabIndex = 101;
+            this.buttonListAuthors.Text = "List All Authors";
+            this.buttonListAuthors.UseVisualStyleBackColor = true;
+            this.buttonListAuthors.Click += new System.EventHandler(this.buttonListAuthors_Click);
+            // 
+            // listViewAuthors
+            // 
+            this.listViewAuthors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listViewAuthors.GridLines = true;
+            this.listViewAuthors.HideSelection = false;
+            this.listViewAuthors.Location = new System.Drawing.Point(28, 240);
+            this.listViewAuthors.Name = "listViewAuthors";
+            this.listViewAuthors.Size = new System.Drawing.Size(656, 165);
+            this.listViewAuthors.TabIndex = 102;
+            this.listViewAuthors.UseCompatibleStateImageBehavior = false;
+            this.listViewAuthors.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Author ID";
+            this.columnHeader1.Width = 58;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.Width = 130;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Email";
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Status";
+            this.columnHeader5.Width = 90;
+            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 641);
+            this.ClientSize = new System.Drawing.Size(749, 566);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.tabControl1);
             this.Name = "InventoryForm";
@@ -1359,6 +1814,16 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabControl4.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPageSaveEmp.ResumeLayout(false);
@@ -1430,7 +1895,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TextBox textBoxDISBN;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonDeleteBook;
         private System.Windows.Forms.Button buttonListBooks;
         private System.Windows.Forms.ListView listViewBooks;
         private System.Windows.Forms.ColumnHeader ISBN;
@@ -1494,5 +1959,46 @@
         private System.Windows.Forms.TextBox textBoxUPrice;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TextBox textBoxSAuthorLName;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox textBoxSAuthorEmail;
+        private System.Windows.Forms.ComboBox comboBoxSAuthorStatus;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Button buttonSaveAuthor;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox textBoxSAuthorFName;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TextBox textBoxAuthorIDUpdate;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Button buttonUpdateAuthor;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.ComboBox comboBoxSearchAuthor;
+        private System.Windows.Forms.Button buttonSearchAuthor;
+        private System.Windows.Forms.TextBox textBoxSearchAuthor;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TextBox textBoxDAuthorID;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Button buttonDeleteAuthor;
+        private System.Windows.Forms.TextBox textBoxUAuthorLName;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox textBoxUAuthorEmail;
+        private System.Windows.Forms.ComboBox comboBoxUAuthorStatus;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TextBox textBoxUAuthorFName;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button buttonListAuthors;
+        private System.Windows.Forms.ListView listViewAuthors;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

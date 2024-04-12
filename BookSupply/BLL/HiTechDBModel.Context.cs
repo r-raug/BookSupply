@@ -25,7 +25,6 @@ namespace BookSupply.BLL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<AuthorsBook> AuthorsBooks { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
@@ -37,5 +36,6 @@ namespace BookSupply.BLL
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BookSupply.BLL;
+using BookSupply.VALIDATION;
 using BookSupply.DAL;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Net.NetworkInformation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Data.Entity.SqlServer;
+
 
 
 
@@ -25,6 +30,7 @@ namespace BookSupply.GUI
         {
             InitializeComponent();
             inventoryController = new InventoryController();
+            
         }
 
         HiTechDBEntities1 db = new HiTechDBEntities1();
@@ -90,85 +96,23 @@ namespace BookSupply.GUI
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            var status = 0;
-            if (comboBoxSaveStatus.SelectedIndex == 0)
-            {
-                status = 1;
-            }
-            else
-            {
-                status = 2;
-            }
+            //Save a new publisher
 
-            if (textBoxPublisherName.Text == "")
-            {
-                MessageBox.Show("Please, enter a publisher name.");
-            }
-            if(comboBoxSaveStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a status.");
-            }
-            if (db.Publishers.Any(pub => pub.PublisherName.ToLower().Trim() == textBoxPublisherName.Text.ToLower().Trim()))
-                {
-                    MessageBox.Show("Publisher already exists.");
-                    return;
-                }
-                var newPublisher = new BLL.Publisher
-                {
-                    PublisherName = textBoxPublisherName.Text,
-                    WebAddress = textBoxWebAddress.Text,
-                    StatusId = status
-
-                };
-                db.Publishers.Add(newPublisher);
-                db.SaveChanges();
-                MessageBox.Show("Publisher saved successfully.");
+            InventoryController.savePublisher(comboBoxSaveStatus.SelectedIndex, textBoxPublisherName.Text, textBoxWebAddress.Text);
+            
         }
 
         private void buttonUpdatePublisher_Click(object sender, EventArgs e)
         {
-            var publisherID = db.Publishers.Find(Convert.ToInt32(textBoxPublisherID.Text));
-            if (db.Publishers.Any(pub => pub.PublisherName.ToLower().Trim() == textBoxPublisherName.Text.ToLower().Trim()))
-            {
-                MessageBox.Show("Publisher ID not found.");
-                return;
-            }
-            if(textBoxUPublisherName.Text == "")
-            {
-                MessageBox.Show("Please, enter a publisher name.");
-                return;
-            }
-            if (comboBoxUpdateStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a status.");
-                return;
-            }
-            if(publisherID != null)
-            {
-                publisherID.PublisherName = textBoxUPublisherName.Text;
-                publisherID.WebAddress = textBoxUwebAddress.Text;
-                publisherID.StatusId = comboBoxUpdateStatus.SelectedIndex + 1;
-                db.SaveChanges();
-                MessageBox.Show("Publisher updated successfully.");
-            }else
-            {
-                MessageBox.Show("Publisher ID not found.");
-            }      
+
+            InventoryController.updatePublisher(comboBoxUpdateStatus.SelectedIndex, textBoxUPublisherName.Text, textBoxPublisherID.Text, textBoxUwebAddress.Text);
+
         }
 
         private void buttonDeletePublisher_Click(object sender, EventArgs e)
         {
-            var publisherID = db.Publishers.Find(Convert.ToInt32(textBoxDeletePublisherID.Text));
-            if (publisherID != null)
-            {                
-                publisherID.StatusId = 3;
-                db.SaveChanges();
-                MessageBox.Show("Publisher deleted successfully.");
-            }
-            else
-            {
-                MessageBox.Show("Publisher ID not found.");
-            }
+            InventoryController.deletePublisher(textBoxDeletePublisherID.Text);
+
         }
 
         private void buttonSearchPublisher_Click(object sender, EventArgs e)
@@ -262,88 +206,29 @@ namespace BookSupply.GUI
             comboBoxSStatusID.SelectedIndex = -1;
             comboBoxUStatusID.DataSource = filterStatus;
             comboBoxUStatusID.SelectedIndex = -1;
+            comboBoxSAuthorStatus.DataSource = filterStatus;
+            comboBoxSAuthorStatus.SelectedIndex = -1;
+            comboBoxUAuthorStatus.DataSource = filterStatus;
+            comboBoxUAuthorStatus.SelectedIndex = -1;
         }
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
-        {
-            if(textBoxSISBN.Text == "" || !long.TryParse(textBoxSISBN.Text, out _) || textBoxSISBN.Text.Length != 10)
-            {
-                MessageBox.Show("Please, enter a valid ISBN (10 digits).");
-                return;
-            }
-            if (decimal.TryParse(textBoxSISBN.Text, out decimal isbn))
-            {
-                if (db.Books.Any(book => book.ISBN == isbn))
-                {
-                    MessageBox.Show("Book already exists.");
-                    return;
-                }
-            }
-            if (textBoxSBookTitle.Text == "")
-            {
-                MessageBox.Show("Please, enter a book title.");
-                return;
-            }
-            if(textBoxSPrice.Text == "" || !double.TryParse(textBoxSPrice.Text, out _))
-            {
-                MessageBox.Show("Please, enter a unit price with decimal number.");
-                return;
-            }
-            if (textBoxSAuthorID.Text == "" || !long.TryParse(textBoxSAuthorID.Text, out _) )
-            {
-                MessageBox.Show("Please, enter an valid author ID.");
-                return;
-            }
-            if (decimal.TryParse(textBoxSAuthorID.Text, out decimal authorid))
-            {
-                if (!db.Authors.Any(author => author.AuthorId == authorid))
-                {
-                    MessageBox.Show("Author ID not found.");
-                    return;
-                }
-            }
-            if (textBoxSQuantity.Text == "" || !int.TryParse(textBoxSQuantity.Text, out _))
-            {
-                MessageBox.Show("Please, enter a quantity.");
-                return;
-            }
-            if(textBoxSPublisherID.Text == "" || !long.TryParse(textBoxSPublisherID.Text, out _))
-            {
-                MessageBox.Show("Please, enter a valid publisher ID.");
-                return;
-            }
-            if (decimal.TryParse(textBoxSPublisherID.Text, out decimal pubid))
-            {
-                if (!db.Publishers.Any(pub => pub.PublisherId == pubid))
-                {
-                    MessageBox.Show("Publisher ID not found.");
-                    return;
-                }
-            }
-            if (comboBoxSCategoryID.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a category.");
-                return;
-            }
-            if(comboBoxSStatusID.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a status.");
-                return;
-            }
+        {            
 
-            if (textBoxSYear.Text == "" ||
-                !int.TryParse(textBoxSYear.Text, out int year) ||
-                year < 1000 || year > 9999)
+            if(!inventoryController.validationIsbn(textBoxSISBN.Text) ||
+                !inventoryController.validationTitle(textBoxSBookTitle.Text) ||
+                !inventoryController.validationAuthorId(textBoxSAuthorID.Text) ||
+                !inventoryController.validationPublisherId(textBoxSPublisherID.Text) ||
+                !inventoryController.validationQuantity(textBoxSQuantity.Text) ||
+                !inventoryController.validationPrice(textBoxSPrice.Text) ||
+                !inventoryController.validationCategoryId(comboBoxSCategoryID.SelectedIndex) ||
+                !inventoryController.validationStatusId(comboBoxSStatusID.SelectedIndex) || 
+                !inventoryController.validationYear(textBoxSYear.Text) ||
+                !inventoryController.validationEdition(textBoxSEdition.Text))
             {
-                MessageBox.Show("Please, enter a valid year.");
                 return;
             }
-            if (textBoxSEdition.Text == "" || !int.TryParse(textBoxSEdition.Text, out _))
-            {
-                MessageBox.Show("Please, enter an edition.");
-                return;
-            }
-
+            
             var newBook = new BLL.Book
             {
                 ISBN = Convert.ToDecimal(textBoxSISBN.Text),
@@ -372,87 +257,26 @@ namespace BookSupply.GUI
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (textBoxUISBN.Text == "" || !long.TryParse(textBoxUISBN.Text, out _) || textBoxUISBN.Text.Length != 10)
+            //update a book
+
+            if (!inventoryController.validationIsbnUPDATE(textBoxUISBN.Text) ||
+                !inventoryController.validationTitle(textBoxUBookTitle.Text) ||
+                !inventoryController.validationAuthorId(textBoxUAuthorID.Text) ||
+                !inventoryController.validationPublisherId(textBoxUPublisherID.Text) ||
+                !inventoryController.validationQuantity(textBoxUQuantity.Text) ||
+                !inventoryController.validationPrice(textBoxUPrice.Text) ||
+                !inventoryController.validationCategoryId(comboBoxUCategoryID.SelectedIndex) ||
+                !inventoryController.validationStatusId(comboBoxUStatusID.SelectedIndex) ||
+                !inventoryController.validationYear(textBoxUYear.Text) ||
+                !inventoryController.validationEdition(textBoxUEdition.Text))
             {
-                MessageBox.Show("Please, enter a valid ISBN (10 digits).");
-                return;
-            }
-            if (decimal.TryParse(textBoxUISBN.Text, out decimal isbn))
-            {
-                if (!db.Books.Any(book => book.ISBN == isbn))
-                {
-                    MessageBox.Show("Book not found.");
-                    return;
-                }
-            }
-            if (textBoxUBookTitle.Text == "")
-            {
-                MessageBox.Show("Please, enter a book title.");
-                return;
-            }
-            if (textBoxUPrice.Text == "" || !double.TryParse(textBoxUPrice.Text, out _))
-            {
-                MessageBox.Show("Please, enter a unit price with decimal number.");
-                return;
-            }
-            if (textBoxUAuthorID.Text == "" || !long.TryParse(textBoxUAuthorID.Text, out _))
-            {
-                MessageBox.Show("Please, enter an valid author ID.");
-                return;
-            }
-            if (decimal.TryParse(textBoxUAuthorID.Text, out decimal authorid))
-            {
-                if (!db.Authors.Any(author => author.AuthorId == authorid))
-                {
-                    MessageBox.Show("Author ID not found.");
-                    return;
-                }
-            }
-            if (textBoxUQuantity.Text == "" || !int.TryParse(textBoxUQuantity.Text, out _))
-            {
-                MessageBox.Show("Please, enter a quantity.");
-                return;
-            }
-            if (textBoxUPublisherID.Text == "" || !long.TryParse(textBoxUPublisherID.Text, out _))
-            {
-                MessageBox.Show("Please, enter a valid publisher ID.");
-                return;
-            }
-            if (decimal.TryParse(textBoxUPublisherID.Text, out decimal pubid))
-            {
-                if (!db.Publishers.Any(pub => pub.PublisherId == pubid))
-                {
-                    MessageBox.Show("Publisher ID not found.");
-                    return;
-                }
-            }
-            if (comboBoxUCategoryID.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a category.");
-                return;
-            }
-            if (comboBoxUStatusID.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please, select a status.");
                 return;
             }
 
-            if (textBoxUYear.Text == "" ||
-                !int.TryParse(textBoxUYear.Text, out int year) ||
-                year < 1000 || year > 9999)
-            {
-                MessageBox.Show("Please, enter a valid year.");
-                return;
-            }
-            if (textBoxUEdition.Text == "" || !int.TryParse(textBoxUEdition.Text, out _))
-            {
-                MessageBox.Show("Please, enter an edition.");
-                return;
-            }
-
+            var isbnsearch = Convert.ToDecimal(textBoxUISBN.Text);
             var isbnB = db.Books.Find(Convert.ToDecimal(textBoxUISBN.Text));
-            var authorBook = db.AuthorsBooks.FirstOrDefault(ab => ab.ISBN == isbn);
-            if (isbnB != null)
+            var authorBook = db.AuthorsBooks.FirstOrDefault(ab => ab.ISBN == isbnsearch);
+            if (isbnB != null || authorBook != null)
             {
                 isbnB.BookTitle = textBoxUBookTitle.Text;
                 isbnB.UnitPrice = Convert.ToDecimal(textBoxUPrice.Text);
@@ -472,21 +296,6 @@ namespace BookSupply.GUI
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var isbnD = db.Books.Find(Convert.ToDecimal(textBoxDISBN.Text));
-            if (isbnD != null)
-            {
-                isbnD.Status = 3;
-                db.SaveChanges();
-                MessageBox.Show("Book deleted successfully.");
-            }
-            else
-            {
-                MessageBox.Show("Book not found.");
-            }
-        }
-
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             Close();
@@ -494,53 +303,551 @@ namespace BookSupply.GUI
 
         private void buttonSearchBook_Click(object sender, EventArgs e)
         {
-            if(comboBoxSearchBook.SelectedIndex == -1)
+            if (comboBoxSearchBook.SelectedIndex == -1)
             {
                 MessageBox.Show("Please, select a search criteria.");
                 return;
             }
+
             switch (comboBoxSearchBook.SelectedIndex)
             {
                 case 0:
-                    if (textBoxSearchBook.Text == "" || !long.TryParse(textBoxSearchBook.Text, out _))
+                    if (textBoxSearchBook.Text == "")
                     {
                         MessageBox.Show("Please, enter a valid ISBN.");
                         return;
                     }
-                    var searchISBN = Convert.ToDecimal(textBoxSearchBook.Text);
+                    var searchISBN = textBoxSearchBook.Text.Trim();
 
-                    var result = (from book in db.Books
-                                  join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
-                                  join author in db.Authors on authorBook.AuthorId equals author.AuthorId
-                                  join category in db.Categories on book.CategoryId equals category.CategoryId
-                                  join status in db.Statuses on book.Status equals status.StatusId
-                                  where book.ISBN == searchISBN
-                                  select new
-                                  {
-                                      book.ISBN, book.BookTitle, book.UnitPrice, book.Quantity, book.PublisherId, book.CategoryId, book.Status,
-                                      authorBook.YearPublished, authorBook.Edition, author.FirstName, author.LastName, category.CategName, status.Description
-                                  }).FirstOrDefault();
-                    if (result != null)
+                    var results = (from book in db.Books
+                                   join publisher in db.Publishers on book.PublisherId equals publisher.PublisherId
+                                   join category in db.Categories on book.CategoryId equals category.CategoryId
+                                   join status in db.Statuses on book.Status equals status.StatusId
+                                   join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
+                                   join author in db.Authors on authorBook.AuthorId equals author.AuthorId
+                                   where book.ISBN.ToString().Contains(searchISBN)
+                                   select new
+                                   {
+                                       book.ISBN,
+                                       book.BookTitle,
+                                       book.UnitPrice,
+                                       book.Quantity,
+                                       publisher.PublisherName,
+                                       book.Status,
+                                       authorBook.YearPublished,
+                                       authorBook.Edition,
+                                       author.FirstName,
+                                       author.LastName,
+                                       category.CategName,
+                                       status.Description
+                                   }).ToList();
+
+                    if (results.Count > 0)
                     {
                         listViewBooks.Items.Clear();
-                        ListViewItem item = new ListViewItem(result.ISBN.ToString());
-                        item.SubItems.Add(result.BookTitle);
-                        item.SubItems.Add(result.FirstName + " " + result.LastName);
-                        item.SubItems.Add(result.Quantity.ToString());
-                        item.SubItems.Add(result.UnitPrice.ToString());                        
-                        item.SubItems.Add(result.YearPublished.ToString());
-                        item.SubItems.Add(result.Edition.ToString());
-                        item.SubItems.Add(result.PublisherId.ToString());
-                        item.SubItems.Add(result.CategName);
-                        item.SubItems.Add(result.Description);
-                        listViewBooks.Items.Add(item);
+                        foreach (var result in results)
+                        {
+                            ListViewItem item = new ListViewItem(result.ISBN.ToString());
+                            item.SubItems.Add(result.BookTitle);
+                            item.SubItems.Add(result.FirstName + " " + result.LastName);
+                            item.SubItems.Add(result.Quantity.ToString());
+                            item.SubItems.Add(result.UnitPrice.ToString());
+                            item.SubItems.Add(result.YearPublished.ToString());
+                            item.SubItems.Add(result.Edition.ToString());
+                            item.SubItems.Add(result.PublisherName.ToString());
+                            item.SubItems.Add(result.CategName);
+                            item.SubItems.Add(result.Description);
+                            listViewBooks.Items.Add(item);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Book not found.");
+                        MessageBox.Show("No books found.");
                     }
                     break;
-                                  
+
+                case 1:
+                    if (textBoxSearchBook.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Book Title.");
+                        return;
+                    }
+                    var searchBT = textBoxSearchBook.Text.Trim();
+
+                    var resultBT = (from book in db.Books
+                                    join publisher in db.Publishers on book.PublisherId equals publisher.PublisherId
+                                    join category in db.Categories on book.CategoryId equals category.CategoryId
+                                    join status in db.Statuses on book.Status equals status.StatusId
+                                    join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
+                                    join author in db.Authors on authorBook.AuthorId equals author.AuthorId
+                                    where book.BookTitle.ToString().Contains(searchBT)
+                                    select new
+                                    {
+                                        book.ISBN,
+                                        book.BookTitle,
+                                        book.UnitPrice,
+                                        book.Quantity,
+                                        publisher.PublisherName,
+                                        book.Status,
+                                        authorBook.YearPublished,
+                                        authorBook.Edition,
+                                        author.FirstName,
+                                        author.LastName,
+                                        category.CategName,
+                                        status.Description
+                                    }).ToList();
+
+                    if (resultBT.Count > 0)
+                    {
+                        listViewBooks.Items.Clear();
+                        foreach (var result in resultBT)
+                        {
+                            ListViewItem item = new ListViewItem(result.ISBN.ToString());
+                            item.SubItems.Add(result.BookTitle);
+                            item.SubItems.Add(result.FirstName + " " + result.LastName);
+                            item.SubItems.Add(result.Quantity.ToString());
+                            item.SubItems.Add(result.UnitPrice.ToString());
+                            item.SubItems.Add(result.YearPublished.ToString());
+                            item.SubItems.Add(result.Edition.ToString());
+                            item.SubItems.Add(result.PublisherName.ToString());
+                            item.SubItems.Add(result.CategName);
+                            item.SubItems.Add(result.Description);
+                            listViewBooks.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No books found.");
+                    }
+                    break;
+
+
+                case 2:
+                    if (textBoxSearchBook.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Author First Name.");
+                        return;
+                    }
+                    var searchAF = textBoxSearchBook.Text.Trim();
+
+                    var resultAF = (from book in db.Books
+                                    join publisher in db.Publishers on book.PublisherId equals publisher.PublisherId
+                                    join category in db.Categories on book.CategoryId equals category.CategoryId
+                                    join status in db.Statuses on book.Status equals status.StatusId
+                                    join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
+                                    join author in db.Authors on authorBook.AuthorId equals author.AuthorId
+                                    where author.FirstName.ToString().Contains(searchAF)
+                                     select new
+                                     {
+                                         book.ISBN,
+                                         book.BookTitle,
+                                         book.UnitPrice,
+                                         book.Quantity,
+                                         publisher.PublisherName,
+                                         book.Status,
+                                         authorBook.YearPublished,
+                                         authorBook.Edition,
+                                         author.FirstName,
+                                         author.LastName,
+                                         category.CategName,
+                                         status.Description
+                                     }).ToList();
+
+                    if (resultAF.Count > 0)
+                    {
+                        listViewBooks.Items.Clear();
+                        foreach (var result in resultAF)
+                        {
+                            ListViewItem item = new ListViewItem(result.ISBN.ToString());
+                            item.SubItems.Add(result.BookTitle);
+                            item.SubItems.Add(result.FirstName + " " + result.LastName);
+                            item.SubItems.Add(result.Quantity.ToString());
+                            item.SubItems.Add(result.UnitPrice.ToString());
+                            item.SubItems.Add(result.YearPublished.ToString());
+                            item.SubItems.Add(result.Edition.ToString());
+                            item.SubItems.Add(result.PublisherName.ToString());
+                            item.SubItems.Add(result.CategName);
+                            item.SubItems.Add(result.Description);
+                            listViewBooks.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No books found.");
+                    }
+                    break;
+
+                case 3:
+                    if (textBoxSearchBook.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Author Last Name.");
+                        return;
+                    }
+                    var searchAL = textBoxSearchBook.Text.Trim();
+
+                    var resultAL = (from book in db.Books
+                                    join publisher in db.Publishers on book.PublisherId equals publisher.PublisherId
+                                    join category in db.Categories on book.CategoryId equals category.CategoryId
+                                    join status in db.Statuses on book.Status equals status.StatusId
+                                    join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
+                                    join author in db.Authors on authorBook.AuthorId equals author.AuthorId
+                                    where author.LastName.ToString().Contains(searchAL)
+                                    select new
+                                    {
+                                        book.ISBN,
+                                        book.BookTitle,
+                                        book.UnitPrice,
+                                        book.Quantity,
+                                        publisher.PublisherName,
+                                        book.Status,
+                                        authorBook.YearPublished,
+                                        authorBook.Edition,
+                                        author.FirstName,
+                                        author.LastName,
+                                        category.CategName,
+                                        status.Description
+                                    }).ToList();
+
+                    if (resultAL.Count > 0)
+                    {
+                        listViewBooks.Items.Clear();
+                        foreach (var result in resultAL)
+                        {
+                            ListViewItem item = new ListViewItem(result.ISBN.ToString());
+                            item.SubItems.Add(result.BookTitle);
+                            item.SubItems.Add(result.FirstName + " " + result.LastName);
+                            item.SubItems.Add(result.Quantity.ToString());
+                            item.SubItems.Add(result.UnitPrice.ToString());
+                            item.SubItems.Add(result.YearPublished.ToString());
+                            item.SubItems.Add(result.Edition.ToString());
+                            item.SubItems.Add(result.PublisherName.ToString());
+                            item.SubItems.Add(result.CategName);
+                            item.SubItems.Add(result.Description);
+                            listViewBooks.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No books found.");
+                    }
+                    break;
+
+                case 4:
+                    if (textBoxSearchBook.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Publisher name.");
+                        return;
+                    }
+                    var searchPub = textBoxSearchBook.Text.Trim();
+
+                    var resultPub = (from book in db.Books
+                                     join publisher in db.Publishers on book.PublisherId equals publisher.PublisherId
+                                     join category in db.Categories on book.CategoryId equals category.CategoryId
+                                     join status in db.Statuses on book.Status equals status.StatusId
+                                     join authorBook in db.AuthorsBooks on book.ISBN equals authorBook.ISBN
+                                     join author in db.Authors on authorBook.AuthorId equals author.AuthorId
+                                     where publisher.PublisherName.ToString().Contains(searchPub)
+                                    select new
+                                    {
+                                        book.ISBN,
+                                        book.BookTitle,
+                                        book.UnitPrice,
+                                        book.Quantity,
+                                        publisher.PublisherName,
+                                        book.Status,
+                                        authorBook.YearPublished,
+                                        authorBook.Edition,
+                                        author.FirstName,
+                                        author.LastName,
+                                        category.CategName,
+                                        status.Description
+                                    }).ToList();
+
+                    if (resultPub.Count > 0)
+                    {
+                        listViewBooks.Items.Clear();
+                        foreach (var result in resultPub)
+                        {
+                            ListViewItem item = new ListViewItem(result.ISBN.ToString());
+                            item.SubItems.Add(result.BookTitle);
+                            item.SubItems.Add(result.FirstName + " " + result.LastName);
+                            item.SubItems.Add(result.Quantity.ToString());
+                            item.SubItems.Add(result.UnitPrice.ToString());
+                            item.SubItems.Add(result.YearPublished.ToString());
+                            item.SubItems.Add(result.Edition.ToString());
+                            item.SubItems.Add(result.PublisherName.ToString());
+                            item.SubItems.Add(result.CategName);
+                            item.SubItems.Add(result.Description);
+                            listViewBooks.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No books found.");
+                    }
+                    break;
+
+
+            }
+        }
+
+        private void buttonDeleteBook_Click(object sender, EventArgs e)
+        {
+            InventoryController.deleteBook(textBoxDISBN.Text);
+        }
+
+        private void buttonListAuthors_Click(object sender, EventArgs e)
+        {
+            listViewAuthors.Items.Clear();
+            var listA = (from authors in db.Authors
+                         join Status in db.Statuses on authors.StatusID equals Status.StatusId
+                         select new
+                         {
+                             authors.AuthorId,
+                             authors.FirstName,
+                             authors.LastName,
+                             authors.Email,
+                             Status.Description
+                         }).ToList();
+            if (listA.Count == 0)
+            {
+                MessageBox.Show("No authors in the database.");
+                return;
+            }
+            foreach (var authors in listA)
+            {
+                ListViewItem item = new ListViewItem(authors.AuthorId.ToString());
+                item.SubItems.Add(authors.FirstName);
+                item.SubItems.Add(authors.LastName);
+                item.SubItems.Add(authors.Email);
+                item.SubItems.Add(authors.Description);
+                listViewAuthors.Items.Add(item);
+            }
+        }
+
+        private void buttonDeleteAuthor_Click(object sender, EventArgs e)
+        {
+            InventoryController.deleteAuthor(textBoxDAuthorID.Text);
+        }
+
+        private void buttonSaveAuthor_Click(object sender, EventArgs e)
+        {
+            if (!inventoryController.validateFName(textBoxSAuthorFName.Text) ||
+                !inventoryController.validateLName(textBoxSAuthorLName.Text) ||
+                !inventoryController.validateEmail(textBoxSAuthorEmail.Text) ||
+                !inventoryController.validationStatusId(comboBoxSAuthorStatus.SelectedIndex))               
+            {
+                return;
+            }
+            var newAuthor = new Author
+            {
+                FirstName = textBoxSAuthorFName.Text,
+                LastName = textBoxSAuthorLName.Text,
+                Email = textBoxSAuthorEmail.Text,
+                StatusID = comboBoxSAuthorStatus.SelectedIndex + 1
+            };
+            db.Authors.Add(newAuthor);
+            db.SaveChanges();
+            MessageBox.Show("Author saved successfully.");
+        }
+
+        private void buttonUpdateAuthor_Click(object sender, EventArgs e)
+        {
+
+            if (
+                !inventoryController.validationAuthorID(textBoxAuthorIDUpdate.Text) ||
+                !inventoryController.validateFName(textBoxUAuthorFName.Text) ||
+                !inventoryController.validateLName(textBoxUAuthorLName.Text) ||
+                !inventoryController.validateEmail(textBoxUAuthorEmail.Text) ||
+                !inventoryController.validationStatusId(comboBoxUAuthorStatus.SelectedIndex))
+            {
+                return;
+            }
+
+           // var idsearch = Convert.ToDecimal(textBoxUAuthorID.Text);
+            var idsearchB = db.Authors.Find(Convert.ToDecimal(textBoxAuthorIDUpdate.Text));            
+            if (idsearchB != null )
+            {
+                idsearchB.FirstName = textBoxUAuthorFName.Text;
+                idsearchB.LastName = textBoxUAuthorLName.Text;
+                idsearchB.Email = textBoxUAuthorEmail.Text;
+                idsearchB.StatusID = comboBoxUAuthorStatus.SelectedIndex + 1;                
+                db.SaveChanges();
+                MessageBox.Show("Author updated successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Author not found.");
+            }
+
+        }
+
+        private void buttonSearchAuthor_Click(object sender, EventArgs e)
+        {
+            if (comboBoxSearchAuthor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please, select a search criteria.");
+                return;
+            }
+
+            switch (comboBoxSearchAuthor.SelectedIndex)
+            {
+                case 0:
+                    if (textBoxSearchAuthor.Text == "" || !long.TryParse(textBoxSearchAuthor.Text, out _))
+                    {
+                        MessageBox.Show("Please, enter a valid Author ID.");
+                        return;
+                    }
+                    var searchID = textBoxSearchAuthor.Text.Trim();
+
+                    var results = (from author in db.Authors
+                                   join status in db.Statuses on author.StatusID equals status.StatusId
+                                   where author.AuthorId.ToString().Contains(searchID)
+                                   select new
+                                   {
+                                       author.AuthorId,
+                                       author.FirstName,
+                                       author.LastName,
+                                       author.Email,
+                                       status.Description
+                                   }).ToList();
+
+                    if (results.Count > 0)
+                    {
+                        listViewAuthors.Items.Clear();
+                        foreach (var result in results)
+                        {
+                            ListViewItem item = new ListViewItem(result.AuthorId.ToString());
+                            item.SubItems.Add(result.FirstName);
+                            item.SubItems.Add(result.LastName);
+                            item.SubItems.Add(result.Email);
+                            item.SubItems.Add(result.Description);
+                            listViewAuthors.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Author not found.");
+                    }
+                    break;
+                case 1:
+                    if (textBoxSearchAuthor.Text == "" )
+                    {
+                        MessageBox.Show("Please, enter a valid Name.");
+                        return;
+                    }
+                    var searchF = textBoxSearchAuthor.Text;
+
+                    var resultF = (from author in db.Authors
+                                   join status in db.Statuses on author.StatusID equals status.StatusId
+                                   where author.FirstName.ToString().Contains(searchF)
+                                   select new
+                                   {
+                                       author.AuthorId,
+                                       author.FirstName,
+                                       author.LastName,
+                                       author.Email,
+                                       status.Description
+                                   }).ToList();
+
+                    if (resultF.Count > 0)
+                    {
+                        listViewAuthors.Items.Clear();
+                        foreach (var result in resultF)
+                        {
+                            ListViewItem item = new ListViewItem(result.AuthorId.ToString());
+                            item.SubItems.Add(result.FirstName);
+                            item.SubItems.Add(result.LastName);
+                            item.SubItems.Add(result.Email);
+                            item.SubItems.Add(result.Description);
+                            listViewAuthors.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Author not found.");
+                    }
+                    break;
+                    case 2:
+                    if (textBoxSearchAuthor.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Name.");
+                        return;
+                    }
+                    var searchL = textBoxSearchAuthor.Text;
+
+                    var resultL = (from author in db.Authors
+                                   join status in db.Statuses on author.StatusID equals status.StatusId
+                                   where author.LastName.ToString().Contains(searchL)
+                                   select new
+                                   {
+                                       author.AuthorId,
+                                       author.FirstName,
+                                       author.LastName,
+                                       author.Email,
+                                       status.Description
+                                   }).ToList();
+
+                    if (resultL.Count > 0)
+                    {
+                        listViewAuthors.Items.Clear();
+                        foreach (var result in resultL)
+                        {
+                            ListViewItem item = new ListViewItem(result.AuthorId.ToString());
+                            item.SubItems.Add(result.FirstName);
+                            item.SubItems.Add(result.LastName);
+                            item.SubItems.Add(result.Email);
+                            item.SubItems.Add(result.Description);
+                            listViewAuthors.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Author not found.");
+                    }
+                    break;
+
+                    case 3:
+                    if (textBoxSearchAuthor.Text == "")
+                    {
+                        MessageBox.Show("Please, enter a valid Email.");
+                        return;
+                    }
+                    var searchE = textBoxSearchAuthor.Text;
+
+                    var resultE = (from author in db.Authors
+                                   join status in db.Statuses on author.StatusID equals status.StatusId
+                                   where author.Email.ToString().Contains(searchE)
+                                   select new
+                                   {
+                                       author.AuthorId,
+                                       author.FirstName,
+                                       author.LastName,
+                                       author.Email,
+                                       status.Description
+                                   }).ToList();
+
+                    if (resultE.Count > 0)
+                    {
+                        listViewAuthors.Items.Clear();
+                        foreach (var result in resultE)
+                        {
+                            ListViewItem item = new ListViewItem(result.AuthorId.ToString());
+                            item.SubItems.Add(result.FirstName);
+                            item.SubItems.Add(result.LastName);
+                            item.SubItems.Add(result.Email);
+                            item.SubItems.Add(result.Description);
+                            listViewAuthors.Items.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Author not found.");
+                    }
+                    break;
+
+                    
+
             }
         }
     }

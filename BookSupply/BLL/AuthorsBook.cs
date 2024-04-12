@@ -19,7 +19,7 @@ namespace BookSupply.BLL
         public decimal YearPublished { get; set; }
         public decimal Edition { get; set; }
     
-        public virtual Author Author { get; set; }
         public virtual Book Book { get; set; }
+        public virtual Author Author { get; set; }
     }
 }
