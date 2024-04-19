@@ -1556,7 +1556,7 @@
             // 
             this.textBoxDISBN.Location = new System.Drawing.Point(237, 42);
             this.textBoxDISBN.Name = "textBoxDISBN";
-            this.textBoxDISBN.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDISBN.Size = new System.Drawing.Size(99, 20);
             this.textBoxDISBN.TabIndex = 0;
             // 
             // label28
