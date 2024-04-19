@@ -26,7 +26,7 @@ namespace BookSupply.GUI
     public partial class InventoryForm : Form
     {
         private InventoryController inventoryController;
-        InventoryDB1 inventory = new InventoryDB1();
+        
 
         public InventoryForm()
         {
