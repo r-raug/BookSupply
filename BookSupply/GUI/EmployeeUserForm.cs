@@ -521,5 +521,50 @@ namespace BookSupply.GUI
                     break;
             }
         }
+
+        private void buttonDeleteEmployee_Click_1(object sender, EventArgs e)
+        {
+            // Validate employee ID input
+            if (textBoxEmployeeIDD.Text.Trim() == "")
+            {
+                MessageBox.Show("Employee ID must be a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // Confirm the deletion operation with the user
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this employee?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string input = "";
+                        Emp employee = new Emp();
+
+                        // Check if the employee ID exists before deletion
+                        input = textBoxEmployeeIDD.Text.Trim();
+                        if (!employee.IsUniqueEmployeeId("Employees", "EmployeeId", Convert.ToInt32(input)))
+                        {
+                            MessageBox.Show("ID not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxEmployeeIDD.Focus();
+                            return;
+                        }
+
+                        // Delete the employee
+                        employee.EmployeeId = Convert.ToInt32(textBoxEmployeeIDD.Text.Trim());
+                        employee.StatusId = 2;
+                        employee.DeleteEmployee(employee.EmployeeId, employee.StatusId);
+                        MessageBox.Show("Employee deleted", "Confirmation");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting employee : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Operation canceled.", "Confirmation");
+                }
+            }
+        }
     }
 }

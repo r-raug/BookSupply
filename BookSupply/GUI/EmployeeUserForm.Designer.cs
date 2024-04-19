@@ -701,6 +701,7 @@
             this.buttonDeleteEmployee.TabIndex = 1;
             this.buttonDeleteEmployee.Text = "Delete Employee";
             this.buttonDeleteEmployee.UseVisualStyleBackColor = true;
+            this.buttonDeleteEmployee.Click += new System.EventHandler(this.buttonDeleteEmployee_Click_1);
             // 
             // UserManagement
             // 
