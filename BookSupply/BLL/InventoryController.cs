@@ -16,6 +16,7 @@ namespace BookSupply.BLL
 
         HiTechDBEntities1 db = new HiTechDBEntities1();
 
+        // Filter statuses based on provided IDs
         public List<string> FilterStatuses(int num1, int num2)
         {
             var filteredStatuses = db.Statuses
@@ -24,17 +25,17 @@ namespace BookSupply.BLL
             .ToList();
 
             return filteredStatuses;
-
         }
 
+        // Validate ISBN format and uniqueness
         public bool validationIsbn(string bisbn)
         {
-
             if (VALIDATION.Validator.isValidISBN(bisbn) == false)
             {
                 MessageBox.Show("Please, enter a valid ISBN (10 digits).");
                 return false;
             }
+
             if (decimal.TryParse(bisbn, out decimal isbn))
             {
                 if (db.Books.Any(book => book.ISBN == isbn))
@@ -43,39 +44,46 @@ namespace BookSupply.BLL
                     return false;
                 }
             }
+
             return true;
         }
 
+        // Validate email format and uniqueness
         public bool validateEmail(string Aemail)
         {
             if (string.IsNullOrEmpty(Aemail))
             {
                 MessageBox.Show("Please, enter an email.");
                 return false;
-            }            
-                if (VALIDATION.Validator.isValidEmail(Aemail) == false)
-                {
-                    MessageBox.Show("Please, enter a valid email.");
-                    return false;
-                }
-                if (db.Authors.Any(email => email.Email == Aemail))
-                {
-                    MessageBox.Show("Email already exists.");
-                    return false;
-                }
-            
+            }
+
+            if (VALIDATION.Validator.isValidEmail(Aemail) == false)
+            {
+                MessageBox.Show("Please, enter a valid email.");
+                return false;
+            }
+
+            if (db.Authors.Any(email => email.Email == Aemail))
+            {
+                MessageBox.Show("Email already exists.");
+                return false;
+            }
+
             return true;
         }
 
-        public bool validateFName(string name) {
-        if (!Validator.IsValidName(name))
+        // Validate first name format
+        public bool validateFName(string name)
+        {
+            if (!Validator.IsValidName(name))
             {
-                MessageBox.Show("Invalid First Name.");                
+                MessageBox.Show("Invalid First Name.");
                 return false;
             }
-             return true;
+            return true;
         }
 
+        // Validate last name format
         public bool validateLName(string name)
         {
             if (!Validator.IsValidName(name))
@@ -86,14 +94,15 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate ISBN format and existence for update
         public bool validationIsbnUPDATE(string bisbn)
         {
-
             if (VALIDATION.Validator.isValidISBN(bisbn) == false)
             {
                 MessageBox.Show("Please, enter a valid ISBN (10 digits).");
                 return false;
             }
+
             if (decimal.TryParse(bisbn, out decimal isbn))
             {
                 if (!db.Books.Any(book => book.ISBN == isbn))
@@ -105,6 +114,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate author ID format and existence
         public bool validationAuthorID(string aID)
         {
             if (string.IsNullOrEmpty(aID) || !decimal.TryParse(aID, out _))
@@ -112,7 +122,7 @@ namespace BookSupply.BLL
                 MessageBox.Show("Please, enter a valid author ID.");
                 return false;
             }
-            
+
             if (decimal.TryParse(aID, out decimal id))
             {
                 if (!db.Authors.Any(authorID => authorID.AuthorId == id))
@@ -124,7 +134,9 @@ namespace BookSupply.BLL
             return true;
         }
 
-        public bool validationTitle(string title) {
+        // Validate book title format
+        public bool validationTitle(string title)
+        {
             if (string.IsNullOrEmpty(title))
             {
                 MessageBox.Show("Please, enter a book title.");
@@ -133,6 +145,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate price format
         public bool validationPrice(string price)
         {
             if (string.IsNullOrEmpty(price) || !double.TryParse(price, out _))
@@ -143,8 +156,9 @@ namespace BookSupply.BLL
             return true;
         }
 
-
-        public bool validationAuthorId(string authorIds) {
+        // Validate author IDs format and existence
+        public bool validationAuthorId(string authorIds)
+        {
             if (string.IsNullOrEmpty(authorIds))
             {
                 MessageBox.Show("Please enter at least one author ID.");
@@ -165,7 +179,7 @@ namespace BookSupply.BLL
                     return false;
                 }
 
-                //Verify if the author ID is unique
+                // Verify if the author ID is unique
                 if (uniqueAuthorIds.Contains(authorId))
                 {
                     MessageBox.Show($"Duplicate author ID: {authorId}.");
@@ -185,6 +199,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate quantity format
         public bool validationQuantity(string qtd)
         {
             if (string.IsNullOrEmpty(qtd) || !int.TryParse(qtd, out _))
@@ -195,6 +210,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate publisher ID format and existence
         public bool validationPublisherId(string pubId)
         {
             if (string.IsNullOrEmpty(pubId) || !long.TryParse(pubId, out _))
@@ -213,6 +229,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate category ID
         public bool validationCategoryId(int catId)
         {
             if (catId == -1)
@@ -223,8 +240,9 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate status ID
         public bool validationStatusId(int statusId)
-        { 
+        {
             if (statusId == -1)
             {
                 MessageBox.Show("Please, select a status.");
@@ -233,6 +251,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Validate year format
         public bool validationYear(string years)
         {
             if (string.IsNullOrEmpty(years) ||
@@ -245,8 +264,10 @@ namespace BookSupply.BLL
             return true;
         }
 
-        public bool validationEdition(string edition) { 
-            if (string.IsNullOrEmpty(edition)|| !int.TryParse(edition, out _))
+        // Validate edition format
+        public bool validationEdition(string edition)
+        {
+            if (string.IsNullOrEmpty(edition) || !int.TryParse(edition, out _))
             {
                 MessageBox.Show("Please, enter an edition.");
                 return false;
@@ -254,6 +275,7 @@ namespace BookSupply.BLL
             return true;
         }
 
+        // Save a new publisher
         public static void savePublisher(int cbStatus, string pubName, string pubWeb)
         {
             HiTechDBEntities1 db = new HiTechDBEntities1();
@@ -267,7 +289,7 @@ namespace BookSupply.BLL
                 status = 2;
             }
 
-            if (pubName == "" )
+            if (pubName == "")
             {
                 MessageBox.Show("Please, enter a publisher name.");
                 return;
@@ -294,6 +316,7 @@ namespace BookSupply.BLL
             MessageBox.Show("Publisher saved successfully.");
         }
 
+        // Update an existing publisher
         public static void updatePublisher(int cbStatus, string pubName, string pubID, string pubWeb)
         {
             HiTechDBEntities1 db = new HiTechDBEntities1();
@@ -333,11 +356,11 @@ namespace BookSupply.BLL
             }
         }
 
-
+        // Delete a publisher
         public static void deletePublisher(string pubID)
         {
             HiTechDBEntities1 db = new HiTechDBEntities1();
-            if(string.IsNullOrEmpty(pubID))
+            if (string.IsNullOrEmpty(pubID))
             {
                 MessageBox.Show("Please, enter a publisher ID.");
                 return;
@@ -354,8 +377,9 @@ namespace BookSupply.BLL
             {
                 MessageBox.Show("Publisher ID not found.");
             }
-        }   
+        }
 
+        // Delete a book
         public static void deleteBook(string isbn)
         {
             HiTechDBEntities1 db = new HiTechDBEntities1();
@@ -377,12 +401,13 @@ namespace BookSupply.BLL
             }
         }
 
+        // Delete an author
         public static void deleteAuthor(string authorID)
         {
             HiTechDBEntities1 db = new HiTechDBEntities1();
             if (string.IsNullOrEmpty(authorID))
             {
-                MessageBox.Show("Please, enter a author ID.");
+                MessageBox.Show("Please, enter an author ID.");
                 return;
             }
             var authorId = db.Authors.Find(Convert.ToDecimal(authorID));
@@ -397,8 +422,5 @@ namespace BookSupply.BLL
                 MessageBox.Show("Author not found.");
             }
         }
-
-
-
     }
 }

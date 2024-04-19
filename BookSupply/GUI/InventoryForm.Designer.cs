@@ -651,7 +651,7 @@
             this.buttonListAllPublishers.TabIndex = 104;
             this.buttonListAllPublishers.Text = "List All Publishers";
             this.buttonListAllPublishers.UseVisualStyleBackColor = true;
-            this.buttonListAllPublishers.Click += new System.EventHandler(this.buttonListAllPublishers_Click);
+            this.buttonListAllPublishers.Click += new System.EventHandler(this.buttonListAllPublishers_Click_1);
             // 
             // listViewPublishers
             // 

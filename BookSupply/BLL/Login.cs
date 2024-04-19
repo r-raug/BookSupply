@@ -57,12 +57,7 @@ namespace BookSupply.BLL
            
         }
 
-        //public void Logout()
-        //{
-        //    UserName = string.Empty;
-        //    Password = string.Empty;
-        //    JobId = string.Empty;
-        //}
+
 
     }
 }

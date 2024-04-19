@@ -896,5 +896,33 @@ namespace BookSupply.GUI
             }
         }
 
+        private void buttonListAllPublishers_Click_1(object sender, EventArgs e)
+        {
+            {
+                listViewPublishers.Items.Clear();
+                var listP = (from publisher in db.Publishers
+                             join Status in db.Statuses on publisher.StatusId equals Status.StatusId
+                             select new
+                             {
+                                 publisher.PublisherId,
+                                 publisher.PublisherName,
+                                 publisher.WebAddress,
+                                 Status.Description
+                             }).ToList();
+                if (listP.Count == 0)
+                {
+                    MessageBox.Show("No publishers in the database.");
+                    return;
+                }
+                foreach (var publisher in listP)
+                {
+                    ListViewItem item = new ListViewItem(publisher.PublisherId.ToString());
+                    item.SubItems.Add(publisher.PublisherName);
+                    item.SubItems.Add(publisher.WebAddress);
+                    item.SubItems.Add(publisher.Description);
+                    listViewPublishers.Items.Add(item);
+                }
+            }
+        }
     }
 }

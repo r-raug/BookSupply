@@ -11,12 +11,12 @@ namespace BookSupply.BLL
 {
     public class Emp
     {
-        //privates flieds
+        // Private fields
         private string lastName, firstName, email;
         private int employeeId, jobId, statusId;
         private long phoneNumber;
 
-        //setters and getters
+        // Setters and getters
         public int EmployeeId { get => employeeId; set => employeeId = value; }
         public long PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public int JobId { get => jobId; set => jobId = value; }
@@ -25,20 +25,17 @@ namespace BookSupply.BLL
         public string Email { get => email; set => email = value; }
         public int StatusId { get => statusId; set => statusId = value; }
 
-
-        //default constructor
+        // Default constructor
         public Emp()
         {
-
             LastName = string.Empty;
             FirstName = string.Empty;
             Email = string.Empty;
             PhoneNumber = 0;
             JobId = 0;
-            //StatusId = 0;
         }
 
-        //parameterized constructor
+        // Parameterized constructor
         public Emp(string FirstName, string LastName, string Email, long PhoneNumber, int JobId, int StatusId)
         {
             this.FirstName = FirstName;
@@ -49,36 +46,40 @@ namespace BookSupply.BLL
             this.StatusId = StatusId;
         }
 
+        // Save an employee
         public static void SaveEmployee(Emp employee)
         {
             HiTechDB.SaveRecordEmployee(employee);
         }
 
+        // Get a list of all employees
         public List<Emp> GetEmployeeList()
         {
             return HiTechDB.GetAllEmployees();
         }
 
+        // Search employees by a single column
         public List<Emp> SearchEmployees(string search, string column)
         {
-
             return HiTechDB.SearchEmployee(search, column);
         }
 
-
+        // Search employees by multiple columns
         public List<Emp> SearchEmployees(string search, string search1, string column, string column1)
         {
-
             return HiTechDB.SearchEmployee(search, search1, column, column1);
         }
 
+        // Check if an employee ID is unique
         public bool IsUniqueEmployeeId(string table, string column, int eId)
         {
             return HiTechDB.IsUniqueId(table, column, eId);
         }
 
+        // Update an employee
         public void UpdateEmployee()
         {
+            // Validate employee data
             if (!Validator.IsValidName(FirstName))
             {
                 MessageBox.Show("Invalid First Name.", "Invalid");
@@ -103,23 +104,22 @@ namespace BookSupply.BLL
                 return;
             }
 
-
             if (!IsUniqueEmployeeId("Employees", "EmployeeId", EmployeeId))
             {
                 MessageBox.Show("Employee ID not found.", "Error ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Update employee record
             HiTechDB.UpdateEmployee(this);
         }
 
+        // Delete an employee
         public void DeleteEmployee(int id, int status)
         {
             id = EmployeeId;
             status = StatusId;
             HiTechDB.Delete("Employees", "EmployeeId", id, status);
         }
-
-
-    
     }
 }
