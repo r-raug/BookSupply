@@ -26,6 +26,7 @@ namespace BookSupply.BLL
         public decimal OrderStatus { get; set; }
         public decimal CustomerId { get; set; }
         public decimal EmployeeId { get; set; }
+        public string OrderType { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

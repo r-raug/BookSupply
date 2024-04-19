@@ -362,7 +362,6 @@
             this.comboBoxStatusID.Name = "comboBoxStatusID";
             this.comboBoxStatusID.Size = new System.Drawing.Size(69, 21);
             this.comboBoxStatusID.TabIndex = 1;
-//            this.comboBoxStatusID.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusID_SelectedIndexChanged);
             // 
             // comboBoxJob
             // 
@@ -376,7 +375,6 @@
             this.comboBoxJob.Name = "comboBoxJob";
             this.comboBoxJob.Size = new System.Drawing.Size(112, 21);
             this.comboBoxJob.TabIndex = 0;
-//            this.comboBoxJob.SelectedIndexChanged += new System.EventHandler(this.comboBoxJob_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -423,7 +421,6 @@
             this.comboBoxStatusIDU.Name = "comboBoxStatusIDU";
             this.comboBoxStatusIDU.Size = new System.Drawing.Size(74, 21);
             this.comboBoxStatusIDU.TabIndex = 1;
-//            this.comboBoxStatusIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusIDu_SelectedIndexChanged);
             // 
             // comboBoxJobIDU
             // 
@@ -437,7 +434,6 @@
             this.comboBoxJobIDU.Name = "comboBoxJobIDU";
             this.comboBoxJobIDU.Size = new System.Drawing.Size(95, 21);
             this.comboBoxJobIDU.TabIndex = 0;
-//            this.comboBoxJobIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobIDu_SelectedIndexChanged);
             // 
             // label20
             // 
@@ -448,7 +444,6 @@
             this.label20.Size = new System.Drawing.Size(50, 18);
             this.label20.TabIndex = 34;
             this.label20.Text = "Status";
-//            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label21
             // 
@@ -589,7 +584,6 @@
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSearch.TabIndex = 0;
-//            this.comboBoxSearch.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearch_SelectedIndexChanged);
             // 
             // buttonSearchEmployee
             // 
@@ -600,7 +594,7 @@
             this.buttonSearchEmployee.TabIndex = 4;
             this.buttonSearchEmployee.Text = "Search Employee";
             this.buttonSearchEmployee.UseVisualStyleBackColor = true;
-//            this.buttonSearchEmployee.Click += new System.EventHandler(this.buttonSearchEmployee_Click);
+            this.buttonSearchEmployee.Click += new System.EventHandler(this.buttonSearchEmployee_Click);
             // 
             // textBoxSearch1
             // 
@@ -706,7 +700,6 @@
             this.buttonDeleteEmployee.TabIndex = 1;
             this.buttonDeleteEmployee.Text = "Delete Employee";
             this.buttonDeleteEmployee.UseVisualStyleBackColor = true;
-//            this.buttonDeleteEmployee.Click += new System.EventHandler(this.buttonDeleteEmployee_Click_1);
             // 
             // UserManagement
             // 
@@ -888,7 +881,6 @@
             this.comboBoxSearchUser.Name = "comboBoxSearchUser";
             this.comboBoxSearchUser.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSearchUser.TabIndex = 0;
-//            this.comboBoxSearchUser.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchUser_SelectedIndexChanged);
             // 
             // buttonSearchUser
             // 
@@ -899,7 +891,6 @@
             this.buttonSearchUser.TabIndex = 4;
             this.buttonSearchUser.Text = "Search User";
             this.buttonSearchUser.UseVisualStyleBackColor = true;
-//            this.buttonSearchUser.Click += new System.EventHandler(this.buttonSearchUser_Click);
             // 
             // textBoxUserSearch
             // 
@@ -968,7 +959,6 @@
             this.buttonDeleteUser.TabIndex = 1;
             this.buttonDeleteUser.Text = "Delete User";
             this.buttonDeleteUser.UseVisualStyleBackColor = true;
-//            this.buttonDeleteUser.Click += new System.EventHandler(this.buttonDeleteUser_Click);
             // 
             // textBoxUserID
             // 
@@ -1061,7 +1051,6 @@
             this.Name = "EmployeeUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee and User Management";
-//            this.Load += new System.EventHandler(this.EmployeeUserForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.EmployeeManagement.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\raug0\Desktop\College\Winter 2024\MULT TIER APP DEVELOP\codes\BookSupply\BookSupply\BLL\HiTechDBModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\raug0\Desktop\College\Winter 2024\MULT TIER APP DEVELOP\codes\BookSupply\BookSupply\BookSupply\BLL\HiTechDBModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

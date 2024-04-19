@@ -313,6 +313,11 @@ namespace BookSupply.GUI
             Close();
         }
 
+        private void buttonSearchEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // Event handler for combo box selection change
 
     }
