@@ -49,6 +49,7 @@
             this.textBoxSAuthorFName = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.buttonAuthorUFill = new System.Windows.Forms.Button();
             this.textBoxUAuthorLName = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.textBoxUAuthorEmail = new System.Windows.Forms.TextBox();
@@ -88,6 +89,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageUpdateEmp = new System.Windows.Forms.TabPage();
+            this.buttonPubUFill = new System.Windows.Forms.Button();
             this.comboBoxUpdateStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxPublisherID = new System.Windows.Forms.TextBox();
@@ -134,6 +136,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.buttonBookUFill = new System.Windows.Forms.Button();
             this.textBoxUEdition = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBoxUYear = new System.Windows.Forms.TextBox();
@@ -169,8 +172,8 @@
             this.ISBN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BookTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Edition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Publisher = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -332,6 +335,7 @@
             // 
             // comboBoxSAuthorStatus
             // 
+            this.comboBoxSAuthorStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSAuthorStatus.FormattingEnabled = true;
             this.comboBoxSAuthorStatus.ItemHeight = 13;
             this.comboBoxSAuthorStatus.Items.AddRange(new object[] {
@@ -392,6 +396,7 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.buttonAuthorUFill);
             this.tabPage9.Controls.Add(this.textBoxUAuthorLName);
             this.tabPage9.Controls.Add(this.label45);
             this.tabPage9.Controls.Add(this.textBoxUAuthorEmail);
@@ -410,6 +415,17 @@
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Update";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // buttonAuthorUFill
+            // 
+            this.buttonAuthorUFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAuthorUFill.Location = new System.Drawing.Point(207, 13);
+            this.buttonAuthorUFill.Name = "buttonAuthorUFill";
+            this.buttonAuthorUFill.Size = new System.Drawing.Size(79, 29);
+            this.buttonAuthorUFill.TabIndex = 64;
+            this.buttonAuthorUFill.Text = "Fill";
+            this.buttonAuthorUFill.UseVisualStyleBackColor = true;
+            this.buttonAuthorUFill.Click += new System.EventHandler(this.buttonAuthorUFill_Click);
             // 
             // textBoxUAuthorLName
             // 
@@ -437,6 +453,7 @@
             // 
             // comboBoxUAuthorStatus
             // 
+            this.comboBoxUAuthorStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUAuthorStatus.FormattingEnabled = true;
             this.comboBoxUAuthorStatus.ItemHeight = 13;
             this.comboBoxUAuthorStatus.Items.AddRange(new object[] {
@@ -540,6 +557,7 @@
             // 
             // comboBoxSearchAuthor
             // 
+            this.comboBoxSearchAuthor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchAuthor.FormattingEnabled = true;
             this.comboBoxSearchAuthor.Items.AddRange(new object[] {
             "Author ID",
@@ -720,6 +738,7 @@
             // 
             // comboBoxSaveStatus
             // 
+            this.comboBoxSaveStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSaveStatus.FormattingEnabled = true;
             this.comboBoxSaveStatus.Items.AddRange(new object[] {
             "Active",
@@ -786,6 +805,7 @@
             // 
             // tabPageUpdateEmp
             // 
+            this.tabPageUpdateEmp.Controls.Add(this.buttonPubUFill);
             this.tabPageUpdateEmp.Controls.Add(this.comboBoxUpdateStatus);
             this.tabPageUpdateEmp.Controls.Add(this.label8);
             this.tabPageUpdateEmp.Controls.Add(this.textBoxPublisherID);
@@ -803,13 +823,25 @@
             this.tabPageUpdateEmp.Text = "Update";
             this.tabPageUpdateEmp.UseVisualStyleBackColor = true;
             // 
+            // buttonPubUFill
+            // 
+            this.buttonPubUFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPubUFill.Location = new System.Drawing.Point(250, 16);
+            this.buttonPubUFill.Name = "buttonPubUFill";
+            this.buttonPubUFill.Size = new System.Drawing.Size(79, 29);
+            this.buttonPubUFill.TabIndex = 65;
+            this.buttonPubUFill.Text = "Fill";
+            this.buttonPubUFill.UseVisualStyleBackColor = true;
+            this.buttonPubUFill.Click += new System.EventHandler(this.buttonPubUFill_Click);
+            // 
             // comboBoxUpdateStatus
             // 
+            this.comboBoxUpdateStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUpdateStatus.FormattingEnabled = true;
             this.comboBoxUpdateStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.comboBoxUpdateStatus.Location = new System.Drawing.Point(379, 18);
+            this.comboBoxUpdateStatus.Location = new System.Drawing.Point(384, 60);
             this.comboBoxUpdateStatus.Name = "comboBoxUpdateStatus";
             this.comboBoxUpdateStatus.Size = new System.Drawing.Size(101, 21);
             this.comboBoxUpdateStatus.TabIndex = 15;
@@ -818,7 +850,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(323, 21);
+            this.label8.Location = new System.Drawing.Point(328, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 18);
             this.label8.TabIndex = 14;
@@ -828,7 +860,7 @@
             // 
             this.textBoxPublisherID.Location = new System.Drawing.Point(146, 21);
             this.textBoxPublisherID.Name = "textBoxPublisherID";
-            this.textBoxPublisherID.Size = new System.Drawing.Size(153, 20);
+            this.textBoxPublisherID.Size = new System.Drawing.Size(88, 20);
             this.textBoxPublisherID.TabIndex = 12;
             // 
             // label6
@@ -914,6 +946,7 @@
             // 
             // comboBoxSearchPublisher
             // 
+            this.comboBoxSearchPublisher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchPublisher.FormattingEnabled = true;
             this.comboBoxSearchPublisher.Items.AddRange(new object[] {
             "Publisher ID",
@@ -1130,6 +1163,7 @@
             // 
             // comboBoxSStatusID
             // 
+            this.comboBoxSStatusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSStatusID.FormattingEnabled = true;
             this.comboBoxSStatusID.ItemHeight = 13;
             this.comboBoxSStatusID.Items.AddRange(new object[] {
@@ -1152,6 +1186,7 @@
             // 
             // comboBoxSCategoryID
             // 
+            this.comboBoxSCategoryID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSCategoryID.FormattingEnabled = true;
             this.comboBoxSCategoryID.ItemHeight = 13;
             this.comboBoxSCategoryID.Items.AddRange(new object[] {
@@ -1263,6 +1298,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.buttonBookUFill);
             this.tabPage5.Controls.Add(this.textBoxUEdition);
             this.tabPage5.Controls.Add(this.label17);
             this.tabPage5.Controls.Add(this.textBoxUYear);
@@ -1291,6 +1327,17 @@
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Update";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // buttonBookUFill
+            // 
+            this.buttonBookUFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBookUFill.Location = new System.Drawing.Point(218, 10);
+            this.buttonBookUFill.Name = "buttonBookUFill";
+            this.buttonBookUFill.Size = new System.Drawing.Size(79, 29);
+            this.buttonBookUFill.TabIndex = 67;
+            this.buttonBookUFill.Text = "Fill";
+            this.buttonBookUFill.UseVisualStyleBackColor = true;
+            this.buttonBookUFill.Click += new System.EventHandler(this.buttonBookUFill_Click);
             // 
             // textBoxUEdition
             // 
@@ -1352,6 +1399,7 @@
             // 
             // comboBoxUStatusID
             // 
+            this.comboBoxUStatusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUStatusID.FormattingEnabled = true;
             this.comboBoxUStatusID.ItemHeight = 13;
             this.comboBoxUStatusID.Items.AddRange(new object[] {
@@ -1374,6 +1422,7 @@
             // 
             // comboBoxUCategoryID
             // 
+            this.comboBoxUCategoryID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUCategoryID.FormattingEnabled = true;
             this.comboBoxUCategoryID.ItemHeight = 13;
             this.comboBoxUCategoryID.Items.AddRange(new object[] {
@@ -1396,7 +1445,7 @@
             // 
             // textBoxUQuantity
             // 
-            this.textBoxUQuantity.Location = new System.Drawing.Point(325, 16);
+            this.textBoxUQuantity.Location = new System.Drawing.Point(390, 19);
             this.textBoxUQuantity.Name = "textBoxUQuantity";
             this.textBoxUQuantity.Size = new System.Drawing.Size(88, 20);
             this.textBoxUQuantity.TabIndex = 44;
@@ -1405,7 +1454,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(257, 18);
+            this.label39.Location = new System.Drawing.Point(322, 21);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(62, 18);
             this.label39.TabIndex = 55;
@@ -1509,6 +1558,7 @@
             // 
             // comboBoxSearchBook
             // 
+            this.comboBoxSearchBook.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchBook.FormattingEnabled = true;
             this.comboBoxSearchBook.Items.AddRange(new object[] {
             "ISBN",
@@ -1627,15 +1677,15 @@
             // 
             this.Author.Text = "Author(s)";
             // 
-            // Quantity
-            // 
-            this.Quantity.Text = "Quantity";
-            this.Quantity.Width = 58;
-            // 
             // Price
             // 
             this.Price.Text = "Price";
             this.Price.Width = 47;
+            // 
+            // Quantity
+            // 
+            this.Quantity.Text = "Quantity";
+            this.Quantity.Width = 58;
             // 
             // Year
             // 
@@ -1871,5 +1921,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Button buttonAuthorUFill;
+        private System.Windows.Forms.Button buttonPubUFill;
+        private System.Windows.Forms.Button buttonBookUFill;
     }
 }

@@ -354,6 +354,7 @@
             // 
             // comboBoxStatusID
             // 
+            this.comboBoxStatusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStatusID.FormattingEnabled = true;
             this.comboBoxStatusID.Items.AddRange(new object[] {
             "Active",
@@ -365,6 +366,7 @@
             // 
             // comboBoxJob
             // 
+            this.comboBoxJob.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxJob.FormattingEnabled = true;
             this.comboBoxJob.Items.AddRange(new object[] {
             "Manager",
@@ -413,24 +415,26 @@
             // 
             // comboBoxStatusIDU
             // 
+            this.comboBoxStatusIDU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStatusIDU.FormattingEnabled = true;
             this.comboBoxStatusIDU.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.comboBoxStatusIDU.Location = new System.Drawing.Point(342, 40);
+            this.comboBoxStatusIDU.Location = new System.Drawing.Point(358, 40);
             this.comboBoxStatusIDU.Name = "comboBoxStatusIDU";
             this.comboBoxStatusIDU.Size = new System.Drawing.Size(74, 21);
             this.comboBoxStatusIDU.TabIndex = 1;
             // 
             // comboBoxJobIDU
             // 
+            this.comboBoxJobIDU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxJobIDU.FormattingEnabled = true;
             this.comboBoxJobIDU.Items.AddRange(new object[] {
             "Manager",
             "Sales Manager",
             "Inventory Controller",
             "Order Clerks"});
-            this.comboBoxJobIDU.Location = new System.Drawing.Point(342, 13);
+            this.comboBoxJobIDU.Location = new System.Drawing.Point(358, 16);
             this.comboBoxJobIDU.Name = "comboBoxJobIDU";
             this.comboBoxJobIDU.Size = new System.Drawing.Size(95, 21);
             this.comboBoxJobIDU.TabIndex = 0;
@@ -439,7 +443,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(286, 39);
+            this.label20.Location = new System.Drawing.Point(300, 39);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(50, 18);
             this.label20.TabIndex = 34;
@@ -449,7 +453,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(272, 16);
+            this.label21.Location = new System.Drawing.Point(286, 15);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(64, 18);
             this.label21.TabIndex = 33;
@@ -571,6 +575,7 @@
             // 
             // comboBoxSearch
             // 
+            this.comboBoxSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearch.FormattingEnabled = true;
             this.comboBoxSearch.Items.AddRange(new object[] {
             "Employee ID",
@@ -628,6 +633,7 @@
             // 
             // comboBoxSearchStatusID
             // 
+            this.comboBoxSearchStatusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchStatusID.FormattingEnabled = true;
             this.comboBoxSearchStatusID.Items.AddRange(new object[] {
             "Active",
@@ -650,6 +656,7 @@
             // 
             // comboBoxSearchJobID
             // 
+            this.comboBoxSearchJobID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchJobID.FormattingEnabled = true;
             this.comboBoxSearchJobID.Items.AddRange(new object[] {
             "Manager",
@@ -749,6 +756,7 @@
             // 
             // comboBoxUserStatusId
             // 
+            this.comboBoxUserStatusId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUserStatusId.FormattingEnabled = true;
             this.comboBoxUserStatusId.Items.AddRange(new object[] {
             "Active",
@@ -917,6 +925,7 @@
             // 
             // comboBoxSearchUserStatusID
             // 
+            this.comboBoxSearchUserStatusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchUserStatusID.FormattingEnabled = true;
             this.comboBoxSearchUserStatusID.Items.AddRange(new object[] {
             "Active",
@@ -929,6 +938,7 @@
             // 
             // comboBoxSearchUserJobID
             // 
+            this.comboBoxSearchUserJobID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchUserJobID.FormattingEnabled = true;
             this.comboBoxSearchUserJobID.Items.AddRange(new object[] {
             "Manager",

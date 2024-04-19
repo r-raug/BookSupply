@@ -112,6 +112,10 @@
       <DependentUpon>HiTechDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\HiTechDB.cs" />
+    <Compile Include="DAL\InventoryDB1.cs" />
+    <Compile Include="DAL\InventoryDB1.Designer.cs">
+      <DependentUpon>InventoryDB1.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\UtilityDB.cs" />
     <Compile Include="GUI\EmployeeUserForm.cs">
       <SubType>Form</SubType>

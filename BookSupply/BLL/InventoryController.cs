@@ -14,6 +14,7 @@ namespace BookSupply.BLL
     public class InventoryController
     {
 
+
         HiTechDBEntities1 db = new HiTechDBEntities1();
 
         // Filter statuses based on provided IDs
