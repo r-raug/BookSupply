@@ -584,6 +584,7 @@
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSearch.TabIndex = 0;
+            this.comboBoxSearch.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearch_SelectedIndexChanged);
             // 
             // buttonSearchEmployee
             // 
@@ -881,6 +882,7 @@
             this.comboBoxSearchUser.Name = "comboBoxSearchUser";
             this.comboBoxSearchUser.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSearchUser.TabIndex = 0;
+            this.comboBoxSearchUser.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchUser_SelectedIndexChanged_1);
             // 
             // buttonSearchUser
             // 
@@ -891,6 +893,7 @@
             this.buttonSearchUser.TabIndex = 4;
             this.buttonSearchUser.Text = "Search User";
             this.buttonSearchUser.UseVisualStyleBackColor = true;
+            this.buttonSearchUser.Click += new System.EventHandler(this.buttonSearchUser_Click);
             // 
             // textBoxUserSearch
             // 

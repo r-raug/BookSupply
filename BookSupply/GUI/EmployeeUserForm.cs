@@ -313,12 +313,213 @@ namespace BookSupply.GUI
             Close();
         }
 
+
+
         private void buttonSearchEmployee_Click(object sender, EventArgs e)
         {
+            string search, column;
+            switch (comboBoxSearch.SelectedIndex)
+            {
+                case 0:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "EmployeeID";
+                    Emp employeeInstance = new Emp();
+                    List<Emp> listEmp = employeeInstance.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp, listViewEmployee);
+                    break;
+                case 1:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "FirstName";
+                    Emp employeeInstance1 = new Emp();
+                    List<Emp> listEmp1 = employeeInstance1.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp1, listViewEmployee);
+                    break;
+                case 2:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "LastName";
+                    Emp employeeInstance2 = new Emp();
+                    List<Emp> listEmp2 = employeeInstance2.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp2, listViewEmployee);
+                    break;
+                case 3:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "Email";
+                    Emp employeeInstance4 = new Emp();
+                    List<Emp> listEmp4 = employeeInstance4.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp4, listViewEmployee);
+                    break;
+                case 4:
+                    search = textBoxSearch1.Text.Trim();
+                    column = "PhoneNumber";
+                    Emp employeeInstance5 = new Emp();
+                    List<Emp> listEmp5 = employeeInstance5.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp5, listViewEmployee);
+                    break;
+                case 5:
+                    int temp = comboBoxSearchJobID.SelectedIndex + 1;
+                    search = temp.ToString();
+                    column = "JobId";
+                    Emp employeeInstance6 = new Emp();
+                    List<Emp> listEmp6 = employeeInstance6.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp6, listViewEmployee);
+                    break;
+                case 6:
+                    int temp1 = comboBoxSearchStatusID.SelectedIndex + 1;
+                    search = temp1.ToString();
+                    column = "StatusId";
+                    Emp employeeInstance7 = new Emp();
+                    List<Emp> listEmp7 = employeeInstance7.SearchEmployees(search, column);
+                    listViewEmployee.Items.Clear();
+                    DisplayInfo(listEmp7, listViewEmployee);
+                    break;
+            }
+        }
+
+        private void buttonSearchUser_Click(object sender, EventArgs e)
+        {
+            string search, column;
+            switch (comboBoxSearchUser.SelectedIndex)
+            {
+                case 0:
+                    search = textBoxUserSearch.Text.Trim();
+                    column = "EmployeeID";
+                    User userInstance = new User();
+                    List<User> listUser = userInstance.SearchUsers(search, column);
+                    listViewUser.Items.Clear();
+                    DisplayInfos(listUser, listViewUser);
+                    break;
+                case 1:
+                    search = textBoxUserSearch.Text.Trim();
+                    column = "UserName";
+                    User userInstance1 = new User();
+                    List<User> listUser1 = userInstance1.SearchUsers(search, column);
+                    listViewUser.Items.Clear();
+                    DisplayInfos(listUser1, listViewUser);
+                    break;
+                case 2:
+                    int temp1 = comboBoxSearchUserJobID.SelectedIndex + 1;
+                    search = temp1.ToString();
+                    column = "JobId";
+                    User userInstance2 = new User();
+                    List<User> listUser2 = userInstance2.SearchUsers(search, column);
+                    listViewUser.Items.Clear();
+                    DisplayInfos(listUser2, listViewUser);
+                    break;
+                case 3:
+                    int temp = comboBoxSearchUserStatusID.SelectedIndex + 1;
+                    search = temp.ToString();
+                    column = "StatusId";
+                    User userInstance3 = new User();
+                    List<User> listUser3 = userInstance3.SearchUsers(search, column);
+                    listViewUser.Items.Clear();
+                    DisplayInfos(listUser3, listViewUser);
+                    break;
+            }
 
         }
 
-        // Event handler for combo box selection change
+       
+        private void comboBoxSearchUser_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            switch (comboBoxSearchUser.SelectedIndex)
+            {
+                case 0:
+                    labelSearchUser.Text = "Employee ID";
+                    textBoxUserSearch.Visible = true;
+                    labelSearchUser.Visible = true;
+                    comboBoxSearchUserStatusID.Visible = false;
+                    comboBoxSearchUserJobID.Visible = false;
+                    break;
+                case 1:
+                    labelSearchUser.Text = "User Name";
+                    textBoxUserSearch.Visible = true;
+                    labelSearchUser.Visible = true;
+                    comboBoxSearchUserStatusID.Visible = false;
+                    comboBoxSearchUserJobID.Visible = false;
+                    break;
+                case 2:
+                    labelSearchUser.Text = "Job Title";
+                    textBoxUserSearch.Visible = false;
+                    labelSearchUser.Visible = true;
+                    comboBoxSearchUserStatusID.Visible = false;
+                    comboBoxSearchUserJobID.Visible = true;
+                    break;
+                case 3:
+                    labelSearchUser.Text = "Status";
+                    textBoxUserSearch.Visible = false;
+                    labelSearchUser.Visible = true;
+                    comboBoxSearchUserStatusID.Visible = true;
+                    comboBoxSearchUserJobID.Visible = false;
+                    break;
+                default:
+                    MessageBox.Show("Invalid selection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+        }
 
+        private void comboBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxSearch.SelectedIndex)
+            {
+                case 0:
+                    labelSearch1.Text = "Employee ID";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                case 1:
+                    labelSearch1.Text = "First Name";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                case 2:
+                    labelSearch1.Text = "Last Name";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                case 3:
+                    labelSearch1.Text = "Email";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                case 4:
+                    labelSearch1.Text = "Phone";
+                    textBoxSearch1.Visible = true;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchStatusID.Visible = false;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                case 5:
+                    labelSearch1.Text = "Job ID";
+                    comboBoxSearchJobID.Visible = true;
+                    labelSearch1.Visible = true;
+                    textBoxSearch1.Visible = false;
+                    comboBoxSearchStatusID.Visible = false;
+                    break;
+                case 6:
+                    labelSearch1.Text = "Status ID";
+                    comboBoxSearchStatusID.Visible = true;
+                    textBoxSearch1.Visible = false;
+                    labelSearch1.Visible = true;
+                    comboBoxSearchJobID.Visible = false;
+                    break;
+                default:
+                    MessageBox.Show("Invalid selection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+        }
     }
 }
