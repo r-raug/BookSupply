@@ -151,12 +151,7 @@ namespace BookSupply.BLL
                 return false;
             }
 
-            // Create a list of IDs by splitting the input string
             string[] ids = authorIds.Split(',');
-
-            // List to store unique author IDs
-            HashSet<long> uniqueAuthorIds = new HashSet<long>();
-
             foreach (string id in ids)
             {
                 if (!long.TryParse(id.Trim(), out long authorId))
@@ -164,17 +159,6 @@ namespace BookSupply.BLL
                     MessageBox.Show($"Invalid author ID: {id.Trim()}.");
                     return false;
                 }
-
-                //Verify if the author ID is unique
-                if (uniqueAuthorIds.Contains(authorId))
-                {
-                    MessageBox.Show($"Duplicate author ID: {authorId}.");
-                    return false;
-                }
-
-                uniqueAuthorIds.Add(authorId);
-
-                // Verify if the author ID exists in the database
                 if (!db.Authors.Any(author => author.AuthorId == authorId))
                 {
                     MessageBox.Show($"Author ID {authorId} not found.");
@@ -239,7 +223,7 @@ namespace BookSupply.BLL
                 !int.TryParse(years, out int year) ||
                 year < 1000 || year > 9999)
             {
-                MessageBox.Show("Please, enter a valid year (yyyy).");
+                MessageBox.Show("Please, enter a valid year.");
                 return false;
             }
             return true;

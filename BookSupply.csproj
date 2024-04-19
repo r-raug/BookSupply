@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA971227-F856-44F0-807B-2D05AABE2239}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BookSupply</RootNamespace>
+    <AssemblyName>BookSupply</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Author.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\AuthorsBook.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Book.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Category.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Customer.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Emp.cs" />
+    <Compile Include="BLL\Employee.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\HiTechDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HiTechDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\HiTechDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\HiTechDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HiTechDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\InventoryController.cs" />
+    <Compile Include="BLL\Job.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Login.cs" />
+    <Compile Include="BLL\Order.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\OrderLine.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Publisher.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Status.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\User.cs" />
+    <Compile Include="BLL\UserAccount.cs">
+      <DependentUpon>HiTechDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\HiTechDB.cs" />
+    <Compile Include="DAL\UtilityDB.cs" />
+    <Compile Include="GUI\EmployeeUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EmployeeUserForm.Designer.cs">
+      <DependentUpon>EmployeeUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\InventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InventoryForm.Designer.cs">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VALIDATION\Validator.cs" />
+    <EmbeddedResource Include="GUI\EmployeeUserForm.resx">
+      <DependentUpon>EmployeeUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InventoryForm.resx">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="BLL\HiTechDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HiTechDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BLL\HiTechDBModel.edmx.diagram">
+      <DependentUpon>HiTechDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BLL\HiTechDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HiTechDBModel.edmx</DependentUpon>
+      <LastGenOutput>HiTechDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BLL\HiTechDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HiTechDBModel.edmx</DependentUpon>
+      <LastGenOutput>HiTechDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

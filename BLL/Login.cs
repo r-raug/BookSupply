@@ -35,34 +35,13 @@ namespace BookSupply.BLL
                     EmployeeUserForm employeeUserForm = new EmployeeUserForm();
                     employeeUserForm.ShowDialog();
                     break;
-                //case "2":
-                //    EmployeeUserForm employeeUserForm = new EmployeeUserForm();
-                //    employeeUserForm.ShowDialog();
-                //    break;
-
-                case "3":
-                    InventoryForm inventoryController = new InventoryForm();
-                    inventoryController.ShowDialog();
-                    break;
-
-                //case "4":
-                //    EmployeeUserForm employeeUserForm = new EmployeeUserForm();
-                //    employeeUserForm.ShowDialog();
-                //    break;
-
+                
                 default:
                     MessageBox.Show("Invalid User / Password");
                     break;
             }
            
-        }
-
-        //public void Logout()
-        //{
-        //    UserName = string.Empty;
-        //    Password = string.Empty;
-        //    JobId = string.Empty;
-        //}
+        }       
 
     }
 }

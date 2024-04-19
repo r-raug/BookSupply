@@ -52,11 +52,15 @@
             this.EmployeeManagement = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPageSaveEmp = new System.Windows.Forms.TabPage();
+            this.labelStatusID = new System.Windows.Forms.Label();
             this.comboBoxStatusID = new System.Windows.Forms.ComboBox();
-            this.comboBoxJob = new System.Windows.Forms.ComboBox();
+            this.labelJobId = new System.Windows.Forms.Label();
+            this.comboBoxJobId = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPageUpdateEmp = new System.Windows.Forms.TabPage();
+            this.labelStatusIDu = new System.Windows.Forms.Label();
             this.comboBoxStatusIDU = new System.Windows.Forms.ComboBox();
+            this.labelJobIDu = new System.Windows.Forms.Label();
             this.comboBoxJobIDU = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -197,11 +201,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(61, 19);
+            this.label6.Location = new System.Drawing.Point(74, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 18);
+            this.label6.Size = new System.Drawing.Size(51, 18);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Job Title";
+            this.label6.Text = "Job ID";
             // 
             // textBoxFirstName
             // 
@@ -298,7 +302,7 @@
             // 
             this.tabControl1.Controls.Add(this.EmployeeManagement);
             this.tabControl1.Controls.Add(this.UserManagement);
-            this.tabControl1.Location = new System.Drawing.Point(12, 24);
+            this.tabControl1.Location = new System.Drawing.Point(12, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(703, 492);
@@ -331,8 +335,10 @@
             // 
             // tabPageSaveEmp
             // 
+            this.tabPageSaveEmp.Controls.Add(this.labelStatusID);
             this.tabPageSaveEmp.Controls.Add(this.comboBoxStatusID);
-            this.tabPageSaveEmp.Controls.Add(this.comboBoxJob);
+            this.tabPageSaveEmp.Controls.Add(this.labelJobId);
+            this.tabPageSaveEmp.Controls.Add(this.comboBoxJobId);
             this.tabPageSaveEmp.Controls.Add(this.label4);
             this.tabPageSaveEmp.Controls.Add(this.buttonSave);
             this.tabPageSaveEmp.Controls.Add(this.label10);
@@ -352,31 +358,47 @@
             this.tabPageSaveEmp.Text = "Save";
             this.tabPageSaveEmp.UseVisualStyleBackColor = true;
             // 
+            // labelStatusID
+            // 
+            this.labelStatusID.AutoSize = true;
+            this.labelStatusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatusID.Location = new System.Drawing.Point(366, 21);
+            this.labelStatusID.Name = "labelStatusID";
+            this.labelStatusID.Size = new System.Drawing.Size(0, 15);
+            this.labelStatusID.TabIndex = 22;
+            // 
             // comboBoxStatusID
             // 
             this.comboBoxStatusID.FormattingEnabled = true;
             this.comboBoxStatusID.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.comboBoxStatusID.Location = new System.Drawing.Point(338, 16);
+            "1",
+            "2"});
+            this.comboBoxStatusID.Location = new System.Drawing.Point(338, 18);
             this.comboBoxStatusID.Name = "comboBoxStatusID";
-            this.comboBoxStatusID.Size = new System.Drawing.Size(69, 21);
+            this.comboBoxStatusID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxStatusID.TabIndex = 1;
             this.comboBoxStatusID.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusID_SelectedIndexChanged);
             // 
-            // comboBoxJob
+            // labelJobId
             // 
-            this.comboBoxJob.FormattingEnabled = true;
-            this.comboBoxJob.Items.AddRange(new object[] {
-            "Manager",
-            "Sales Manager",
-            "Inventory Controller",
-            "Order Clerks"});
-            this.comboBoxJob.Location = new System.Drawing.Point(131, 16);
-            this.comboBoxJob.Name = "comboBoxJob";
-            this.comboBoxJob.Size = new System.Drawing.Size(112, 21);
-            this.comboBoxJob.TabIndex = 0;
-            this.comboBoxJob.SelectedIndexChanged += new System.EventHandler(this.comboBoxJob_SelectedIndexChanged);
+            this.labelJobId.AutoSize = true;
+            this.labelJobId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelJobId.Location = new System.Drawing.Point(171, 22);
+            this.labelJobId.Name = "labelJobId";
+            this.labelJobId.Size = new System.Drawing.Size(0, 15);
+            this.labelJobId.TabIndex = 20;
+            // 
+            // comboBoxJobId
+            // 
+            this.comboBoxJobId.FormattingEnabled = true;
+            this.comboBoxJobId.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBoxJobId.Location = new System.Drawing.Point(131, 17);
+            this.comboBoxJobId.Name = "comboBoxJobId";
+            this.comboBoxJobId.Size = new System.Drawing.Size(34, 21);
+            this.comboBoxJobId.TabIndex = 0;
+            this.comboBoxJobId.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobId_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -390,7 +412,9 @@
             // 
             // tabPageUpdateEmp
             // 
+            this.tabPageUpdateEmp.Controls.Add(this.labelStatusIDu);
             this.tabPageUpdateEmp.Controls.Add(this.comboBoxStatusIDU);
+            this.tabPageUpdateEmp.Controls.Add(this.labelJobIDu);
             this.tabPageUpdateEmp.Controls.Add(this.comboBoxJobIDU);
             this.tabPageUpdateEmp.Controls.Add(this.label20);
             this.tabPageUpdateEmp.Controls.Add(this.label21);
@@ -413,29 +437,45 @@
             this.tabPageUpdateEmp.Text = "Update";
             this.tabPageUpdateEmp.UseVisualStyleBackColor = true;
             // 
+            // labelStatusIDu
+            // 
+            this.labelStatusIDu.AutoSize = true;
+            this.labelStatusIDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatusIDu.Location = new System.Drawing.Point(369, 41);
+            this.labelStatusIDu.Name = "labelStatusIDu";
+            this.labelStatusIDu.Size = new System.Drawing.Size(0, 15);
+            this.labelStatusIDu.TabIndex = 38;
+            // 
             // comboBoxStatusIDU
             // 
             this.comboBoxStatusIDU.FormattingEnabled = true;
             this.comboBoxStatusIDU.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.comboBoxStatusIDU.Location = new System.Drawing.Point(342, 40);
+            "1",
+            "2"});
+            this.comboBoxStatusIDU.Location = new System.Drawing.Point(329, 36);
             this.comboBoxStatusIDU.Name = "comboBoxStatusIDU";
-            this.comboBoxStatusIDU.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxStatusIDU.Size = new System.Drawing.Size(34, 21);
             this.comboBoxStatusIDU.TabIndex = 1;
             this.comboBoxStatusIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatusIDu_SelectedIndexChanged);
+            // 
+            // labelJobIDu
+            // 
+            this.labelJobIDu.AutoSize = true;
+            this.labelJobIDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelJobIDu.Location = new System.Drawing.Point(369, 18);
+            this.labelJobIDu.Name = "labelJobIDu";
+            this.labelJobIDu.Size = new System.Drawing.Size(0, 15);
+            this.labelJobIDu.TabIndex = 36;
             // 
             // comboBoxJobIDU
             // 
             this.comboBoxJobIDU.FormattingEnabled = true;
             this.comboBoxJobIDU.Items.AddRange(new object[] {
-            "Manager",
-            "Sales Manager",
-            "Inventory Controller",
-            "Order Clerks"});
-            this.comboBoxJobIDU.Location = new System.Drawing.Point(342, 13);
+            "1",
+            "2"});
+            this.comboBoxJobIDU.Location = new System.Drawing.Point(329, 13);
             this.comboBoxJobIDU.Name = "comboBoxJobIDU";
-            this.comboBoxJobIDU.Size = new System.Drawing.Size(95, 21);
+            this.comboBoxJobIDU.Size = new System.Drawing.Size(34, 21);
             this.comboBoxJobIDU.TabIndex = 0;
             this.comboBoxJobIDU.SelectedIndexChanged += new System.EventHandler(this.comboBoxJobIDu_SelectedIndexChanged);
             // 
@@ -443,11 +483,11 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(286, 39);
+            this.label20.Location = new System.Drawing.Point(255, 39);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(50, 18);
+            this.label20.Size = new System.Drawing.Size(68, 18);
             this.label20.TabIndex = 34;
-            this.label20.Text = "Status";
+            this.label20.Text = "Status ID";
             this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label21
@@ -456,9 +496,9 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(272, 16);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(64, 18);
+            this.label21.Size = new System.Drawing.Size(51, 18);
             this.label21.TabIndex = 33;
-            this.label21.Text = "Job Title";
+            this.label21.Text = "Job ID";
             // 
             // label11
             // 
@@ -635,11 +675,11 @@
             // 
             this.comboBoxSearchStatusID.FormattingEnabled = true;
             this.comboBoxSearchStatusID.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.comboBoxSearchStatusID.Location = new System.Drawing.Point(139, 64);
+            "1",
+            "2"});
+            this.comboBoxSearchStatusID.Location = new System.Drawing.Point(192, 64);
             this.comboBoxSearchStatusID.Name = "comboBoxSearchStatusID";
-            this.comboBoxSearchStatusID.Size = new System.Drawing.Size(62, 21);
+            this.comboBoxSearchStatusID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchStatusID.TabIndex = 2;
             this.comboBoxSearchStatusID.Visible = false;
             // 
@@ -657,13 +697,11 @@
             // 
             this.comboBoxSearchJobID.FormattingEnabled = true;
             this.comboBoxSearchJobID.Items.AddRange(new object[] {
-            "Manager",
-            "Sales Manager",
-            "Inventory Controller",
-            "Order Clerks"});
+            "1",
+            "2"});
             this.comboBoxSearchJobID.Location = new System.Drawing.Point(152, 64);
             this.comboBoxSearchJobID.Name = "comboBoxSearchJobID";
-            this.comboBoxSearchJobID.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxSearchJobID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchJobID.TabIndex = 1;
             this.comboBoxSearchJobID.Visible = false;
             // 
@@ -756,11 +794,11 @@
             // 
             this.comboBoxUserStatusId.FormattingEnabled = true;
             this.comboBoxUserStatusId.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
+            "1",
+            "2"});
             this.comboBoxUserStatusId.Location = new System.Drawing.Point(145, 107);
             this.comboBoxUserStatusId.Name = "comboBoxUserStatusId";
-            this.comboBoxUserStatusId.Size = new System.Drawing.Size(64, 21);
+            this.comboBoxUserStatusId.Size = new System.Drawing.Size(34, 21);
             this.comboBoxUserStatusId.TabIndex = 3;
             // 
             // label18
@@ -769,9 +807,9 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(70, 111);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(48, 17);
+            this.label18.Size = new System.Drawing.Size(65, 17);
             this.label18.TabIndex = 19;
-            this.label18.Text = "Status";
+            this.label18.Text = "Status ID";
             // 
             // label7
             // 
@@ -882,8 +920,8 @@
             this.comboBoxSearchUser.Items.AddRange(new object[] {
             "Employee ID",
             "User Name",
-            "Job Title",
-            "Status"});
+            "Job ID",
+            "Status ID"});
             this.comboBoxSearchUser.Location = new System.Drawing.Point(131, 26);
             this.comboBoxSearchUser.Name = "comboBoxSearchUser";
             this.comboBoxSearchUser.Size = new System.Drawing.Size(121, 21);
@@ -924,11 +962,11 @@
             // 
             this.comboBoxSearchUserStatusID.FormattingEnabled = true;
             this.comboBoxSearchUserStatusID.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.comboBoxSearchUserStatusID.Location = new System.Drawing.Point(139, 64);
+            "1",
+            "2"});
+            this.comboBoxSearchUserStatusID.Location = new System.Drawing.Point(179, 64);
             this.comboBoxSearchUserStatusID.Name = "comboBoxSearchUserStatusID";
-            this.comboBoxSearchUserStatusID.Size = new System.Drawing.Size(74, 21);
+            this.comboBoxSearchUserStatusID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchUserStatusID.TabIndex = 2;
             this.comboBoxSearchUserStatusID.Visible = false;
             // 
@@ -936,13 +974,11 @@
             // 
             this.comboBoxSearchUserJobID.FormattingEnabled = true;
             this.comboBoxSearchUserJobID.Items.AddRange(new object[] {
-            "Manager",
-            "Sales Manager",
-            "Inventory Controller",
-            "Order Clerks"});
+            "1",
+            "2"});
             this.comboBoxSearchUserJobID.Location = new System.Drawing.Point(139, 64);
             this.comboBoxSearchUserJobID.Name = "comboBoxSearchUserJobID";
-            this.comboBoxSearchUserJobID.Size = new System.Drawing.Size(113, 21);
+            this.comboBoxSearchUserJobID.Size = new System.Drawing.Size(34, 21);
             this.comboBoxSearchUserJobID.TabIndex = 1;
             this.comboBoxSearchUserJobID.Visible = false;
             // 
@@ -1040,7 +1076,7 @@
             // buttonLogout
             // 
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogout.Location = new System.Drawing.Point(633, 10);
+            this.buttonLogout.Location = new System.Drawing.Point(633, 12);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 32);
             this.buttonLogout.TabIndex = 20;
@@ -1053,7 +1089,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(727, 528);
+            this.ClientSize = new System.Drawing.Size(727, 537);
             this.ControlBox = false;
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.tabControl1);
@@ -1142,9 +1178,13 @@
         private System.Windows.Forms.TextBox textBoxEmployeeIDD;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDeleteEmployee;
-        private System.Windows.Forms.ComboBox comboBoxJob;
+        private System.Windows.Forms.Label labelJobId;
+        private System.Windows.Forms.ComboBox comboBoxJobId;
+        private System.Windows.Forms.Label labelStatusID;
         private System.Windows.Forms.ComboBox comboBoxStatusID;
+        private System.Windows.Forms.Label labelStatusIDu;
         private System.Windows.Forms.ComboBox comboBoxStatusIDU;
+        private System.Windows.Forms.Label labelJobIDu;
         private System.Windows.Forms.ComboBox comboBoxJobIDU;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;

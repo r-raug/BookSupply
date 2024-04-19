@@ -64,7 +64,7 @@ namespace BookSupply.GUI
                                    AuthorName = author.FirstName + " " + author.LastName
                                };
 
-            var bookAuthors = from book in booksQuery.ToList() 
+            var bookAuthors = from book in booksQuery.ToList() // Trazer os dados para a memória
                               join author in authorsQuery.ToList() on book.ISBN equals author.ISBN into g
                               select new
                               {
@@ -239,8 +239,6 @@ namespace BookSupply.GUI
             comboBoxSAuthorStatus.SelectedIndex = -1;
             comboBoxUAuthorStatus.DataSource = filterStatus;
             comboBoxUAuthorStatus.SelectedIndex = -1;
-            
-
         }
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
@@ -260,7 +258,6 @@ namespace BookSupply.GUI
                 return;
             }
 
-
             var newBook = new BLL.Book
             {
                 ISBN = Convert.ToDecimal(textBoxSISBN.Text),
@@ -273,31 +270,26 @@ namespace BookSupply.GUI
             };
             db.Books.Add(newBook);
 
-
             string[] authorIds = textBoxSAuthorID.Text.Split(',');
             foreach (string authorIdString in authorIds)
             {
                 if (!long.TryParse(authorIdString.Trim(), out long authorId))
                 {
-                    
                     continue;
                 }
 
-
                 var newAuthorBook = new BLL.AuthorsBook
                 {
-                    ISBN = Convert.ToDecimal(textBoxSISBN.Text),
+                    ISBN = newBook.ISBN, // Usar o ISBN do livro recém-criado
                     AuthorId = authorId,
                     YearPublished = Convert.ToInt32(textBoxSYear.Text),
                     Edition = Convert.ToInt32(textBoxSEdition.Text)
                 };
                 db.AuthorsBooks.Add(newAuthorBook);
             }
-            
 
             db.SaveChanges();
             MessageBox.Show("Book saved successfully.");
-
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -895,6 +887,5 @@ namespace BookSupply.GUI
 
             }
         }
-
     }
 }

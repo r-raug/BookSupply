@@ -66,7 +66,7 @@ namespace BookSupply.GUI
             employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(textBoxLastName.Text.Trim().ToLower());
             employee.PhoneNumber = Convert.ToInt64(textBoxPhone.Text.Trim());
             employee.Email = textBoxEmail.Text.Trim();
-            employee.JobId = comboBoxJob.SelectedIndex + 1;
+            employee.JobId = comboBoxJobId.SelectedIndex + 1;
             employee.StatusId = comboBoxStatusID.SelectedIndex + 1;
             Emp.SaveEmployee(employee);
             MessageBox.Show("Saved");
@@ -209,10 +209,8 @@ namespace BookSupply.GUI
 
         private void EmployeeUserForm_Load(object sender, EventArgs e)
         {
-            //PreencherComboBoxJob();
-        }
 
-        
+        }
 
         private void buttonListUser_Click(object sender, EventArgs e)
         {
@@ -288,21 +286,25 @@ namespace BookSupply.GUI
             }
         }
 
-
-
-    private void comboBoxStatusID_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxJobId_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelJobId.Text = HiTechDB.SearchJob(comboBoxJobId.SelectedIndex + 1 ); 
             
+        }
+
+        private void comboBoxStatusID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelStatusID.Text = HiTechDB.SearchStatus(comboBoxStatusID.SelectedIndex + 1);
         }
 
         private void comboBoxJobIDu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            labelJobIDu.Text = HiTechDB.SearchJob(comboBoxJobIDU.SelectedIndex + 1);
         }
 
         private void comboBoxStatusIDu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            labelStatusIDu.Text = HiTechDB.SearchStatus(comboBoxStatusIDU.SelectedIndex + 1);
         }
 
         private void buttonDeleteEmployee_Click_1(object sender, EventArgs e)
@@ -454,7 +456,7 @@ namespace BookSupply.GUI
                 case 5:
                     int temp = comboBoxSearchJobID.SelectedIndex + 1;
                     search = temp.ToString();
-                    column = "Job";
+                    column = "JobID";
                     Emp employeeInstance6 = new Emp();
                     List<Emp> listEmp6 = employeeInstance6.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
@@ -463,7 +465,7 @@ namespace BookSupply.GUI
                 case 6:
                     int temp1 = comboBoxSearchStatusID.SelectedIndex + 1;
                     search = temp1.ToString() ;
-                    column = "Status";
+                    column = "StatusID";
                     Emp employeeInstance7 = new Emp();
                     List<Emp> listEmp7 = employeeInstance7.SearchEmployees(search, column);
                     listViewEmployee.Items.Clear();
@@ -536,7 +538,7 @@ namespace BookSupply.GUI
                 case 2:
                     int temp1 = comboBoxSearchUserJobID.SelectedIndex + 1;
                     search = temp1.ToString();
-                    column = "Job";
+                    column = "JobID";
                     User userInstance2 = new User();
                     List<User> listUser2 = userInstance2.SearchUsers(search, column);
                     listViewUser.Items.Clear();
@@ -545,7 +547,7 @@ namespace BookSupply.GUI
                 case 3:
                     int temp = comboBoxSearchUserStatusID.SelectedIndex + 1;
                     search = temp.ToString();
-                    column = "Status";
+                    column = "StatusID";
                     User userInstance3 = new User();
                     List<User> listUser3 = userInstance3.SearchUsers(search, column);
                     listViewUser.Items.Clear();
@@ -604,11 +606,6 @@ namespace BookSupply.GUI
         private void label20_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void comboBoxJob_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
         }
     }
     
