@@ -50,7 +50,7 @@ namespace BookSupply.GUI
                                  book.ISBN,
                                  book.BookTitle,
                                  book.UnitPrice,
-                                 book.Quantity,
+                                 book.Quantity,                                 
                                  publisher.PublisherName,
                                  category.CategName,
                                  status.Description
@@ -61,7 +61,10 @@ namespace BookSupply.GUI
                                select new
                                {
                                    authorB.ISBN,
-                                   AuthorName = author.FirstName + " " + author.LastName
+                                   AuthorName = author.FirstName + " " + author.LastName,
+                                   authorB.YearPublished,
+                                   authorB.Edition
+                                   
                                };
 
             var bookAuthors = from book in booksQuery.ToList() 
@@ -72,10 +75,12 @@ namespace BookSupply.GUI
                                   book.BookTitle,
                                   book.UnitPrice,
                                   book.Quantity,
-                                  book.PublisherName,
-                                  book.CategName,
-                                  book.Description,
-                                  Authors = string.Join(", ", g.Select(a => a.AuthorName))
+                                  Authors = string.Join(", ", g.Select(a => a.AuthorName)),
+                                  PublisherName = book.PublisherName,
+                                  CategName = book.CategName,
+                                  Description = book.Description,
+                                  YearPublished = g.Select(a => a.YearPublished).FirstOrDefault(),
+                                  Edition = g.Select(a => a.Edition).FirstOrDefault()
                               };
 
             if (!bookAuthors.Any())
@@ -91,6 +96,8 @@ namespace BookSupply.GUI
                 item.SubItems.Add(book.Authors);
                 item.SubItems.Add(book.UnitPrice.ToString());
                 item.SubItems.Add(book.Quantity.ToString());
+                item.SubItems.Add(book.YearPublished.ToString());
+                item.SubItems.Add(book.Edition.ToString());
                 item.SubItems.Add(book.PublisherName);
                 item.SubItems.Add(book.CategName);
                 item.SubItems.Add(book.Description);
@@ -302,42 +309,68 @@ namespace BookSupply.GUI
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            //update a book
+            {
+                // Validate input fields
+                if (!inventoryController.validationIsbnUPDATE(textBoxUISBN.Text) ||
+                    !inventoryController.validationTitle(textBoxUBookTitle.Text) ||
+                    !inventoryController.validationPublisherId(textBoxUPublisherID.Text) ||
+                    !inventoryController.validationQuantity(textBoxUQuantity.Text) ||
+                    !inventoryController.validationPrice(textBoxUPrice.Text) ||
+                    !inventoryController.validationCategoryId(comboBoxUCategoryID.SelectedIndex) ||
+                    !inventoryController.validationStatusId(comboBoxUStatusID.SelectedIndex) ||
+                    !inventoryController.validationYear(textBoxUYear.Text) ||
+                    !inventoryController.validationEdition(textBoxUEdition.Text))
+                {
+                    return;
+                }
 
-            if (!inventoryController.validationIsbnUPDATE(textBoxUISBN.Text) ||
-                !inventoryController.validationTitle(textBoxUBookTitle.Text) ||
-                !inventoryController.validationAuthorId(textBoxUAuthorID.Text) ||
-                !inventoryController.validationPublisherId(textBoxUPublisherID.Text) ||
-                !inventoryController.validationQuantity(textBoxUQuantity.Text) ||
-                !inventoryController.validationPrice(textBoxUPrice.Text) ||
-                !inventoryController.validationCategoryId(comboBoxUCategoryID.SelectedIndex) ||
-                !inventoryController.validationStatusId(comboBoxUStatusID.SelectedIndex) ||
-                !inventoryController.validationYear(textBoxUYear.Text) ||
-                !inventoryController.validationEdition(textBoxUEdition.Text))
-            {
-                return;
-            }
+                // Retrieve book from the database
+                var isbnSearch = Convert.ToDecimal(textBoxUISBN.Text);
+                var book = db.Books.Include("AuthorsBooks").FirstOrDefault(b => b.ISBN == isbnSearch);
 
-            var isbnsearch = Convert.ToDecimal(textBoxUISBN.Text);
-            var isbnB = db.Books.Find(Convert.ToDecimal(textBoxUISBN.Text));
-            var authorBook = db.AuthorsBooks.FirstOrDefault(ab => ab.ISBN == isbnsearch);
-            if (isbnB != null || authorBook != null)
-            {
-                isbnB.BookTitle = textBoxUBookTitle.Text;
-                isbnB.UnitPrice = Convert.ToDecimal(textBoxUPrice.Text);
-                isbnB.Quantity = Convert.ToInt32(textBoxUQuantity.Text);
-                isbnB.PublisherId = Convert.ToInt32(textBoxUPublisherID.Text);
-                isbnB.CategoryId = comboBoxUCategoryID.SelectedIndex + 1;
-                isbnB.Status = comboBoxUStatusID.SelectedIndex + 4;
-                authorBook.AuthorId = Convert.ToInt32(textBoxUAuthorID.Text);
-                authorBook.YearPublished = Convert.ToInt32(textBoxUYear.Text);
-                authorBook.Edition = Convert.ToInt32(textBoxUEdition.Text);
-                db.SaveChanges();
-                MessageBox.Show("Book updated successfully.");
-            }
-            else
-            {
-                MessageBox.Show("Book not found.");
+                if (book != null)
+                {
+                    // Update book details
+                    book.BookTitle = textBoxUBookTitle.Text;
+                    book.UnitPrice = Convert.ToDecimal(textBoxUPrice.Text);
+                    book.Quantity = Convert.ToInt32(textBoxUQuantity.Text);
+                    book.PublisherId = Convert.ToInt32(textBoxUPublisherID.Text);
+                    book.CategoryId = comboBoxUCategoryID.SelectedIndex + 1;
+                    book.Status = comboBoxUStatusID.SelectedIndex + 4;
+
+                    // Remove existing author associations
+                    foreach (var authorBook in book.AuthorsBooks.ToList())
+                    {
+                        db.AuthorsBooks.Remove(authorBook);
+                    }
+
+                    // Add new author associations
+                    string[] authorIds = textBoxUAuthorID.Text.Split(',');
+                    foreach (string authorIdString in authorIds)
+                    {
+                        if (!long.TryParse(authorIdString.Trim(), out long authorId))
+                        {
+                            continue;
+                        }
+
+                        var newAuthorBook = new BLL.AuthorsBook
+                        {
+                            ISBN = book.ISBN,
+                            AuthorId = authorId,
+                            YearPublished = Convert.ToInt32(textBoxUYear.Text),
+                            Edition = Convert.ToInt32(textBoxUEdition.Text)
+                        };
+                        db.AuthorsBooks.Add(newAuthorBook);
+                    }
+
+                    // Save changes to the database
+                    db.SaveChanges();
+                    MessageBox.Show("Book updated successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Book not found.");
+                }
             }
         }
 
