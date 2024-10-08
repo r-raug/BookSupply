@@ -43,6 +43,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +74,7 @@
     <Compile Include="BLL\Customer.cs">
       <DependentUpon>HiTechDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Customers1.cs" />
     <Compile Include="BLL\Emp.cs" />
     <Compile Include="BLL\Employee.cs">
       <DependentUpon>HiTechDBModel.tt</DependentUpon>
@@ -113,6 +117,12 @@
     </Compile>
     <Compile Include="DAL\HiTechDB.cs" />
     <Compile Include="DAL\UtilityDB.cs" />
+    <Compile Include="GUI\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\EmployeeUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +141,24 @@
     <Compile Include="GUI\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Management.Designer.cs">
+      <DependentUpon>Management.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\OrderClerksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\OrderClerksForm.Designer.cs">
+      <DependentUpon>OrderClerksForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VALIDATION\Validator.cs" />
+    <EmbeddedResource Include="GUI\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\EmployeeUserForm.resx">
       <DependentUpon>EmployeeUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,6 +167,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Management.resx">
+      <DependentUpon>Management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\OrderClerksForm.resx">
+      <DependentUpon>OrderClerksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

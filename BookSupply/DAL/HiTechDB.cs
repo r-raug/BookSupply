@@ -14,6 +14,8 @@ using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Linq.Expressions;
 using System.Media;
+using System.Data.Common;
+using System.Data.Linq;
 
 namespace BookSupply.DAL
 {
@@ -425,6 +427,192 @@ namespace BookSupply.DAL
             conn.Close();
         }
 
+        public static List<Customers1> GetAllCustomers()
+        {
+            List<Customers1> customers = new List<Customers1>();
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSelectAll = new SqlCommand("SELECT * FROM Customers", conn);
+            SqlDataReader reader = cmdSelectAll.ExecuteReader(); // Executar comando contido em cmdSelectAll
+
+            // Loop para listar todos os registros
+            while (reader.Read())
+            {
+                Customers1 customer = new Customers1
+                {
+                    CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                    CustomerName = reader["CustomerName"].ToString(), // Alterado para CustomerName
+                    Email = reader["ContactEmail"].ToString(), // Alterado para ContactEmail
+                    PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]),
+                    Street = reader["StreetName"].ToString(), // Alterado para StreetName
+                    Province = reader["Province"].ToString(),
+                    PostalCode = reader["PostalCode"].ToString(),
+                    Status = Convert.ToInt32(reader["Status"])
+                };
+                customers.Add(customer);
+            }
+
+            // Fechar conexão com o banco de dados e retornar registros
+            conn.Close();
+            return customers;
+        }
+
+
+
+        public static void SaveRecordCustomer(Customers1 customer)
+        {
+            // Abrir conexão com o banco de dados
+            SqlConnection conn = UtilityDB.GetDBConnection();
+
+            // Operação de inserção
+            // Criar e personalizar um objeto do tipo SqlCommand
+            SqlCommand cmdInsert = new SqlCommand();
+            cmdInsert.Connection = conn;
+            cmdInsert.CommandText = "INSERT INTO Customers " +
+                                    "(CustomerName, StreetName, Province, PostalCode, PhoneNumber, ContactEmail, CreditLimit, Status) " +
+                                    "VALUES " +
+                                    "(@CustomerName, @StreetName, @Province, @PostalCode, @PhoneNumber, @ContactEmail, @CreditLimit, @Status)";
+
+            // Certifique-se de que todos os parâmetros estão sendo adicionados corretamente
+            cmdInsert.Parameters.AddWithValue("@CustomerName", customer.CustomerName);
+            cmdInsert.Parameters.AddWithValue("@StreetName", customer.Street);
+            cmdInsert.Parameters.AddWithValue("@Province", customer.Province);
+            cmdInsert.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+            cmdInsert.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber);
+            cmdInsert.Parameters.AddWithValue("@ContactEmail", customer.Email);
+            cmdInsert.Parameters.AddWithValue("@CreditLimit", 0);
+            cmdInsert.Parameters.AddWithValue("@Status", customer.Status);
+
+            try
+            {
+                // Execute a consulta SQL para inserir o registro
+                cmdInsert.ExecuteNonQuery();
+                MessageBox.Show("Customers1 saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Fechar conexão com o banco de dados
+                conn.Close();
+            }
+        }
+
+
+        public static List<Customers1> SearchCustomer(string search, string column)
+        {
+            List<Customers1> customers = new List<Customers1>();
+            SqlConnection conn = UtilityDB.GetDBConnection();
+            SqlCommand cmdSearch = new SqlCommand();
+            cmdSearch.Connection = conn;
+            cmdSearch.CommandText = "SELECT * FROM Customers " +
+                                    "WHERE " + column + " LIKE @Search";
+            cmdSearch.Parameters.AddWithValue("@Search", "%" + search + "%");
+
+            // Execute the command and read the result
+            using (SqlDataReader reader = cmdSearch.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    // Create customer object and add it to the list
+                    Customers1 customer = new Customers1();
+                    customer.CustomerId = Convert.ToInt32(reader["CustomerId"]);
+                    customer.CustomerName = reader["CustomerName"].ToString();
+                    customer.Email = reader["ContactEmail"].ToString();
+                    customer.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
+                    customer.Street = reader["StreetName"].ToString();
+                    customer.Province = reader["Province"].ToString();
+                    customer.PostalCode = reader["PostalCode"].ToString();
+                    customer.Status = Convert.ToInt32(reader["Status"]);
+
+                    customers.Add(customer);
+                }
+            }
+
+            return customers;
+        }
+
+
+
+
+        public static void UpdateCustomer1(Customers1 customerUpdate)
+        {
+            using (SqlConnection conn = UtilityDB.GetDBConnection())
+            {
+                try
+                {
+                    // Cria um novo comando SQL e associa-o à conexão
+                    SqlCommand cmdUpdate = new SqlCommand();
+                    cmdUpdate.Connection = conn;
+                    cmdUpdate.CommandText = "UPDATE Customers " +
+                                            "SET CustomerName = @CustomerName, " +
+                                            "ContactEmail = @ContactEmail, " +
+                                            "StreetName = @StreetName, " +
+                                            "Province = @Province, " +
+                                            "PostalCode = @PostalCode, " +
+                                            "PhoneNumber = @PhoneNumber " +
+                                            "WHERE CustomerId = @CustomerId";
+
+                    // Adiciona os parâmetros para a atualização dos dados do cliente
+                    cmdUpdate.Parameters.AddWithValue("@CustomerName", customerUpdate.CustomerName);
+                    cmdUpdate.Parameters.AddWithValue("@ContactEmail", customerUpdate.Email);
+                    cmdUpdate.Parameters.AddWithValue("@StreetName", customerUpdate.Street);
+                    cmdUpdate.Parameters.AddWithValue("@Province", customerUpdate.Province);
+                    cmdUpdate.Parameters.AddWithValue("@PostalCode", customerUpdate.PostalCode);
+                    cmdUpdate.Parameters.AddWithValue("@PhoneNumber", customerUpdate.PhoneNumber);
+                    cmdUpdate.Parameters.AddWithValue("@CustomerId", customerUpdate.CustomerId);
+
+                    // Executa o comando SQL
+                    cmdUpdate.ExecuteNonQuery();
+                    MessageBox.Show("Customer updated successfully.", "Confirmation");
+                }
+                catch (Exception ex)
+                {
+                    // Trata a exceção aqui
+                    MessageBox.Show("Error updating customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    // Certifica-se de fechar a conexão, independentemente de ocorrer uma exceção ou não
+                    conn.Close();
+                }
+            }
+        
 
     }
+
+
+    public static void DeleteC(int customerId, int status)
+        {
+            // Criar um comando SQL com a query e a conexão
+            using (SqlConnection conn = UtilityDB.GetDBConnection())
+            {
+                SqlCommand cmdUpdate = new SqlCommand();
+                cmdUpdate.Connection = conn;
+                cmdUpdate.CommandText = "UPDATE CUSTOMERS " +
+                                        "SET Status = @Status " +
+                                        "WHERE CustomerId = @ID"; // Corrigindo para CustomerId
+                cmdUpdate.Parameters.AddWithValue("@Status", status);
+                cmdUpdate.Parameters.AddWithValue("@ID", customerId); // Usando AddWithValue para o ID
+                cmdUpdate.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 }
+
